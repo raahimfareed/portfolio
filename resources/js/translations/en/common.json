@@ -1,0 +1,13 @@
+{
+    "index": {
+        "title": {
+            "part1": "Hi, ",
+            "part2": "I'm"
+        },
+        "name": "Raahim Fareed",
+        "button": {
+            "projects": "Projects",
+            "getInTouch": "Get in Touch"
+        }
+    }
+}

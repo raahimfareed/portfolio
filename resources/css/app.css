@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#indexPage {
+    #mainText,
+    #subText1,
+    #subText2 {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        .char {
+            @apply translate-y-[115px];
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 0.5s;
+        }
+    }
+
+    #mainTextUnderline {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        @apply translate-x-full;
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 0.5s;
+    }
+}
+
+#loader {
+    #numbers {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+}
+
+.nav-link {
+    @apply transition-colors;
+    &:hover {
+        @apply text-neutral-500;
+    }
+}
+
+.markdown {
+    @apply text-lg;
+}
+
+.markdown h1 {
+    @apply font-bold text-4xl my-10;
+}
+.markdown h2 {
+    @apply font-bold text-3xl my-7;
+}
+.markdown h3 {
+    @apply font-bold text-2xl my-4;
+}
+
+.markdown h4 {
+    @apply font-bold mb-1;
+}
+
+.markdown hr {
+    @apply mb-11;
+}
+
+.markdown p {
+    @apply my-6;
+}
+
+.markdown h1 + p,
+.markdown h2 + p,
+.markdown h3 + p,
+.markdown h4 + p {
+    @apply mt-0;
+}
+
+.markdown blockquote {
+    @apply pl-3 border-l-4 border-gray-300;
+}
+
+.markdown ul {
+    @apply list-disc ml-5 mb-6;
+}
+
+.markdown ol {
+    @apply list-decimal ml-5;
+}
+
+.markdown pre,
+.markdown pre > div {
+    @apply rounded-md;
+}
+
+.markdown pre code {
+    @apply bg-transparent dark:bg-transparent;
+}
+
+.markdown code {
+    @apply p-1 rounded bg-neutral-200 dark:bg-neutral-600 transition-colors;
+}
+
+.markdown table thead {
+    @apply bg-gray-50 dark:bg-gray-700;
+}
+
+.markdown table th {
+    @apply px-6 py-2 text-xs text-gray-500 dark:text-white;
+}
+
+.markdown table tbody {
+    @apply bg-white dark:bg-gray-800;
+}
+
+.markdown table tbody tr {
+    @apply whitespace-nowrap;
+}
+
+.markdown table tbody td {
+    @apply px-6 py-4 text-sm text-gray-500;
+}
+
+.markdown a {
+    @apply underline;
+}
+
+.markdown img {
+    @apply w-full h-auto;
+}

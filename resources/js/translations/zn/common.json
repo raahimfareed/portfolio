@@ -1,0 +1,13 @@
+{
+    "index": {
+        "title": {
+            "part1": "你好",
+            "part2": "我是"
+        },
+        "name": "瓦西姆",
+        "button": {
+            "projects": "項目",
+            "getInTouch": "保持聯繫"
+        }
+    }
+}

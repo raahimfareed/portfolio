@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('experiences', function (Blueprint $table) {
+            $table->id();
+            $table->string("title", 255);
+            $table->string("company", 255);
+            $table->string("description", 1024);
+            $table->date("start");
+            $table->date("end")->nullable();
+            $table->foreignId("media_id", 255)->nullable()->constrained();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('experiences');
+    }
+};
