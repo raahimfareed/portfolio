@@ -39,6 +39,18 @@ $ npm i
 
 This will install all the node packages required for vite and such.
 
+Copy .env.example to .env
+
+```sh
+$ cp .env.example .env
+```
+
+Generate an application key
+
+```sh
+$ php artisan key:generate
+```
+
 Modify `.env` according to your needs.
 
 Finally, run
@@ -49,7 +61,7 @@ $ php artisan serve
 
 This will start your laravel server and by default will be on port `8000`
 
-Next, in another terminal, run
+Next, in another terminal, run one of the following two commands
 
 ```sh
 # For development
@@ -57,4 +69,15 @@ $ npm run dev
 
 # For production
 $ npm run build
+```
+
+
+If you want to setup the admin user,
+
+First make sure admin credentials are set in .env file
+
+Then run the following command
+
+```sh
+$ php artisan db:seed --class=Admin/SetupSeeder
 ```
