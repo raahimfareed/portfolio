@@ -28,12 +28,12 @@ const SideNav = ({ active }: iSideNavProps) => {
       </Link>
       <Link
         href="projects"
-        className={"transition-opacity hover:opacity-70" + (pathname === "projects" ? " underline decoration-accent decoration-2" : "")}>
+        className={"transition-opacity hover:opacity-70" + (pathname === "/projects" ? " underline decoration-accent decoration-2" : "")}>
         Projects
       </Link>
       <Link
         href="contact"
-        className={"transition-opacity hover:opacity-70" + (pathname === "contact" ? " underline decoration-accent decoration-2" : "")}>
+        className={"transition-opacity hover:opacity-70" + (pathname === "/contact" ? " underline decoration-accent decoration-2" : "")}>
         Contact
       </Link>
     </nav>
