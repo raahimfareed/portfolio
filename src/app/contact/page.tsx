@@ -35,7 +35,7 @@ const Contact = () => {
           </ContactSidebarLink>
           <ContactSidebarLink href="mailto:raahimfareed@proton.me">
             <BookOpenIcon className="w-4" />
-            Raahim's Blog
+            Raahim&apos;s Blog
           </ContactSidebarLink>
         </div>
         <div className="flex flex-col gap-4 lg:py-48 overflow-y-auto overflow-x-hidden w-full lg:w-[64ch]">

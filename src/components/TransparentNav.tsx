@@ -15,7 +15,7 @@ interface iTransparentNavProps {
 const TransparentNav = ({ active, setActive }: iTransparentNavProps) => {
     const pathname = usePathname();
     const scrollThreshold = 50;
-    const onScrollRef = useRef<any>(undefined);
+    const onScrollRef = useRef<(() => void) | undefined>(undefined);
     const navRef = useRef<HTMLElement>(null);
     useEffect(() => {
         if (onScrollRef.current !== undefined) {

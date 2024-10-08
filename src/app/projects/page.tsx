@@ -3,6 +3,7 @@ import TechPill from "@/components/TechPill";
 import { LinkPreview } from "@/components/ui/link-preview";
 import MainLayout from "@/layouts/MainLayout"
 import { LinkIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 const Projects = () => {
   return (
@@ -19,7 +20,7 @@ const Projects = () => {
                 YaCheez <LinkIcon className="w-4" />
               </LinkPreview>
             </h2>
-            <img src="https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/falltree.jpg" alt="Project Name" />
+            <Image src="https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/falltree.jpg" alt="Project Name" />
             <div className="flex items-center flex-wrap gap-3">
               <strong className="mr-1">Tech Stack:</strong>
               <TechPill type="laravel" />

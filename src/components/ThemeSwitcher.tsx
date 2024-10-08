@@ -9,11 +9,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown";
-import { SyntheticEvent, useContext, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { changeTheme } from "@/utils";
 import { setTheme } from "@/app/actions";
 
-const ThemeSwitcher = ({ className }: { className?: string; }) => {
+const ThemeSwitcher = () => {
   const [currentTheme, setCurrentTheme] = useState<string>("");
   useEffect(() => {
     setCurrentTheme(document.documentElement.dataset.theme ?? "Mono");
