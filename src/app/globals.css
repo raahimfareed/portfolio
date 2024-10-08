@@ -96,7 +96,7 @@
 }
 
 body {
-  font-family: "Poppins";
+  @apply font-sans;
 }
 
 ::selection {
