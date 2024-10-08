@@ -1,0 +1,6 @@
+.heading {
+  &:before {
+    @apply pr-3 absolute left-[-1rem] md:left-[-2rem] lg:left-[-5rem] text-accent opacity-30 z-[-1] lg:text-[50vw] text-[25vh] transition-colors;
+    content: "//";
+  }
+}
