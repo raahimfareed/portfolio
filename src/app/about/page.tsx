@@ -21,7 +21,13 @@ const About = () => {
       <section className='px-8 lg:px-16 flex flex-col lg:flex-row gap-8 lg:gap-16'>
         <div className="pt-24 lg:py-48 h-full lg:sticky left-0 top-0 lg:w-64 flex flex-col gap-3">
           <div className="overflow-hidden rounded-full aspect-square mb-3 mx-auto w-64 lg:w-full">
-            <Image src={myPicture} quality={50} className="w-full" alt="Picture of Raahim Fareed" priority />
+            <Image
+              src={myPicture}
+              quality={50}
+              className="w-full"
+              alt="Picture of Raahim Fareed"
+              placeholder="blur"
+              priority />
           </div>
           <div className="flex flex-row lg:flex-col flex-wrap gap-3">
             <ContactSidebarLink href="https://linkedin.com/in/raahimfareed">
