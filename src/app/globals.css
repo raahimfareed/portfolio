@@ -95,6 +95,10 @@
 
 }
 
+body {
+  font-family: "Poppins";
+}
+
 ::selection {
   @apply bg-accent text-accent-foreground transition-colors;
 }
