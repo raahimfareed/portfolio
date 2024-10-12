@@ -16,6 +16,7 @@ const Projects = () => {
       <section className='px-8 lg:px-16 flex gap-8 xl:gap-16'>
         <div className="py-24 md:py-32 lg:py-48 h-full sticky left-0 top-0 w-32 xl:w-64 text-foreground md:flex flex-col gap-4 hidden">
           <ProjectSidebarLink>Portfolio</ProjectSidebarLink>
+          <ProjectSidebarLink>Pine</ProjectSidebarLink>
           <ProjectSidebarLink>SkyMap</ProjectSidebarLink>
           <ProjectSidebarLink>YaCheez</ProjectSidebarLink>
         </div>
