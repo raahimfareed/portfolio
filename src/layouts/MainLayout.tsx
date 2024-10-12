@@ -1,19 +1,15 @@
-"use client";
 import Footer from "@/components/Footer"
-import SideNav from "@/components/SideNav"
-import TransparentNav from "@/components/TransparentNav"
+import UserNav from "@/components/UserNav"
 import { BackgroundBeams } from "@/components/ui/background-beams"
-import { useState } from "react"
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const [active, setActive] = useState(false);
   return (
     <>
-      <BackgroundBeams />
+      {/* Was too heavy for my site, was making it feel sluggish */}
+      {/* <BackgroundBeams /> */}
       <main>
-        <TransparentNav active={active} setActive={setActive} />
+        <UserNav />
         {children}
-        <SideNav active={active} />
         <Footer />
       </main>
     </>
