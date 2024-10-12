@@ -27,6 +27,10 @@ import figma from "@/images/icons/figma.svg"
 import git from "@/images/icons/git.svg"
 import jira from "@/images/icons/jira.svg"
 import postcss from "@/images/icons/postcss.svg"
+import csharp from "@/images/icons/csharp.svg"
+import nextjs from "@/images/icons/nextjs.svg"
+import prisma from "@/images/icons/prisma.svg"
+import vercel from "@/images/icons/vercel.svg"
 import Image, { StaticImageData } from "next/image"
 const TechPill = ({ type }: { type: string; }) => {
     const types: {
@@ -35,6 +39,22 @@ const TechPill = ({ type }: { type: string; }) => {
             text: string;
         }
     } = {
+        prisma: {
+            icon: prisma,
+            text: "Prisma",
+        },
+        vercel: {
+            icon: vercel,
+            text: "Vercel",
+        },
+        nextjs: {
+            icon: nextjs,
+            text: "Next.js",
+        },
+        csharp: {
+            icon: csharp,
+            text: "C#",
+        },
         alpinejs: {
             icon: alpine,
             text: "AlpineJS",
