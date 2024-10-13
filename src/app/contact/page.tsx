@@ -42,7 +42,7 @@ const Contact = () => {
           <h1 className="text-4xl font-bold">Get In Contact</h1>
           <div className="flex flex-col gap-2">
             <form className="rounded-xl p-8 bg-secondary text-secondary-foreground">
-              <p className="rounded-lg p-4 mb-3 text-yellow-900 border-2 border-yellow-500 bg-yellow-200">Contact page is not functional at the moment! It's under development, please use my socials to get in contact</p>
+              <p className="rounded-lg p-4 mb-3 text-yellow-900 border-2 border-yellow-500 bg-yellow-200">Contact page is not functional at the moment! It&apos;s under development, please use my socials to get in contact</p>
               <div className="mb-3">
                 <Label>Name</Label>
                 <Input className="border-background bg-background text-foreground" required />

@@ -1,9 +1,5 @@
 import ProjectSidebarLink from "@/components/ProjectSidebarLink"
-import TechPill from "@/components/TechPill";
-import { LinkPreview } from "@/components/ui/link-preview";
 import MainLayout from "@/layouts/MainLayout"
-import { LinkIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import yacheezIndexImage from "@/images/yacheez/index.png";
 import skymapIndexImage from "@/images/skymap/main.png";
 import pineIndexImage from "@/images/pine/index.png";

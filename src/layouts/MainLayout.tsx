@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer"
 import UserNav from "@/components/UserNav"
-import { BackgroundBeams } from "@/components/ui/background-beams"
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
