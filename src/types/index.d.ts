@@ -3,3 +3,10 @@ export interface Theme {
         [key: string]: string;
     }
 }
+
+export interface Project {
+    name: string;
+    description: string;
+    url?: string;
+    techStack?: string[];
+}
