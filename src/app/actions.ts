@@ -13,5 +13,6 @@ export async function getTheme() {
 }
 
 export async function login(formData: FormData) {
-  // const email = formData.get('email');
+  // eslint-disable-next-line
+  const email = formData.get('email');
 }
