@@ -5,9 +5,12 @@ import React, { useState } from "react"
 import { LoginValidationSchema } from "@/validation-schemas"
 import { useToast } from "@/components/hooks/use-toast"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
 
 const AdminLogin = () => {
+  const [processing, setProcessing] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
   const [errors, setErrors] = useState<{ email: string[]; password: string[] }>({
     email: [],
     password: []
@@ -29,6 +32,7 @@ const AdminLogin = () => {
         email: errors.fieldErrors.email ?? [],
         password: errors.fieldErrors.password ?? [],
       });
+      setProcessing(false)
       return;
     }
     try {
@@ -46,25 +50,33 @@ const AdminLogin = () => {
         })
         return;
       }
-      if (status === 404) {
+      if (status === 401) {
         const error = await response.json();
         setErrors({
-          password: [],
+          password: [error.error],
           email: [error.error]
         })
         return;
       }
+
+      if (status === 201) {
+        return router.push('/admin/dashboard')
+      }
     } catch (error) {
-      console.log(error)
       toast({
         className: "text-red-600 bg-red-200 border-red-800",
         description: error as string
       })
+    } finally {
+      setProcessing(false)
     }
   }
   return (
     <div className="w-screen h-screen flex items-center justify-center">
-      <form action={clientLogin} className="bg-secondary text-secondary-foreground p-4 rounded-lg flex flex-col gap-3 w-[320px]">
+      <form action={async (formData) => {
+        setProcessing(true)
+        clientLogin(formData)
+      }} className="bg-secondary text-secondary-foreground p-4 rounded-lg flex flex-col gap-3 w-[320px]">
         <h1 className="text-xl font-bold">Login</h1>
         <div>
           <Label htmlFor="email">Email</Label>
@@ -88,7 +100,7 @@ const AdminLogin = () => {
             return <small key={`password-error-${idx}`} className="text-red-500">{error}</small>
           })}
         </div>
-        <Button className="bg-primary text-primary-foreground">Login</Button>
+        <Button disabled={processing} className="bg-primary text-primary-foreground">Login</Button>
       </form>
     </div>
   )
