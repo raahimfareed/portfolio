@@ -2,6 +2,9 @@ import { prisma } from "@/utils";
 import { LoginValidationSchema } from "@/validation-schemas";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import bcrypt from "bcrypt"
+import { encodeAndSign } from "@/app/actions";
+import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest) {
   let body;
@@ -25,9 +28,6 @@ export async function POST(request: NextRequest) {
       });
     }
   }
-  return NextResponse.json({ error: "An error occurred" }, {
-    status: 500
-  });
   let user;
   try {
     user = await prisma.user.findFirst({
@@ -43,9 +43,28 @@ export async function POST(request: NextRequest) {
   }
 
   if (user === null) {
-    return NextResponse.json({ error: "User not found" }, {
-      status: 404
+    return NextResponse.json({
+      error: "Incorrect credentials",
+    }, {
+      status: 401
     });
   }
-  return NextResponse.json({ user })
+
+  const passwordsMatch = await bcrypt.compare(validatedData?.password as string, user.password);
+
+  if (!passwordsMatch) {
+    return NextResponse.json({
+      error: "Incorrect credentials",
+    }, {
+      status: 401
+    });
+  }
+
+  const daysToExpire = 7;
+  const expires = new Date(Date.now() + (daysToExpire * 24 * 60 * 60 * 1000));
+  const session = await encodeAndSign({ email: user.email, name: user.name });
+  cookies().set('session', session, { expires, httpOnly: true });
+  return NextResponse.json({ message: "Logged In" }, {
+    status: 201
+  })
 }
