@@ -38,6 +38,7 @@ export async function POST(request: Request) {
     });
   }
 
+  // eslint-disable-next-line
   const bodyObject: Record<string, any> = {};
   body.forEach((value, key) => {
     bodyObject[key] = value;
@@ -60,7 +61,7 @@ export async function POST(request: Request) {
   const file = body.get('image') as File;
   const uniqueFileName = `${uuidv4()}.${file.name.split('.').pop()}`;
   try {
-    const blob = await put(uniqueFileName, file.stream(), {
+    await put(uniqueFileName, file.stream(), {
       access: 'public'
     });
   } catch (error) {
