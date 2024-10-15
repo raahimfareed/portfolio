@@ -11,3 +11,7 @@ export async function getTheme() {
   const theme = cookies().get('theme');
   return theme?.value ?? "";
 }
+
+export async function login(formData: FormData) {
+  const email = formData.get('email');
+}
