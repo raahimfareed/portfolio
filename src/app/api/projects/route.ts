@@ -1,25 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
-import { zfd } from "zod-form-data";
 import { z } from "zod";
 import { put } from "@vercel/blob";
 import { v4 as uuidv4 } from "uuid";
-
-const prisma = new PrismaClient();
-
-const Project = zfd.formData({
-  name: zfd.text(),
-  description: zfd.text(),
-  url: zfd.text().optional(),
-  image: zfd
-    .file()
-    .refine((file) => file.size < 5000000, {
-      message: "File can't be bigger than 5MBs."
-    })
-    .refine((file) => ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(file.type), {
-      message: "File format must be either jpg, jpeg, png or webp."
-    })
-});
+import { ProjectValidationSchema } from "@/validation-schemas";
+import { prisma } from "@/utils";
 
 export async function GET() {
   const projects = await prisma.project.findMany();
@@ -46,7 +30,7 @@ export async function POST(request: Request) {
 
   let validatedData;
   try {
-    validatedData = Project.parse(bodyObject);
+    validatedData = ProjectValidationSchema.parse(bodyObject);
   } catch (error) {
     console.log(error);
     if (error instanceof z.ZodError) {
@@ -55,8 +39,6 @@ export async function POST(request: Request) {
       });
     }
   }
-
-  // const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
 
   const file = body.get('image') as File;
   const uniqueFileName = `${uuidv4()}.${file.name.split('.').pop()}`;
