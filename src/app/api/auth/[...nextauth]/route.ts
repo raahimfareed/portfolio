@@ -4,4 +4,6 @@ const handler = NextAuth({
   providers: []
 })
 
-export { handler as GET, handler as POST }
+export const GET = handler;
+export const POST = handler;
+
