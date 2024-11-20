@@ -50,9 +50,7 @@ const Projects = () => {
                     url={project.url}
                     description={project.description}
                     image={project.image ?? ""}
-                    imageWidth={1280}
-                    imageHeight={720}
-                    imageStyle={{ width: "100%", height: "auto" }}
+                    imageStyle={{ width: "100%", height: "auto", maxHeight: "720px" }}
                     techStack={[
                       "nextjs",
                       "tailwindcss",
