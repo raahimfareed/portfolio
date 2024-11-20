@@ -29,6 +29,7 @@ export async function POST(request: Request) {
     });
   }
 
+  // eslint-disable-next-line
   const bodyObject: Record<string, any> = {};
   body.forEach((value, key) => {
     bodyObject[key] = value;

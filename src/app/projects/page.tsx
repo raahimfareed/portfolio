@@ -1,17 +1,12 @@
 "use client"
 import ProjectSidebarLink from "@/components/ProjectSidebarLink"
 import MainLayout from "@/layouts/MainLayout"
-import yacheezIndexImage from "@/images/yacheez/index.png";
-import skymapIndexImage from "@/images/skymap/main.png";
-import pineIndexImage from "@/images/pine/index.png";
-import portfolioIndexImage from "@/images/portfolio/index.png";
 import ProjectComponent from "@/components/ProjectComponent";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Project } from "@/types";
 import { useToast } from "@/components/hooks/use-toast";
 import ProjectSkeleton from "@/components/ProjectSkeleton";
-import { argv0 } from "process";
 
 const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -27,13 +22,14 @@ const Projects = () => {
 
         const data = await response.json();
         setProjects(data);
+      // eslint-disable-next-line
       } catch (error: any) {
           toast({
             title: error.message
           });
       }
     })();
-  }, []);
+  }, [toast]);
   return (
     <MainLayout>
       <section className='px-8 lg:px-16 flex gap-8 xl:gap-16'>

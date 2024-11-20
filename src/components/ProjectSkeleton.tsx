@@ -1,18 +1,4 @@
-import React, { CSSProperties } from 'react'
-import { LinkPreview } from './ui/link-preview'
-import { LinkIcon } from '@heroicons/react/24/outline'
-import Image, { StaticImageData } from 'next/image';
-import TechPill from './TechPill';
-interface iProjectComponentProps {
-  name: string;
-  url?: string;
-  image: StaticImageData | string;
-  imageWidth?: number;
-  imageHeight?: number;
-  imageStyle: CSSProperties;
-  techStack: string[];
-  description: string;
-}
+import React from 'react'
 const ProjectSkeleton = () => {
   return (
       <div className="opacity-30">

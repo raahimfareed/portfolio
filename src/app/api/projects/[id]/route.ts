@@ -53,9 +53,11 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   try {
     const updatedProject = await prisma.project.update({
       where: { id: +params.id },
+      // @ts-expect-error some type error even though it works fine
       data: validatedData
     });
     return NextResponse.json(updatedProject);
+  // eslint-disable-next-line
   } catch (error: any) {
     return NextResponse.json({
       message: error.message
@@ -98,6 +100,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
       where: { id: +params.id }
     })
     return NextResponse.json(deletedProject);
+  // eslint-disable-next-line
   } catch (error: any) {
     return NextResponse.json({
       message: error.message
