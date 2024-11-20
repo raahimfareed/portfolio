@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer"
+import { Toaster } from "@/components/ui/toaster"
 import UserNav from "@/components/UserNav"
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
@@ -10,6 +11,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <UserNav />
         {children}
         <Footer />
+        <Toaster />
       </main>
     </>
   )
