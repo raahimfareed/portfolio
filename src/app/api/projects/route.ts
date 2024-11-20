@@ -12,6 +12,13 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const authToken = (request.headers.get('authorization') || '').split("Bearer ").at(1)
+  const envAuth = process.env.PERSONAL_TOKEN;
+  if (authToken !== envAuth) {
+      return NextResponse.json({ error: "You're not authorized to perform this operation" }, {
+        status: 403
+      });
+  }
   let body;
   try {
     body = await request.formData()
@@ -22,7 +29,6 @@ export async function POST(request: Request) {
     });
   }
 
-  // eslint-disable-next-line
   const bodyObject: Record<string, any> = {};
   body.forEach((value, key) => {
     bodyObject[key] = value;
@@ -42,8 +48,9 @@ export async function POST(request: Request) {
 
   const file = body.get('image') as File;
   const uniqueFileName = `${uuidv4()}.${file.name.split('.').pop()}`;
+  let result;
   try {
-    await put(uniqueFileName, file.stream(), {
+    result = await put(uniqueFileName, file.stream(), {
       access: 'public'
     });
   } catch (error) {
@@ -57,7 +64,7 @@ export async function POST(request: Request) {
         name: validatedData?.name as string,
         description: validatedData?.description as string,
         url: validatedData?.url,
-        image: uniqueFileName
+        image: result.url
       }
     });
     return NextResponse.json(project);
