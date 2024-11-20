@@ -7,13 +7,11 @@ interface iProjectComponentProps {
   name: string;
   url?: string;
   image: StaticImageData | string;
-  imageWidth?: number;
-  imageHeight?: number;
   imageStyle: CSSProperties;
   techStack: string[];
   description: string;
 }
-const ProjectComponent = ({ name, url, image, imageWidth, imageHeight, imageStyle, techStack, description }: iProjectComponentProps) => {
+const ProjectComponent = ({ name, url, image, imageStyle, techStack, description }: iProjectComponentProps) => {
   return (
     <div className="flex flex-col gap-2">
       <h2 className="text-2xl text-foreground">
@@ -28,8 +26,7 @@ const ProjectComponent = ({ name, url, image, imageWidth, imageHeight, imageStyl
         <Image
           src={image}
           alt={name}
-          width={imageWidth}
-          height={imageHeight}
+          unoptimized
           style={imageStyle}
           layout="fixed" />
       </div>
