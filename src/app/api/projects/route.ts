@@ -65,6 +65,7 @@ export async function POST(request: Request) {
         name: validatedData?.name as string,
         description: validatedData?.description as string,
         url: validatedData?.url,
+        techStack: validatedData?.techStack,
         image: result.url
       }
     });

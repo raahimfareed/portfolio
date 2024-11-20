@@ -23,7 +23,8 @@ export const ProjectValidationSchema = zfd.formData({
     })
     .refine((file) => ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(file.type), {
       message: "File format must be either jpg, jpeg, png or webp."
-    })
+    }),
+    techStack: zfd.json(z.array(z.string()))
 });
 
 export const ProjectUpdateValidationSchema = z.object({
@@ -36,6 +37,9 @@ export const ProjectUpdateValidationSchema = z.object({
     url: z
         .string()
         .optional(),
+    techStack: z
+        .array(z.string())
+        .optional()
 })
 
 export const UserRegisterValidationSchema = z.object({

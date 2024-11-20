@@ -48,19 +48,10 @@ const Projects = () => {
                     key={'project-key-' + project?.id}
                     name={project.name}
                     url={project.url}
+                    imageStyle={{ borderRadius: "16px" }}
                     description={project.description}
                     image={project.image ?? ""}
-                    imageStyle={{ width: "100%", height: "auto", maxHeight: "720px" }}
-                    techStack={[
-                      "nextjs",
-                      "tailwindcss",
-                      "typescript",
-                      "vercel",
-                      "prisma",
-                      "postgresql",
-                      "html",
-                      "css",
-                    ]}
+                    techStack={project.techStack ?? []}
                   />
             })}
         </div>
