@@ -22,5 +22,6 @@ model Project {
   description String
   url         String?
   image       String
+  techStack   String[]
   createdAt   DateTime @default(now())
 }

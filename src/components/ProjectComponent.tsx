@@ -7,7 +7,7 @@ interface iProjectComponentProps {
   name: string;
   url?: string;
   image: StaticImageData | string;
-  imageStyle: CSSProperties;
+  imageStyle?: CSSProperties;
   techStack: string[];
   description: string;
 }
@@ -22,10 +22,12 @@ const ProjectComponent = ({ name, url, image, imageStyle, techStack, description
           : <>{name}</>
         }
       </h2>
-      <div className="max-h-[400px] rounded-lg overflow-hidden bg-gray-800 w-fit">
+      <div className="h-[400px] w-full relative rounded-lg overflow-hidden bg-transparent w-fit">
         <Image
           src={image}
           alt={name}
+          fill={true}
+          objectFit="contain"
           unoptimized
           style={imageStyle}
           layout="fixed" />
