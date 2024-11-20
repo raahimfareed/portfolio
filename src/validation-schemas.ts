@@ -18,13 +18,25 @@ export const ProjectValidationSchema = zfd.formData({
   url: zfd.text().optional(),
   image: zfd
     .file()
-    .refine((file) => file.size < 5000000, {
-      message: "File can't be bigger than 5MBs."
+    .refine((file) => file.size < 4500000, {
+      message: "File can't be bigger than 4.5MBs."
     })
     .refine((file) => ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(file.type), {
       message: "File format must be either jpg, jpeg, png or webp."
     })
 });
+
+export const ProjectUpdateValidationSchema = z.object({
+    name: z
+        .string()
+        .optional(),
+    description: z
+        .string()
+        .optional(),
+    url: z
+        .string()
+        .optional(),
+})
 
 export const UserRegisterValidationSchema = z.object({
   name: z
