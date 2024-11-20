@@ -14,7 +14,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const authToken = (request.headers.get('authorization') || '').split("Bearer ").at(1)
   const envAuth = process.env.PERSONAL_TOKEN;
-  if (authToken !== envAuth) {
+  if (!authToken || !envAuth || authToken !== envAuth) {
       return NextResponse.json({ error: "You're not authorized to perform this operation" }, {
         status: 403
       });
