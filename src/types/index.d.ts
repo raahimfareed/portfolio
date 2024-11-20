@@ -5,6 +5,8 @@ export interface Theme {
 }
 
 export interface Project {
+    id?: number;
+    image?: string;
     name: string;
     description: string;
     url?: string;
