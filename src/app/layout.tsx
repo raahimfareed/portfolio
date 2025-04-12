@@ -7,8 +7,6 @@ import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({
   subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-poppins',
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 });
 
@@ -25,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme={!!theme ? theme.value : "Mono"}>
       <body
-        className={`${poppins.variable} antialiased bg-background text-foreground overflow-x-hidden`}
+        className={`${poppins.className} antialiased bg-background text-foreground overflow-x-hidden`}
       >
         {children}
         <SpeedInsights />
