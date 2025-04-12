@@ -3,17 +3,19 @@ import { LinkPreview } from './ui/link-preview'
 import { LinkIcon } from '@heroicons/react/24/outline'
 import Image, { StaticImageData } from 'next/image';
 import TechPill from './TechPill';
+import { cleanString } from '@/utils';
+import { TechType } from '@/types';
 interface iProjectComponentProps {
   name: string;
   url?: string;
   image: StaticImageData | string;
   imageStyle?: CSSProperties;
-  techStack: string[];
-  description: string;
+  techStack: TechType[];
+  description: string | React.ReactNode;
 }
 const ProjectComponent = ({ name, url, image, imageStyle, techStack, description }: iProjectComponentProps) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2" id={cleanString(name)}>
       <h2 className="text-2xl text-foreground">
         {!!url
           ? <LinkPreview url={url} className="text-foreground inline-flex items-center gap-3">
@@ -22,7 +24,7 @@ const ProjectComponent = ({ name, url, image, imageStyle, techStack, description
           : <>{name}</>
         }
       </h2>
-      <div className="h-[400px] w-full relative rounded-lg overflow-hidden bg-transparent w-fit">
+      <div className="h-[400px] w-full relative rounded-lg overflow-hidden bg-transparent">
         <Image
           src={image}
           alt={name}
