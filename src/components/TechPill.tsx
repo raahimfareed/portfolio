@@ -30,15 +30,41 @@ import postcss from "@/images/icons/postcss.svg"
 import csharp from "@/images/icons/csharp.svg"
 import nextjs from "@/images/icons/nextjs.svg"
 import prisma from "@/images/icons/prisma.svg"
+import django from "@/images/icons/django.svg"
+import flask from "@/images/icons/flask.svg"
 import vercel from "@/images/icons/vercel.svg"
+import pycord from "@/images/icons/pycord.png"
+import express from "@/images/icons/express.svg"
+import postman from "@/images/icons/postman.svg"
 import Image, { StaticImageData } from "next/image"
-const TechPill = ({ type }: { type: string; }) => {
+import { TechType } from "@/types"
+const TechPill = ({ type }: { type: TechType; }) => {
     const types: {
         [key: string]: {
             icon: string | StaticImageData;
             text: string;
         }
     } = {
+        postman: {
+            icon: postman,
+            text: "Postman",
+        },
+        express: {
+            icon: express,
+            text: "Express",
+        },
+        pycord: {
+            icon: pycord,
+            text: "PyCord",
+        },
+        django: {
+            icon: django,
+            text: "Django",
+        },
+        flask: {
+            icon: flask,
+            text: "Flask",
+        },
         prisma: {
             icon: prisma,
             text: "Prisma",
