@@ -2,14 +2,14 @@ import ContactSidebarLink from "@/components/ContactSidebarLink"
 import TechPill from "@/components/TechPill"
 import { LinkPreview } from "@/components/ui/link-preview"
 import MainLayout from "@/layouts/MainLayout"
-import { BookOpenIcon, EnvelopeIcon } from "@heroicons/react/24/solid"
+import { EnvelopeIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
 import { FaGithub } from "react-icons/fa"
 import myPicture from "@/images/me.jpg";
 import linkedin from "@/images/icons/linkedin.svg"
-import instagram from "@/images/icons/instagram.png"
 import Image from "next/image"
 import type { Metadata } from "next"
+import { Uiiai } from "@/components/Uiiai"
 
 export const metadata: Metadata = {
   title: "About Me // Raahim Fareed",
@@ -38,33 +38,27 @@ const About = () => {
               <FaGithub className="w-4" />
               @raahimfareed
             </ContactSidebarLink>
-            <ContactSidebarLink href="https://instagram.com/raahimwho">
-              <Image src={instagram} alt="Instagram" className="w-4" />
-              @raahimwho
-            </ContactSidebarLink>
             <ContactSidebarLink href="mailto:raahimfareed@proton.me">
               <EnvelopeIcon className="w-4" />
               raahimfareed@proton.me
-            </ContactSidebarLink>
-            <ContactSidebarLink href="mailto:raahimfareed@proton.me">
-              <BookOpenIcon className="w-4" />
-              Raahim&apos;s Blog
             </ContactSidebarLink>
           </div>
         </div>
         <div className="flex flex-col gap-4 pb-48 pt-0 lg:pt-48 overflow-y-auto overflow-x-hidden w-full lg:w-[64ch]">
           <h1 className="text-4xl font-bold">About</h1>
+          <h2 className="text-2xl">Who Am I?</h2>
           <div>
-            My name is <LinkPreview url="https://www.raahimfareed.com" className="font-bold text-foreground">Raahim Fareed</LinkPreview> - An ambitious software engineer with knack of solving real world problems through scalable solutions. I enjoy backend and API development. Along my journey of software engineering, I&apos;ve had a diverse experience of different industries, including but not limited to education, ecommerce, health and oil industries where I&apos;ve been able to design, implement and scale systems that drive better user experiences. I primarily work in <TechPill type="laravel" /> and <TechPill type="react" /> these days. I&apos;m also dabbling into Smart Cards, POS Terminal Machines and Android development.
+            My name is <LinkPreview url="https://www.raahimfareed.com" className="font-bold text-foreground">Raahim Fareed</LinkPreview> - An ambitious software engineer with knack of solving real world problems through scalable solutions. I enjoy backend and API development. Along my journey of software engineering, I&apos;ve had a diverse experience of different industries, including but not limited to education, ecommerce, health and oil industries where I&apos;ve been able to design, implement and scale systems that drive better user experiences. I&apos;m currently working as a software engineer at <LinkPreview url="https://nayatel.com/" className="font-bold text-foreground">Nayatel</LinkPreview> while leading <LinkPreview url="https://www.linkedin.com/company/neo-flux/" className="font-bold text-foreground">NeoFlux</LinkPreview> as its CEO.
           </div>
+          <h2 className="text-2xl">Hobbies And Interests</h2>
           <div>Beyond coding, I&apos;ve had the chance to lead teams like the <LinkPreview className="font-bold text-foreground" url="https://developers.google.com/community/gdsc">Google Developer Student Club</LinkPreview>, organize workshops and help others navigate the ever evolving tech landscape. One of my passions lies in competitive programming, where I&apos;ve honed critical thinking and problem solving skills. From competitions like <LinkPreview url="https://icpc.global" className="font-bold text-foreground">ICPC</LinkPreview> to websites like <LinkPreview url="https://leetcode.com" className="font-bold text-foreground">Leetcode</LinkPreview> and <LinkPreview url="https://codeforces.com" className="font-bold text-foreground">Codeforces</LinkPreview> have helped me grow exponentially.</div>
           <div>As for my interests, I work in <TechPill type="archlinux" />, I love speed cubing and basketball, and I love exploring different technologies and ideas. Puzzle and problem solving scratches my itch.</div>
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center mb-8">
             <Link href="/projects" className="rounded-lg border-2 border-primary py-1 px-4 bg-primary hover:opacity-70 text-primary-foreground transition-opacity">View Projects</Link>
             <Link href="/contact" className="rounded-lg border-2 border-secondary py-1 px-4 hover:bg-secondary hover:text-secondary-foreground transition-colors">Contact Me</Link>
           </div>
           <h1 className="text-4xl font-bold">Skills</h1>
-          <section className="w-full lg:w-[64ch] flex flex-col gap-4">
+          <section className="w-full lg:w-[64ch] flex flex-col gap-4 mb-8">
             <h2 className="text-2xl">Languages</h2>
             <div className="flex gap-3 flex-wrap w-full">
               <TechPill type="html" />
@@ -80,9 +74,13 @@ const About = () => {
             <div className="flex gap-3 flex-wrap w-full">
               <TechPill type="laravel" />
               <TechPill type="react" />
-              <TechPill type="unity" />
               <TechPill type="tailwindcss" />
+              <TechPill type="django" />
+              <TechPill type="flask" />
               <TechPill type="postcss" />
+              <TechPill type="unity" />
+              <TechPill type="pycord" />
+              <TechPill type="express" />
               <TechPill type="sass" />
               <TechPill type="arduino" />
               <TechPill type="jetpack-compose" />
@@ -95,6 +93,7 @@ const About = () => {
               <TechPill type="mysql" />
               <TechPill type="postgresql" />
               <TechPill type="docker" />
+              <TechPill type="postman" />
               <TechPill type="jetbrains" />
               <TechPill type="figma" />
               <TechPill type="jira" />
@@ -115,6 +114,8 @@ const About = () => {
 
             </div>
           </section>
+          <h1 className="text-4xl font-bold underline"><Link href="https://youtu.be/dQw4w9WgXcQ" target="_blank">Do You Meme?</Link></h1>
+          <Uiiai />
         </div>
       </section>
     </MainLayout>
