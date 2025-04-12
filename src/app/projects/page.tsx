@@ -90,6 +90,7 @@ const Projects = () => {
     })
 
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -103,6 +104,7 @@ const Projects = () => {
 
     link.classList.add('!bg-secondary');
     setActiveLink(link);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId]);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>) => {

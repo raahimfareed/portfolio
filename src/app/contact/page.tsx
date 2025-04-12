@@ -1,12 +1,8 @@
 import ContactSidebarLink from "@/components/ContactSidebarLink"
 import { FaGithub } from "react-icons/fa";
 import MainLayout from "@/layouts/MainLayout"
-import { BookOpenIcon, EnvelopeIcon } from "@heroicons/react/24/solid"
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { EnvelopeIcon } from "@heroicons/react/24/solid"
 import linkedin from "@/images/icons/linkedin.svg"
-import instagram from "@/images/icons/instagram.png"
 import Image from "next/image";
 
 const Contact = () => {
