@@ -11,6 +11,7 @@ import portfolioImage from "@/images/portfolio/index.png"
 import skymapImage from "@/images/skymap/main.png"
 import yaCheezImage from "@/images/yacheez/index.png"
 import pineImage from "@/images/pine/index.png"
+import pineDocsImage from "@/images/pine/docs.jpeg"
 import neoBotImage from "@/images/neo-bot/card.png"
 import fueloneImage from "@/images/fuelone/index.jpeg"
 import mentauraImage from "@/images/mentaura/index.png"
@@ -55,6 +56,13 @@ const Projects = () => {
       description: "Pine is a minimalist PHP micro-framework designed for developers who value simplicity and full control. With an intuitive syntax and a flexible architecture, Pine empowers you to build applications effortlessly—customizing everything down to the grain.",
       url: "https://pine.raahimfareed.com",
       techStack: ["php", "html", "css", "javascript", "tailwindcss", "docker", "pine"]
+    },
+    {
+      image: pineDocsImage,
+      name: "Pine Docs",
+      description: "Pine Docs is the official documentation website. It is used as a guide and a reference page for the Pine framework which developers can use whenever they need to!",
+      url: "https://pine.raahimfareed.com",
+      techStack: ["nextjs", "html", "css", "javascript", "tailwindcss", "vercel", "md"]
     },
     {
       image: portfolioImage,
