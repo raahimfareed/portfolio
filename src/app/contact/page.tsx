@@ -19,9 +19,9 @@ const Contact = () => {
             <FaGithub className="w-4" />
             @raahimfareed
           </ContactSidebarLink>
-          <ContactSidebarLink href="mailto:raahimfareed@proton.me">
+          <ContactSidebarLink href="mailto:raahim@raahimfareed.com">
             <EnvelopeIcon className="w-4" />
-            raahimfareed@proton.me
+            raahim@raahimfareed.com
           </ContactSidebarLink>
         </div>
       </section>
