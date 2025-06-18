@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="w-full">
                 <h1 className="text-2xl font-bold">Raahim Fareed</h1>
                 <p>Breathing life into tech</p>
-                <small>&copy; circa {moment().year().toString()}</small>
+                <small>&copy; {moment().year().toString()}</small>
             </div>
             <div className="w-full flex gap-2 flex-col">
                 <h2 className="text-lg">Socials</h2>

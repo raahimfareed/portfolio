@@ -40,7 +40,7 @@ const About = () => {
             </ContactSidebarLink>
             <ContactSidebarLink href="mailto:raahim@raahimfareed.com">
               <EnvelopeIcon className="w-4" />
-              mailto:raahim@raahimfareed.com
+              raahim@raahimfareed.com
             </ContactSidebarLink>
           </div>
         </div>
