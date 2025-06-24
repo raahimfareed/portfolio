@@ -201,7 +201,7 @@ const TechPill = ({ type }: { type: TechType; }) => {
 
     if (type in types) {
         return (
-            <span className="rounded px-1 gap-1 !bg-secondary !text-secondary-foreground text-white inline-flex items-center justify-center">
+            <span className="rounded shadow px-1 gap-1 !bg-secondary !text-secondary-foreground text-white inline-flex items-center justify-center transition">
                 <Image
                     alt={types[type].text}
                     src={types[type].icon}
@@ -212,7 +212,7 @@ const TechPill = ({ type }: { type: TechType; }) => {
     }
 
     return (
-        <span className="rounded py-0.5 px-1 gap-1 capitalize !bg-secondary !text-secondary-foreground text-white inline-flex items-center justify-center">
+        <span className="rounded shadow py-0.5 px-1 gap-1 capitalize !bg-secondary !text-secondary-foreground text-white inline-flex items-center justify-center transition">
             {type}
         </span>
     )

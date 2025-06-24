@@ -20,8 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const theme = cookies().get('theme');
+  const style = cookies().get('style');
   return (
-    <html lang="en" data-theme={!!theme ? theme.value : "Mono"}>
+    <html lang="en" data-theme={!!theme ? theme.value : "Mono"} data-style={!!style ? style.value : "Minimal"}>
       <body
         className={`${poppins.className} antialiased bg-background text-foreground overflow-x-hidden`}
       >

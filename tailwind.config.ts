@@ -13,6 +13,9 @@ const config: Config = {
   darkMode: ["selector", 'class'],
   theme: {
     extend: {
+      transitionProperty: {
+        DEFAULT: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, border-radius',
+      },
       fontFamily: {
         sans: ['var(--font-poppins)', ...defaultTheme.fontFamily.sans],
       },
@@ -32,9 +35,32 @@ const config: Config = {
           foreground: 'var(--accent-foreground)'
         },
       },
+      borderRadius: {
+        DEFAULT: 'var(--radius)',
+      },
+      boxShadow: {
+        DEFAULT: 'var(--shadow)',
+      },
+      fontWeight: {
+        DEFAULT: 'var(--font-weight)',
+      },
+      borderWidth: {
+        DEFAULT: 'var(--border-width)',
+      }
     },
   },
-  plugins: [addVariablesForColors, require("tailwindcss-animate")],
+  plugins: [
+    addVariablesForColors, 
+    require("tailwindcss-animate"),
+    ({ addUtilities }) => {
+      addUtilities({
+        ".radius-theme": { borderRadius: 'var(--radius)' },
+        ".shadow-theme": { boxShadow: 'var(--shadow)' },
+        ".font-weight-theme": { fontWeight: 'var(--font-weight)' },
+        ".border-theme": { borderWidth: 'var(--border-width)' },
+      });
+    }
+  ],
 };
 export default config;
 

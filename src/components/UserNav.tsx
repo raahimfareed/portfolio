@@ -48,7 +48,7 @@ const UserNav = () => {
     }, [navRef]);
     return (
         <>
-            <nav ref={navRef} className="bg-transparent transition-all p-8 lg:p-16 fixed top-0 left-0 w-full text-right flex items-center justify-between gap-8 z-50">
+            <nav ref={navRef} className="bg-transparent transition p-8 lg:p-16 fixed top-0 left-0 w-full text-right flex items-center justify-between gap-8 z-50">
                 <div>
                     {pathname !== "/"
                         ? <Link href="/"><ApplicationLogo /></Link>
@@ -56,7 +56,7 @@ const UserNav = () => {
                     }
                 </div>
                 <div className="flex items-center gap-8">
-                    <Link href="/contact" className="hidden lg:inline rounded-lg border-2 border-primary py-1 px-4 hover:bg-primary hover:text-primary-foreground transition-colors">Contact Me</Link>
+                    <Link href="/contact" className="hidden lg:inline rounded border border-primary shadow font-bold py-1 px-4 hover:bg-primary hover:text-primary-foreground transition">Contact Me</Link>
                     <ThemeSwitcher />
                     <a href="https://github.com/raahimfareed" target="_blank" className="">
                         <FaGithub className="w-4" />
@@ -69,12 +69,12 @@ const UserNav = () => {
             <nav className={classes}>
                 <Link
                     href="/"
-                    className={"transition-opacity hover:opacity-70" + (pathname === "/" ? " underline decoration-accent decoration-2" : "")}>
+                    className={"transition hover:opacity-70" + (pathname === "/" ? " underline decoration-accent decoration-2" : "")}>
                     Home
                 </Link>
                 <Link
                     href="about"
-                    className={"transition-opacity hover:opacity-70" + (pathname === "/about" ? " underline decoration-accent decoration-2" : "")}>
+                    className={"transition hover:opacity-70" + (pathname === "/about" ? " underline decoration-accent decoration-2" : "")}>
                     About
                 </Link>
                 <Link
@@ -84,7 +84,7 @@ const UserNav = () => {
                 </Link>
                 <Link
                     href="contact"
-                    className={"transition-opacity hover:opacity-70" + (pathname === "/contact" ? " underline decoration-accent decoration-2" : "")}>
+                    className={"transitio hover:opacity-70" + (pathname === "/contact" ? " underline decoration-accent decoration-2" : "")}>
                     Contact
                 </Link>
             </nav>

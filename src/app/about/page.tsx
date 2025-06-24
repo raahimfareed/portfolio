@@ -54,8 +54,8 @@ const About = () => {
           <div>Beyond coding, I&apos;ve had the chance to lead teams like the <LinkPreview className="font-bold text-foreground" url="https://developers.google.com/community/gdsc">Google Developer Student Club</LinkPreview>, organize workshops and help others navigate the ever evolving tech landscape. One of my passions lies in competitive programming, where I&apos;ve honed critical thinking and problem solving skills. From competitions like <LinkPreview url="https://icpc.global" className="font-bold text-foreground">ICPC</LinkPreview> to websites like <LinkPreview url="https://leetcode.com" className="font-bold text-foreground">Leetcode</LinkPreview> and <LinkPreview url="https://codeforces.com" className="font-bold text-foreground">Codeforces</LinkPreview> have helped me grow exponentially.</div>
           <div>As for my interests, I work in <TechPill type="archlinux" />, I love speed cubing and basketball, and I love exploring different technologies and ideas. Puzzle and problem solving scratches my itch.</div>
           <div className="flex gap-4 items-center mb-8">
-            <Link href="/projects" className="rounded-lg border-2 border-primary py-1 px-4 bg-primary hover:opacity-70 text-primary-foreground transition-opacity">View Projects</Link>
-            <Link href="/contact" className="rounded-lg border-2 border-secondary py-1 px-4 hover:bg-secondary hover:text-secondary-foreground transition-colors">Contact Me</Link>
+            <Link href="/projects" className="font-bold shadow rounded border border-primary py-1 px-4 bg-primary hover:opacity-70 text-primary-foreground transition">View Projects</Link>
+            <Link href="/contact" className="font-bold shadow rounded border border-secondary py-1 px-4 hover:bg-secondary hover:text-secondary-foreground transition">Contact Me</Link>
           </div>
           <h1 className="text-4xl font-bold">Skills</h1>
           <section className="w-full lg:w-[64ch] flex flex-col gap-4 mb-8">

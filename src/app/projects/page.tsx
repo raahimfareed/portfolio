@@ -121,10 +121,10 @@ const Projects = () => {
     if (!link) return;
 
     if (activeLink) {
-      activeLink.classList.remove('!bg-secondary');
+      activeLink.classList.remove('!bg-secondary', 'shadow');
     }
 
-    link.classList.add('!bg-secondary');
+    link.classList.add('!bg-secondary', 'shadow');
     setActiveLink(link);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId]);
@@ -146,7 +146,7 @@ const Projects = () => {
           {projects.length === 0 
             ? <></>
             : projects.map((project, idx) => {
-              return <Link onClick={scrollToSection} href={`#${cleanString(project.name)}`} className="rounded-lg py-1 px-2 hover:bg-secondary hover:text-secondary-foreground transition-colors cursor-pointer bg-transarent" key={"project-sidebar-key"+idx}>{project.name}</Link>
+              return <Link onClick={scrollToSection} href={`#${cleanString(project.name)}`} className="transition rounded py-1 px-2 hover:bg-secondary hover:text-secondary-foreground cursor-pointer bg-transarent" key={"project-sidebar-key"+idx}>{project.name}</Link>
             })
           }
         </div>

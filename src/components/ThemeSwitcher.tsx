@@ -1,6 +1,7 @@
 "use client"
 import { SunIcon } from "@heroicons/react/24/outline"
 import themes from "@/themes"
+import styles from "@/styles"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,20 +11,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown";
 import { SyntheticEvent, useEffect, useState } from "react";
-import { changeTheme } from "@/utils";
-import { setTheme } from "@/app/actions";
+import { changeStyle, changeTheme } from "@/utils";
+import { setStyle, setTheme } from "@/app/actions";
 
 const ThemeSwitcher = () => {
   const [currentTheme, setCurrentTheme] = useState<string>("");
+  const [currentStyle, setCurrentStyle] = useState<string>("");
   useEffect(() => {
     setCurrentTheme(document.documentElement.dataset.theme ?? "Mono");
+    setCurrentStyle(document.documentElement.dataset.style ?? "Minimal");
   }, []);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
         <SunIcon className="w-5 cursor-pointer" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-background">
+      <DropdownMenuContent className="bg-background shadow transition">
         <DropdownMenuLabel>Switch Theme</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {Object
@@ -69,6 +72,23 @@ const ThemeSwitcher = () => {
               </div>
             </DropdownMenuItem>
           })}
+        <DropdownMenuLabel>Switch Style</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        {Object
+          .keys(styles)
+          .map((styleName, index) => (
+            <DropdownMenuItem
+              key={`style-dropdown-menu-item-${index}`}
+              onClick={(e: SyntheticEvent) => {
+                e.preventDefault();
+                setStyle(styleName);
+                changeStyle(styleName);
+                setCurrentStyle(styleName);
+              }}
+              className={"cursor-pointer" + (styleName === currentStyle ? " underline decoration-accent decoration-2" : "")}>
+              {styleName}
+            </DropdownMenuItem>
+          ))}
       </DropdownMenuContent>
     </DropdownMenu>
   )

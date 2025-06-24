@@ -91,6 +91,27 @@
       --accent: #66d9ef;
       --accent-foreground: #272822;
     }
+
+    html[data-style='Minimal'] {
+      --radius: 0rem;
+      --shadow: none;
+      --font-weight: 400;
+      --border-width: 1px;
+    }
+
+    html[data-style='Material'] {
+      --radius: 0.5rem;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --font-weight: 500;
+      --border-width: 0px;
+    }
+
+    html[data-style='NeoBrutalism'] {
+      --radius: 0.2rem;
+      --shadow: 4px 4px 0px black;
+      --font-weight: 700;
+      --border-width: 2px;
+    }
   }
 
 }
