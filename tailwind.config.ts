@@ -52,7 +52,7 @@ const config: Config = {
   plugins: [
     addVariablesForColors, 
     require("tailwindcss-animate"),
-    ({ addUtilities }) => {
+    ({ addUtilities }: any) => {
       addUtilities({
         ".radius-theme": { borderRadius: 'var(--radius)' },
         ".shadow-theme": { boxShadow: 'var(--shadow)' },
