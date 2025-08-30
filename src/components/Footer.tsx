@@ -14,7 +14,7 @@ const Footer = () => {
                 <a href="https://github.com/raahimfareed" target="_blank" className="transition-opacity hover:opacity-70">Github</a>
                 <a href="https://linkedin.com/in/raahimfareed" target="_blank" className="transition-opacity hover:opacity-70">LinkedIn</a>
                 <a href="https://instagram.com/raahimfareed" target="_blank" className="transition-opacity hover:opacity-70">Instagram</a>
-                <a href="mailto:raahimfareed@proton.me" className="transition-opacity hover:opacity-70">Email</a>
+                <a href="mailto:raahim@neoflux.pk" className="transition-opacity hover:opacity-70">Email</a>
             </div>
             <div className="w-full flex gap-2 flex-col">
                 <h2 className="text-lg">Sitemap</h2>
