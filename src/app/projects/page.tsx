@@ -15,6 +15,8 @@ import pineDocsImage from "@/images/pine/docs.jpeg"
 import neoBotImage from "@/images/neo-bot/card.png"
 import fueloneImage from "@/images/fuelone/index.jpeg"
 import mentauraImage from "@/images/mentaura/index.png"
+import khattImage from "@/images/khatt/index.png"
+import keplerfluxImage from "@/images/keplerflux/index.png"
 
 
 const Projects = () => {
@@ -23,6 +25,20 @@ const Projects = () => {
   const [activeLink, setActiveLink] = useState<HTMLAnchorElement | null>(null);
 
   const projects: Project[] = [
+    {
+      image: khattImage,
+      name: "Khatt",
+      description: "A modern, ad-free Pakistani email platform built for individuals and businesses. Get your own .pk address with native Urdu support — private, fast, and clutter-free. Currently in closed beta.",
+      url: "https://khatt.pk",
+      techStack: ["nextjs", "typescript", "tailwindcss", "docker", "django", "postgresql", "stalwart"]
+    },
+    {
+      image: keplerfluxImage,
+      name: "KeplerFlux",
+      description: "A HIPAA-compliant mini EHR with AI-powered auto transcription and clinical note generation. Designed to reduce documentation overhead for healthcare practitioners and streamline the patient encounter workflow.",
+      url: "https://keplerflux.com",
+      techStack: ["react", "typescript", "tailwindcss", "django", "python", "postgresql", "docker"]
+    },
     {
       image: fueloneImage,
       name: "FuelOne",
