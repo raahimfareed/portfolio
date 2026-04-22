@@ -15,6 +15,24 @@ export const metadata: Metadata = {
   title: "About Me // Raahim Fareed",
 };
 
+const projects = [
+  {
+    name: "Khatt",
+    description: "A modern, ad-free Pakistani email platform with native Urdu support and .pk addresses — built for individuals and businesses.",
+    url: "https://khatt.pk",
+  },
+  {
+    name: "KeplerFlux",
+    description: "A HIPAA-compliant mini EHR with AI-powered auto transcription and clinical note generation for modern healthcare practices.",
+    url: "https://keplerflux.com",
+  },
+  {
+    name: "FuelOne",
+    description: "An upcoming fleet management platform for OMCs — covering fuel cards, fleet analytics, discounts, and loyalty programs.",
+    url: null,
+  },
+]
+
 const About = () => {
   return (
     <MainLayout>
@@ -48,7 +66,7 @@ const About = () => {
           <h1 className="text-4xl font-bold">About</h1>
           <h2 className="text-2xl">Who Am I?</h2>
           <div>
-            My name is <LinkPreview url="https://www.raahimfareed.com" className="font-bold text-foreground">Raahim Fareed</LinkPreview> - An ambitious software engineer with knack of solving real world problems through scalable solutions. I enjoy backend and API development. Along my journey of software engineering, I&apos;ve had a diverse experience of different industries, including but not limited to education, ecommerce, health and oil industries where I&apos;ve been able to design, implement and scale systems that drive better user experiences. I&apos;m currently working as a software engineer at <LinkPreview url="https://nayatel.com/" className="font-bold text-foreground">Nayatel</LinkPreview> while leading <LinkPreview url="https://www.linkedin.com/company/neo-flux/" className="font-bold text-foreground">NeoFlux</LinkPreview> as its CEO.
+            My name is <LinkPreview url="https://www.raahimfareed.com" className="font-bold text-foreground">Raahim Fareed</LinkPreview> - An ambitious software engineer with a knack for solving real world problems through scalable solutions. I enjoy backend and API development. Along my journey, I&apos;ve had a diverse experience across different industries, including but not limited to education, ecommerce, health and oil, where I&apos;ve been able to design, implement and scale systems that drive better user experiences. I&apos;m currently working as a senior software engineer at <LinkPreview url="https://nayatel.com/" className="font-bold text-foreground">Nayatel</LinkPreview> while leading <LinkPreview url="https://www.linkedin.com/company/neo-flux/" className="font-bold text-foreground">NeoFlux</LinkPreview> as its CEO.
           </div>
           <h2 className="text-2xl">Hobbies And Interests</h2>
           <div>Beyond coding, I&apos;ve had the chance to lead teams like the <LinkPreview className="font-bold text-foreground" url="https://developers.google.com/community/gdsc">Google Developer Student Club</LinkPreview>, organize workshops and help others navigate the ever evolving tech landscape. One of my passions lies in competitive programming, where I&apos;ve honed critical thinking and problem solving skills. From competitions like <LinkPreview url="https://icpc.global" className="font-bold text-foreground">ICPC</LinkPreview> to websites like <LinkPreview url="https://leetcode.com" className="font-bold text-foreground">Leetcode</LinkPreview> and <LinkPreview url="https://codeforces.com" className="font-bold text-foreground">Codeforces</LinkPreview> have helped me grow exponentially.</div>
@@ -57,6 +75,34 @@ const About = () => {
             <Link href="/projects" className="font-bold shadow rounded border border-primary py-1 px-4 bg-primary hover:opacity-70 text-primary-foreground transition">View Projects</Link>
             <Link href="/contact" className="font-bold shadow rounded border border-secondary py-1 px-4 hover:bg-secondary hover:text-secondary-foreground transition">Contact Me</Link>
           </div>
+
+          <h1 className="text-4xl font-bold">Currently Building</h1>
+          <div className="flex flex-col gap-3 mb-8">
+            {projects.map((project) => (
+              <div
+                key={project.name}
+                className="rounded border border-border p-4 flex flex-col gap-1 hover:bg-muted transition"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-lg">{project.name}</span>
+                  {!project.url && (
+                    <span className="text-xs border border-border rounded px-2 py-0.5 text-muted-foreground">Coming Soon</span>
+                  )}
+                </div>
+                <p className="text-sm text-muted-foreground">{project.description}</p>
+                {project.url && (
+                  <Link
+                    href={project.url}
+                    target="_blank"
+                    className="text-sm font-medium text-primary hover:opacity-70 transition w-fit"
+                  >
+                    {project.url.replace("https://", "")} &rarr;
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+
           <h1 className="text-4xl font-bold">Skills</h1>
           <section className="w-full lg:w-[64ch] flex flex-col gap-4 mb-8">
             <h2 className="text-2xl">Languages</h2>
@@ -111,7 +157,6 @@ const About = () => {
               <TechPill type="Problem Solving" />
               <TechPill type="Team Leading" />
               <TechPill type="Project Management" />
-
             </div>
           </section>
           <h1 className="text-4xl font-bold underline"><Link href="https://youtu.be/dQw4w9WgXcQ" target="_blank">Do You Meme?</Link></h1>
@@ -123,4 +168,3 @@ const About = () => {
 }
 
 export default About
-
