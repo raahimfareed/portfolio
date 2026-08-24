@@ -1,6 +1,5 @@
 "use client";
-import { FaGithub } from "react-icons/fa";
-import { Bars3Icon } from "@heroicons/react/24/outline"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -13,7 +12,8 @@ const UserNav = () => {
     const onScrollRef = useRef<(() => void) | undefined>(undefined);
     const navRef = useRef<HTMLElement>(null);
     const [active, setActive] = useState(false);
-    let classes = "fixed top-0 right-0 transition px-16 h-full flex items-end flex-col justify-center z-30 gap-10 bg-secondary text-secondary-foreground lg:bg-transparent lg:text-foreground lg:!translate-x-0";
+    let classes = "w-4/5 sm:w-3/5 md:w-2/5 bg-secondary flex items-center gap-8 fixed top-0 right-0 transition px-16 h-full items-end flex-col justify-center lg:flex-row lg:translate-x-0 lg:h-fit lg:bg-background lg:relative lg:pr-8 lg:w-fit";
+    // let classes = "fixed top-0 right-0 transition px-16 h-full flex items-end flex-col justify-center z-30 gap-10 bg-secondary text-secondary-foreground lg:bg-transparent lg:text-foreground lg:!translate-x-0";
     if (active) {
         classes += " translate-x-0";
     } else {
@@ -56,37 +56,37 @@ const UserNav = () => {
                     }
                 </div>
                 <div className="flex items-center gap-8">
-                    <Link href="/contact" className="hidden lg:inline rounded border border-primary shadow font-bold py-1 px-4 hover:bg-primary hover:text-primary-foreground transition">Contact Me</Link>
+                    <div className={classes}>
+                        <span className="top-8 right-8 absolute cursor-pointer lg:hidden" onClick={() => setActive(!active)}>
+                            <XMarkIcon className="w-4" />
+                        </span>
+                        <Link
+                            href="/"
+                            className={"transition hover:opacity-70" + (pathname === "/" ? " underline decoration-accent decoration-2" : "")}>
+                            Home
+                        </Link>
+                        <Link
+                            href="about"
+                            className={"transition hover:opacity-70" + (pathname === "/about" ? " underline decoration-accent decoration-2" : "")}>
+                            About
+                        </Link>
+                        <Link
+                            href="projects"
+                            className={"transition-opacity hover:opacity-70" + (pathname === "/projects" ? " underline decoration-accent decoration-2" : "")}>
+                            Projects
+                        </Link>
+                        <Link
+                            href="blog"
+                            className={"transitio hover:opacity-70" + (pathname === "/contact" ? " underline decoration-accent decoration-2" : "")}>
+                            Blog
+                        </Link>
+                        <Link href="/contact" className="hidden lg:inline rounded border border-primary shadow font-bold py-1 px-4 hover:bg-primary hover:text-primary-foreground transition">Contact Me</Link>
+                    </div>
                     <ThemeSwitcher />
-                    <a href="https://github.com/raahimfareed" target="_blank" className="">
-                        <FaGithub className="w-4" />
-                    </a>
                     <span className="cursor-pointer lg:hidden" onClick={() => setActive(!active)}>
                         <Bars3Icon className="w-4" />
                     </span>
                 </div>
-            </nav>
-            <nav className={classes}>
-                <Link
-                    href="/"
-                    className={"transition hover:opacity-70" + (pathname === "/" ? " underline decoration-accent decoration-2" : "")}>
-                    Home
-                </Link>
-                <Link
-                    href="about"
-                    className={"transition hover:opacity-70" + (pathname === "/about" ? " underline decoration-accent decoration-2" : "")}>
-                    About
-                </Link>
-                <Link
-                    href="projects"
-                    className={"transition-opacity hover:opacity-70" + (pathname === "/projects" ? " underline decoration-accent decoration-2" : "")}>
-                    Projects
-                </Link>
-                <Link
-                    href="contact"
-                    className={"transitio hover:opacity-70" + (pathname === "/contact" ? " underline decoration-accent decoration-2" : "")}>
-                    Contact
-                </Link>
             </nav>
         </>
     )
