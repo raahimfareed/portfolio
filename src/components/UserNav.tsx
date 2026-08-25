@@ -12,7 +12,7 @@ const UserNav = () => {
     const onScrollRef = useRef<(() => void) | undefined>(undefined);
     const navRef = useRef<HTMLElement>(null);
     const [active, setActive] = useState(false);
-    let classes = "w-4/5 sm:w-3/5 md:w-2/5 bg-secondary flex items-center gap-8 fixed top-0 right-0 transition px-16 h-full items-end flex-col justify-center lg:flex-row lg:translate-x-0 lg:h-fit lg:bg-background lg:relative lg:pr-8 lg:w-fit";
+    let classes = "w-4/5 sm:w-3/5 md:w-2/5 bg-secondary flex items-center gap-8 fixed top-0 right-0 transition px-16 h-full items-end flex-col justify-center lg:flex-row lg:translate-x-0 lg:h-fit lg:bg-transparent lg:relative lg:pr-8 lg:w-fit";
     // let classes = "fixed top-0 right-0 transition px-16 h-full flex items-end flex-col justify-center z-30 gap-10 bg-secondary text-secondary-foreground lg:bg-transparent lg:text-foreground lg:!translate-x-0";
     if (active) {
         classes += " translate-x-0";
