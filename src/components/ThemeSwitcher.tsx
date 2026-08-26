@@ -26,7 +26,7 @@ const ThemeSwitcher = () => {
       <DropdownMenuTrigger className="outline-none">
         <SunIcon className="w-5 cursor-pointer" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-background shadow transition">
+      <DropdownMenuContent className="bg-background shadow transition m-2">
         <DropdownMenuLabel>Switch Theme</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {Object
