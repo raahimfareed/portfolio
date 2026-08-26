@@ -36,7 +36,7 @@ const projects = [
 const About = () => {
   return (
     <MainLayout>
-      <section className='px-8 lg:px-16 flex flex-col lg:flex-row gap-8 lg:gap-16'>
+      <section className='w-full max-w-7xl mx-auto px-8 lg:px-16 flex flex-col lg:flex-row gap-8 lg:gap-16'>
         <div className="pt-24 lg:py-48 h-full lg:sticky left-0 top-0 lg:w-64 flex flex-col gap-3">
           <div className="overflow-hidden rounded-full aspect-square mb-3 mx-auto w-64 lg:w-full">
             <Image
