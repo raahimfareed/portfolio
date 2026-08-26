@@ -1,7 +1,7 @@
 import MainLayout from "@/layouts/MainLayout";
-import Link from "next/link";
-import styles from "./index.module.css";
 import type { Metadata } from "next";
+import { HomeHero } from "@/components/HomeHero";
+import { HomeAbout } from "@/components/HomeAbout";
 
 export const metadata: Metadata = {
   title: "Breathing Life into Tech // Raahim Fareed",
@@ -10,15 +10,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <MainLayout>
-      <section className='w-screen h-screen relative z-1 flex items-center justify-center overflow-hidden'>
-        <div className="w-full px-2 md:px-8">
-          <h1 className={"relative z-10 text-7xl font-bold flex items-center mb-3 " + styles.heading}>Raahim Fareed</h1>
-          <div className="flex gap-3 md:pl-2 lg:pl-4 relative z-20">
-            <Link href="/about" className="border inline rounded shadow border-primary py-1 px-4 hover:opacity-70 bg-primary text-primary-foreground transition">About Me</Link>
-            <Link href="/contact" className="border inline rounded shadow border-secondary py-1 px-4 hover:bg-secondary hover:text-secondary-foreground transition">Contact Me</Link>
-          </div>
-        </div>
-      </section>
+      <HomeHero />    
+      <HomeAbout />
     </MainLayout>
   );
 }
