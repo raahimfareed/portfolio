@@ -17,22 +17,23 @@ const config: Config = {
         DEFAULT: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, border-radius',
       },
       fontFamily: {
-        sans: ['var(--font-poppins)', ...defaultTheme.fontFamily.sans],
+        // sans: ['var(--font-poppins)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-alata)', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: 'rgb(var(--background) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
         primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)'
+          DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
+          foreground: 'rgb(var(--primary-foreground) / <alpha-value>)'
         },
         secondary: {
-          DEFAULT: 'var(--secondary)',
-          foreground: 'var(--secondary-foreground)'
+          DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',
+          foreground: 'rgb(var(--secondary-foreground) / <alpha-value>)'
         },
         accent: {
-          DEFAULT: 'var(--accent)',
-          foreground: 'var(--accent-foreground)'
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+          foreground: 'rgb(var(--accent-foreground) / <alpha-value>)'
         },
       },
       borderRadius: {

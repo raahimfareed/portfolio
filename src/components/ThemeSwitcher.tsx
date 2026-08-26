@@ -48,26 +48,14 @@ const ThemeSwitcher = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span
-                    style={{
-                      backgroundColor: `${themes[themeName]['--primary']}`
-                    }}
-                    className="block h-2 w-2 rounded-full" />
-                  <span
-                    style={{
-                      backgroundColor: `${themes[themeName]['--secondary']}`
-                    }}
-                    className="block h-2 w-2 rounded-full" />
-                  <span
-                    style={{
-                      backgroundColor: `${themes[themeName]['--accent']}`
-                    }}
-                    className="block h-2 w-2 rounded-full" />
-                  <span
-                    style={{
-                      backgroundColor: `${themes[themeName]['--foreground']}`
-                    }}
-                    className="block h-2 w-2 rounded-full" />
+                  {(['--primary', '--secondary', '--accent', '--foreground'] as const).map((token) => (
+                    <span
+                      key={token}
+                      style={{
+                        backgroundColor: `rgb(${themes[themeName][token]})`
+                      }}
+                      className="block h-2 w-2 rounded-full" />
+                  ))}
                 </div>
               </div>
             </DropdownMenuItem>
