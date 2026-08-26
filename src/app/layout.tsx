@@ -1,12 +1,12 @@
-import { Poppins, Alata } from "next/font/google";
+import { Alata } from "next/font/google";
 import "./globals.css";
 import { cookies } from "next/headers";
 import type { Metadata } from "next";
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
-});
+// const poppins = Poppins({
+//   subsets: ['latin'],
+//   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+// });
 
 const alata = Alata({
   subsets: ['latin'],
