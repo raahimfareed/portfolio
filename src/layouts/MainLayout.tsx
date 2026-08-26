@@ -9,7 +9,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       {/* <BackgroundBeams /> */}
       <main>
         <UserNav />
-        {children}
+        <div className="w-full max-w-7xl mx-auto">
+          {children}
+        </div>
         <Footer />
         <Toaster />
       </main>
