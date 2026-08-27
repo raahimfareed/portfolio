@@ -13,7 +13,7 @@ export const HomeAbout = () => {
             <ArrowRightIcon className="translate-y-[2px]" aria-hidden />
           </Link>
         </div>
-        <div className="text-xl space-y-3">
+        <div className="lg:text-lg space-y-3">
           <p>I&apos;m Raahim. I&apos;m a software engineer who likes to work on problems that go unnoticed to the general pair of eyes, i.e. backends. I work in several different industries, health, ecommerce, education, telecom, you name it.</p>
           <p>I&apos;m the founder of <Link href="https://neoflux.pk" target="_blank"><strong>NeoFlux</strong></Link> and currently working as a Principal Software Engineer at <Link  target="_blank" href="https://nayatel.com"><strong>Nayatel</strong></Link>.</p>
           <p>I work in <TechPill type="archlinux" className="!bg-background" /> and my favorite programming tool is <TechPill type="laravel" className="!bg-background" />&nbsp;. I&apos;m also a big geek for homelabbing and self hosting. I host my own photos, ad blocker, notes, home assistant, everything that I can host (and my OptiPlex 9010 SFF can handle).</p>
