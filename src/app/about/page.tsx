@@ -14,7 +14,7 @@ import projects from "@/data/projects";
 import { Project } from "@/types"
 
 export const metadata: Metadata = {
-  title: "About Me // Raahim Fareed",
+  title: "About Me",
 };
 
 const About = () => {

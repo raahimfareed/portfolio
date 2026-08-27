@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import { HomeHero } from "@/components/HomeHero";
 import { HomeAbout } from "@/components/HomeAbout";
 import { HomeProjects } from "@/components/HomeProjects";
+import { HomeBlog } from "@/components/HomeBlog";
 
 export const metadata: Metadata = {
-  title: "Breathing Life into Tech // Raahim Fareed",
+  title: { absolute: "Breathing Life into Tech // Raahim Fareed" },
 };
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <HomeHero />    
       <HomeAbout />
       <HomeProjects />
+      <HomeBlog />
     </MainLayout>
   );
 }
