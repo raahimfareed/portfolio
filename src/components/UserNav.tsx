@@ -71,13 +71,13 @@ const UserNav = () => {
                             About
                         </Link>
                         <Link
-                            href="projects"
+                            href="/projects"
                             className={"transition-opacity hover:opacity-70" + (pathname === "/projects" ? " underline decoration-accent decoration-2" : "")}>
                             Projects
                         </Link>
                         <Link
-                            href="blog"
-                            className={"transitio hover:opacity-70" + (pathname === "/contact" ? " underline decoration-accent decoration-2" : "")}>
+                            href="/blog"
+                            className={"transition hover:opacity-70" + (pathname.startsWith("/blog") ? " underline decoration-accent decoration-2" : "")}>
                             Blog
                         </Link>
                         <Link href="/contact" className="hidden lg:inline rounded border border-primary shadow font-bold py-1 px-4 hover:bg-primary hover:text-primary-foreground transition">Contact Me</Link>
