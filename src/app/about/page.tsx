@@ -10,30 +10,20 @@ import linkedin from "@/images/icons/linkedin.svg"
 import Image from "next/image"
 import type { Metadata } from "next"
 import { Uiiai } from "@/components/Uiiai"
+import projects from "@/data/projects";
+import { Project } from "@/types"
 
 export const metadata: Metadata = {
   title: "About Me // Raahim Fareed",
 };
 
-const projects = [
-  {
-    name: "Khatt",
-    description: "A modern, ad-free Pakistani email platform with native Urdu support and .pk addresses — built for individuals and businesses.",
-    url: "https://khatt.pk",
-  },
-  {
-    name: "KeplerFlux",
-    description: "A HIPAA-compliant mini EHR with AI-powered auto transcription and clinical note generation for modern healthcare practices.",
-    url: "https://keplerflux.com",
-  },
-  {
-    name: "FuelOne",
-    description: "An upcoming fleet management platform for OMCs — covering fuel cards, fleet analytics, discounts, and loyalty programs.",
-    url: null,
-  },
-]
-
 const About = () => {
+  const featuredProjects: Project[] = [
+    projects.FuelOne,
+    projects.Khatt,
+    projects.Jama,
+    projects.Pine
+  ];
   return (
     <MainLayout>
       <section className='w-full max-w-7xl mx-auto px-8 lg:px-16 flex flex-col lg:flex-row gap-8 lg:gap-16'>
@@ -78,7 +68,7 @@ const About = () => {
 
           <h1 className="text-4xl font-bold">Currently Building</h1>
           <div className="flex flex-col gap-3 mb-8">
-            {projects.map((project) => (
+            {featuredProjects.map((project) => (
               <div
                 key={project.name}
                 className="rounded border border-border p-4 flex flex-col gap-1 hover:bg-muted transition"
