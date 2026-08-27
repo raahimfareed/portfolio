@@ -142,3 +142,94 @@ body {
 ::selection {
   @apply bg-accent text-accent-foreground transition-colors;
 }
+
+/* Long-form MDX body. Everything here is bound to theme tokens so posts follow
+   the active theme, with the exception of code blocks: shiki is pinned to
+   github-dark, so those keep a dark surface on purpose in every theme. */
+@layer components {
+  .prose {
+    @apply text-foreground leading-relaxed;
+  }
+
+  .prose > * + * {
+    @apply mt-4;
+  }
+
+  .prose > :first-child {
+    @apply mt-0;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-bold mt-12 mb-4 scroll-mt-28;
+  }
+
+  .prose h3 {
+    @apply text-xl font-bold mt-8 mb-3 scroll-mt-28;
+  }
+
+  .prose h2 + *,
+  .prose h3 + * {
+    @apply mt-0;
+  }
+
+  .prose a {
+    @apply underline underline-offset-4 decoration-accent hover:decoration-primary transition;
+  }
+
+  .prose strong {
+    @apply font-bold;
+  }
+
+  .prose ul {
+    @apply list-disc pl-6 space-y-2;
+  }
+
+  .prose ol {
+    @apply list-decimal pl-6 space-y-2;
+  }
+
+  .prose blockquote {
+    @apply border-l-2 border-accent pl-4 italic opacity-80;
+  }
+
+  .prose hr {
+    @apply border-accent my-12;
+  }
+
+  .prose img {
+    @apply rounded shadow;
+  }
+
+  .prose :not(pre) > code {
+    @apply rounded bg-secondary text-secondary-foreground px-1.5 py-0.5 text-[0.9em];
+  }
+
+  .prose table {
+    @apply w-full text-sm border-collapse;
+  }
+
+  .prose th,
+  .prose td {
+    @apply border border-accent px-3 py-2 text-left;
+  }
+
+  .prose th {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  .prose [data-rehype-pretty-code-figure] {
+    @apply my-6 rounded border border-accent shadow overflow-hidden;
+  }
+
+  .prose [data-rehype-pretty-code-title] {
+    @apply px-4 py-2 text-xs bg-[#161b22] text-[#8b949e] border-b border-[#30363d];
+  }
+
+  .prose [data-rehype-pretty-code-figure] pre {
+    @apply bg-[#0d1117] m-0;
+  }
+
+  .prose [data-rehype-pretty-code-figure] code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+}

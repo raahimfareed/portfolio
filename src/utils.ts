@@ -19,3 +19,20 @@ export const cleanString = (str: string) => {
     .replace(/[^a-zA-Z0-9 ]/g, '')
     .replace(/\s+/g, '_');
 }
+
+export const slugify = (str: string) => {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-');
+}
+
+export const formatDate = (iso: string) => {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
