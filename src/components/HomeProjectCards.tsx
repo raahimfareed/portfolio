@@ -6,7 +6,7 @@ export const HomeProjectCards = () => {
   const featuredProjects: Project[] = [
     projects.FuelOne,
     projects.Khatt,
-    projects.KeplerFlux,
+    projects.Jama,
     projects.Pine
   ];
 

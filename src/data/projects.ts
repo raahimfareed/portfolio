@@ -9,9 +9,18 @@ import neoBotImage from "@/images/neo-bot/card.png";
 import fueloneImage from "@/images/fuelone/index.jpeg";
 import mentauraImage from "@/images/mentaura/index.png";
 import khattImage from "@/images/khatt/index.png";
+import jamaImage from "@/images/jama/index.png";
 import keplerfluxImage from "@/images/keplerflux/index.png";
 
 const projects = {
+  Jama: {
+    image: jamaImage,
+    name: "Jama",
+    shortDescription: "For the businesses struggling to get their invoices FBR compliant",
+    description: "Create compliant invoices, submit them to FBR in real-time, and get verified QR codes - all from one dashboard built for Pakistani businesses and chartered accountants.",
+    url: "https://jama.pk",
+    techStack: ["react", "typescript", "tailwindcss", "docker", "laravel"]
+  },
   Khatt: {
     image: khattImage,
     name: "Khatt",
