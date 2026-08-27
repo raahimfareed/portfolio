@@ -23,6 +23,16 @@ const themes: {
         "--accent": "173 181 189",
         "--accent-foreground": "33 37 41"
     },
+    "Dark Mono": {
+        "--background": "33 37 41",
+        "--foreground": "233 236 239",
+        "--primary": "233 236 239",
+        "--primary-foreground": "33 37 41",
+        "--secondary": "52 58 64",
+        "--secondary-foreground": "233 236 239",
+        "--accent": "108 117 125",
+        "--accent-foreground": "255 255 255"
+    },
     "VSCode Dark": {
         "--background": "30 30 30",
         "--foreground": "212 212 212",
