@@ -1,3 +1,3 @@
 export function Steps({ children }: { children: React.ReactNode }) {
-  return <div className="relative border-l border-accent ml-4 my-8 pl-6">{children}</div>
+  return <div className="relative my-8 ml-4 border-l border-accent pl-10">{children}</div>
 }

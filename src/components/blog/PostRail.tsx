@@ -54,7 +54,7 @@ export const PostRail = ({ title, dateLabel, readingTime, headings }: iPostRailP
       <div
         aria-hidden={!pinned}
         className={clsx(
-          "sticky top-24 rounded border border-accent bg-secondary/40 shadow p-4 flex flex-col gap-3 motion-safe:transition motion-safe:duration-300",
+          "sticky top-32 rounded border border-accent bg-secondary/40 shadow p-4 flex flex-col gap-3 motion-safe:transition motion-safe:duration-300",
           pinned ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
         )}>
         <div className="flex flex-col gap-1">

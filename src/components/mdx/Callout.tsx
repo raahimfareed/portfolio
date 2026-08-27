@@ -17,13 +17,24 @@ export function Callout({
 }) {
   const { className, Icon } = variants[type]
 
-  return (
-    <div className={`rounded border shadow p-4 my-6 flex flex-row gap-3 ${className}`}>
-      <Icon className="w-5 h-5 shrink-0 mt-0.5 opacity-80" aria-hidden />
-      <div className="min-w-0">
-        {title && <p className="font-bold mb-1">{title}</p>}
-        <div className="text-sm opacity-90 [&>*+*]:mt-2">{children}</div>
+  // With a title the icon shares a centred row with it; without one it sits
+  // beside the body instead, so it never floats on a line of its own.
+  if (title) {
+    return (
+      <div className={`my-6 rounded border p-4 shadow ${className}`}>
+        <div className="flex flex-row items-center gap-2">
+          <Icon className="h-5 w-5 shrink-0 opacity-80" aria-hidden />
+          <p className="font-bold leading-5">{title}</p>
+        </div>
+        <div className="mt-2 text-sm opacity-90 [&>*+*]:mt-2">{children}</div>
       </div>
+    )
+  }
+
+  return (
+    <div className={`my-6 flex flex-row gap-2 rounded border p-4 shadow ${className}`}>
+      <Icon className="mt-[0.15rem] h-5 w-5 shrink-0 opacity-80" aria-hidden />
+      <div className="min-w-0 text-sm opacity-90 [&>*+*]:mt-2">{children}</div>
     </div>
   )
 }

@@ -160,11 +160,11 @@ body {
   }
 
   .prose h2 {
-    @apply text-2xl font-bold mt-12 mb-4 scroll-mt-28;
+    @apply text-2xl font-bold mt-12 mb-4 scroll-mt-32;
   }
 
   .prose h3 {
-    @apply text-xl font-bold mt-8 mb-3 scroll-mt-28;
+    @apply text-xl font-bold mt-8 mb-3 scroll-mt-32;
   }
 
   .prose h2 + *,
