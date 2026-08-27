@@ -66,7 +66,7 @@ const UserNav = () => {
                             Home
                         </Link>
                         <Link
-                            href="about"
+                            href="/about"
                             className={"transition hover:opacity-70" + (pathname === "/about" ? " underline decoration-accent decoration-2" : "")}>
                             About
                         </Link>
