@@ -2,6 +2,7 @@ import MainLayout from "@/layouts/MainLayout";
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/HomeHero";
 import { HomeAbout } from "@/components/HomeAbout";
+import { HomeProjects } from "@/components/HomeProjects";
 
 export const metadata: Metadata = {
   title: "Breathing Life into Tech // Raahim Fareed",
@@ -12,6 +13,7 @@ export default function Home() {
     <MainLayout>
       <HomeHero />    
       <HomeAbout />
+      <HomeProjects />
     </MainLayout>
   );
 }
