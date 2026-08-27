@@ -16,6 +16,8 @@
       --secondary-foreground: 213 206 217;
       --accent: 198 104 186;
       --accent-foreground: 35 38 46;
+      --destructive: 238 93 67;
+      --destructive-foreground: 35 38 46;
     }
 
     html[data-theme='Mono'] {
@@ -27,6 +29,8 @@
       --secondary-foreground: 33 37 41;
       --accent: 173 181 189;
       --accent-foreground: var(--foreground);
+      --destructive: 176 42 55;
+      --destructive-foreground: 233 236 239;
     }
 
     html[data-theme='VSCode Dark'] {
@@ -38,6 +42,8 @@
       --secondary-foreground: 212 212 212;
       --accent: 86 156 214;
       --accent-foreground: 255 255 255;
+      --destructive: 241 76 76;
+      --destructive-foreground: 30 30 30;
     }
 
     html[data-theme='Gruvbox Dark'] {
@@ -49,6 +55,8 @@
       --secondary-foreground: 235 219 178;
       --accent: 250 189 47;
       --accent-foreground: 40 40 40;
+      --destructive: 204 36 29;
+      --destructive-foreground: 251 241 199;
     }
 
     html[data-theme='Gruvbox Light'] {
@@ -60,6 +68,8 @@
       --secondary-foreground: 60 56 54;
       --accent: 215 153 33;
       --accent-foreground: 60 56 54;
+      --destructive: 157 0 6;
+      --destructive-foreground: 251 241 199;
     }
 
     html[data-theme='Solarized Dark'] {
@@ -71,6 +81,8 @@
       --secondary-foreground: 131 148 150;
       --accent: 42 161 152;
       --accent-foreground: 255 255 255;
+      --destructive: 220 50 47;
+      --destructive-foreground: 255 255 255;
     }
 
     html[data-theme='Solarized Light'] {
@@ -82,6 +94,8 @@
       --secondary-foreground: 101 123 131;
       --accent: 42 161 152;
       --accent-foreground: 255 255 255;
+      --destructive: 220 50 47;
+      --destructive-foreground: 255 255 255;
     }
 
     html[data-theme='Monokai'] {
@@ -93,6 +107,8 @@
       --secondary-foreground: 248 248 242;
       --accent: 102 217 239;
       --accent-foreground: 39 40 34;
+      --destructive: 249 38 114;
+      --destructive-foreground: 39 40 34;
     }
 
     html[data-style='Minimal'] {

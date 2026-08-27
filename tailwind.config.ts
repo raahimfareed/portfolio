@@ -35,6 +35,10 @@ const config: Config = {
           DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
           foreground: 'rgb(var(--accent-foreground) / <alpha-value>)'
         },
+        destructive: {
+          DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
+          foreground: 'rgb(var(--destructive-foreground) / <alpha-value>)'
+        },
       },
       borderRadius: {
         DEFAULT: 'var(--radius)',
