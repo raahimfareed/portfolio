@@ -4,6 +4,7 @@ import { Callout } from '@/components/mdx/Callout'
 import { StepCard } from '@/components/mdx/StepCard'
 import { Steps } from '@/components/mdx/Steps'
 import { CodeBlock } from '@/components/mdx/CodeBlock'
+import { PostImage } from '@/components/mdx/PostImage'
 import { slugify } from '@/utils'
 
 const toText = (node: React.ReactNode): string => {
@@ -21,11 +22,24 @@ const heading = (Tag: 'h2' | 'h3') => {
   return Heading
 }
 
+// Plain markdown image syntax has no dimensions to give next/image, so it
+// stays a native img and just picks up the figure styling.
+const MdxImage = ({ src, alt, title, ...props }: React.ComponentProps<'img'>) => (
+  <figure className="my-8">
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src={src} alt={alt ?? ''} loading="lazy" decoding="async" {...props}
+      className="w-full h-auto rounded border border-accent shadow" />
+    {!!title && <figcaption className="mt-2 text-center text-sm opacity-70">{title}</figcaption>}
+  </figure>
+)
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     Callout,
     Steps,
     StepCard,
+    PostImage,
+    img: MdxImage,
     h2: heading('h2'),
     h3: heading('h3'),
     pre: CodeBlock, // intercept every code fence

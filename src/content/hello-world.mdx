@@ -1,10 +1,12 @@
+import screenshot from "@/images/portfolio/index.webp";
+
 export const metadata = {
   title: "Hello World",
   description: "First post testing MDX components",
   date: "2026-08-28",
+  tags: ["meta", "mdx"],
+  featured: true,
 };
-
-# Hello World
 
 This is a regular paragraph to check that base typography works. **Bold**, *italic*, and `inline code` should all render correctly.
 
@@ -19,6 +21,12 @@ POST /api/hello
 { "message": "world" }
 ```
 
+## Testing images
+
+A static import gets real dimensions and a blur placeholder for free:
+
+<PostImage src={screenshot} alt="The portfolio homepage" caption="A static import, rendered through next/image." />
+
 ## Testing steps
 
 <Steps>
@@ -32,6 +40,10 @@ POST /api/hello
 
 <Callout type="warning" title="Heads up">
 This is a warning-style callout, for anything risky or important to flag.
+</Callout>
+
+<Callout type="danger">
+A callout with no title, to check the icon still lines up beside the text.
 </Callout>
 
 That's the end of the test post.
