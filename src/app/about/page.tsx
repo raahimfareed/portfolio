@@ -5,7 +5,7 @@ import MainLayout from "@/layouts/MainLayout"
 import { EnvelopeIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
 import { FaGithub } from "react-icons/fa"
-import myPicture from "@/images/me.jpg";
+import myPicture from "@/images/me.webp";
 import linkedin from "@/images/icons/linkedin.svg"
 import Image from "next/image"
 import type { Metadata } from "next"

@@ -1,16 +1,16 @@
 import { Project } from "@/types";
 
-import portfolioImage from "@/images/portfolio/index.png";
-import skymapImage from "@/images/skymap/main.png";
-import yaCheezImage from "@/images/yacheez/index.png";
-import pineImage from "@/images/pine/index.png";
-import pineDocsImage from "@/images/pine/docs.jpeg";
-import neoBotImage from "@/images/neo-bot/card.png";
-import fueloneImage from "@/images/fuelone/index.jpeg";
-import mentauraImage from "@/images/mentaura/index.png";
-import khattImage from "@/images/khatt/index.png";
-import jamaImage from "@/images/jama/index.png";
-import keplerfluxImage from "@/images/keplerflux/index.png";
+import portfolioImage from "@/images/portfolio/index.webp";
+import skymapImage from "@/images/skymap/main.webp";
+import yaCheezImage from "@/images/yacheez/index.webp";
+import pineImage from "@/images/pine/index.webp";
+import pineDocsImage from "@/images/pine/docs.webp";
+import neoBotImage from "@/images/neo-bot/card.webp";
+import fueloneImage from "@/images/fuelone/index.webp";
+import mentauraImage from "@/images/mentaura/index.webp";
+import khattImage from "@/images/khatt/index.webp";
+import jamaImage from "@/images/jama/index.webp";
+import keplerfluxImage from "@/images/keplerflux/index.webp";
 
 const projects = {
   Jama: {
