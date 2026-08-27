@@ -38,7 +38,8 @@ import express from "@/images/icons/express.svg"
 import postman from "@/images/icons/postman.svg"
 import Image, { StaticImageData } from "next/image"
 import { TechType } from "@/types"
-const TechPill = ({ type }: { type: TechType; }) => {
+import clsx from "clsx"
+const TechPill = ({ type, className }: { type: TechType; className?: string; }) => {
     const types: {
         [key: string]: {
             icon: string | StaticImageData;
@@ -201,7 +202,7 @@ const TechPill = ({ type }: { type: TechType; }) => {
 
     if (type in types) {
         return (
-            <span className="rounded shadow px-1 gap-1 !bg-secondary !text-secondary-foreground text-white inline-flex items-center justify-center transition">
+            <span className={clsx("rounded shadow px-1 gap-1 !bg-secondary !text-secondary-foreground text-white inline-flex items-center justify-center transition", className)}>
                 <Image
                     alt={types[type].text}
                     src={types[type].icon}
