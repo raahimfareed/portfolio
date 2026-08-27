@@ -1,5 +1,4 @@
 import { StaticImageData } from "next/image";
-import { ReactNode } from "react";
 
 export interface Theme {
     [key: string]: {
@@ -9,10 +8,15 @@ export interface Theme {
 
 export interface Project {
     image?: StaticImageData;
+    altImage?: StaticImageData;
     name: string;
-    description: string | ReactNode;
+    shortDescription?: string;
+    description: string;
+    notice?: string;
     url?: string;
+    gitUrl?: string;
     techStack?: TechType[];
+    isFeatured?: boolean;
 }
 
 export type PreferredTech =

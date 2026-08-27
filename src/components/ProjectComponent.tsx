@@ -11,9 +11,10 @@ interface iProjectComponentProps {
   image: StaticImageData | string;
   imageStyle?: CSSProperties;
   techStack: TechType[];
-  description: string | React.ReactNode;
+  description: string;
+  notice?: string;
 }
-const ProjectComponent = ({ name, url, image, imageStyle, techStack, description }: iProjectComponentProps) => {
+const ProjectComponent = ({ name, url, image, imageStyle, techStack, description, notice }: iProjectComponentProps) => {
   return (
     <div className="flex flex-col gap-2" id={cleanString(name)}>
       <h2 className="text-2xl text-foreground">
@@ -45,6 +46,11 @@ const ProjectComponent = ({ name, url, image, imageStyle, techStack, description
       <div>
         {description}
       </div>
+      {!!notice &&
+        <div>
+          <strong>Disclaimer:</strong> {notice}
+        </div>
+      }
     </div>
   )
 }
