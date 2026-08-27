@@ -13,6 +13,10 @@ const withoutCode = (source: string) => {
   return source.replace(/```[\s\S]*?```/g, "");
 }
 
+const isPublished = (post: PostMeta) => {
+  return !post.draft || process.env.NODE_ENV !== "production";
+}
+
 export const getSlugs = () => {
   return fs
     .readdirSync(contentDir)
@@ -57,5 +61,49 @@ export const getAllPosts = async (): Promise<PostSummary[]> => {
     }))
   );
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return posts
+    .filter(isPublished)
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export const getPublishedSlugs = async () => {
+  return (await getAllPosts()).map(post => post.slug);
+}
+
+export const getFeaturedPosts = async (limit = 3): Promise<PostSummary[]> => {
+  const posts = await getAllPosts();
+  const featured = posts.filter(post => post.featured);
+
+  return (featured.length > 0 ? featured : posts).slice(0, limit);
+}
+
+export interface PostGroup {
+  key: string;
+  label: string;
+  posts: PostSummary[];
+}
+
+// Newest month first, and posts already arrive newest first from getAllPosts.
+export const groupPostsByMonth = (posts: PostSummary[]): PostGroup[] => {
+  const groups = new Map<string, PostGroup>();
+
+  for (const post of posts) {
+    const key = post.date.slice(0, 7);
+
+    if (!groups.has(key)) {
+      groups.set(key, {
+        key,
+        label: new Date(`${key}-01T00:00:00Z`).toLocaleDateString("en-US", {
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC",
+        }),
+        posts: [],
+      });
+    }
+
+    groups.get(key)!.posts.push(post);
+  }
+
+  return Array.from(groups.values());
 }

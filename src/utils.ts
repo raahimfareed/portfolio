@@ -36,3 +36,11 @@ export const formatDate = (iso: string) => {
     timeZone: "UTC",
   });
 }
+
+export const formatDayMonth = (iso: string) => {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+    timeZone: "UTC",
+  });
+}

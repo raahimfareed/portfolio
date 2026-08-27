@@ -65,6 +65,12 @@ export interface PostMeta {
     title: string;
     description?: string;
     date: string;
+    updated?: string;
+    tags?: string[];
+    cover?: string;
+    coverAlt?: string;
+    featured?: boolean;
+    draft?: boolean;
 }
 
 export interface PostSummary extends PostMeta {
