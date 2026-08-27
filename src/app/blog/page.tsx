@@ -54,7 +54,7 @@ export default async function Blog() {
   return (
     <MainLayout>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section className="w-full max-w-7xl mx-auto px-8 lg:px-16 py-24 md:py-32">
+      <section className="w-full max-w-7xl mx-auto px-8 lg:px-16 py-24 md:py-32 lg:py-48">
         <div className="flex flex-row justify-center gap-8 xl:gap-16">
           <div className="flex flex-col gap-10 w-full min-w-0 lg:w-[64ch] shrink-0">
             <header className="flex flex-col gap-2">
