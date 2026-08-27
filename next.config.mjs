@@ -1,5 +1,18 @@
 /** @type {import('next').NextConfig} */
+import nextMdx from "@next/mdx";
+
+const withMdx = nextMdx({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: ["remark-gfm"],
+    rehypePlugins: [
+      ["rehype-pretty-code", { theme: "github-dark", keepBackground: false }],
+    ]
+  }
+})
+
 const nextConfig = {
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
     remotePatterns: [
         {
@@ -16,4 +29,4 @@ const nextConfig = {
   }
 };
 
-export default nextConfig;
+export default withMdx(nextConfig);
