@@ -1,0 +1,37 @@
+export const metadata = {
+  title: "Hello World",
+  description: "First post testing MDX components",
+  date: "2026-08-28",
+};
+
+# Hello World
+
+This is a regular paragraph to check that base typography works. **Bold**, *italic*, and `inline code` should all render correctly.
+
+<Callout type="info" title="Note">
+This is a callout box, useful for TL;DR sections or side notes.
+</Callout>
+
+## Testing a code block
+
+```ts title="Example Request"
+POST /api/hello
+{ "message": "world" }
+```
+
+## Testing steps
+
+<Steps>
+  <StepCard number={1} title="First step">
+    Explain what happens in step one.
+  </StepCard>
+  <StepCard number={2} title="Second step">
+    Explain what happens in step two.
+  </StepCard>
+</Steps>
+
+<Callout type="warning" title="Heads up">
+This is a warning-style callout, for anything risky or important to flag.
+</Callout>
+
+That's the end of the test post.

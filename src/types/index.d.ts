@@ -60,3 +60,20 @@ export type PreferredTech =
   | "postcss";
 
 export type TechType = PreferredTech | (string & {});
+
+export interface PostMeta {
+    title: string;
+    description?: string;
+    date: string;
+}
+
+export interface PostSummary extends PostMeta {
+    slug: string;
+    readingTime: number;
+}
+
+export interface Heading {
+    id: string;
+    text: string;
+    level: 2 | 3;
+}
