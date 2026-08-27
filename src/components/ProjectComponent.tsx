@@ -30,10 +30,9 @@ const ProjectComponent = ({ name, url, image, imageStyle, techStack, description
           src={image}
           alt={name}
           fill={true}
-          objectFit="contain"
+          className="object-contain"
           unoptimized
-          style={imageStyle}
-          layout="fixed" />
+          style={imageStyle} />
       </div>
       <div className="flex items-center flex-wrap gap-3">
         <strong className="mr-1">Tech Stack:</strong>

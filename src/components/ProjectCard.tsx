@@ -21,10 +21,9 @@ export const ProjectCard = ({ project, imageStyle, className }: iProjectCardProp
           src={project.image!}
           alt={project.name}
           fill={true}
-          objectFit="cover"
+          className="object-cover"
           unoptimized
-          style={imageStyle}
-          layout="fixed" />
+          style={imageStyle} />
       </div>
 
       {/* Body */}
