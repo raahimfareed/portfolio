@@ -1,0 +1,2262 @@
+export const metadata = {
+  title: "Rust: A Bare Guide",
+  description:
+    "A hands-on tour of Rust from install to cargo: variables, operators, flow control, loops, strings, collections, functions, structs, enums, generics and modules.",
+  date: "2022-05-27",
+  tags: ["rust", "programming", "guide", "systems programming"],
+};
+
+## What is Rust?
+
+Rust is a multi-paradigm general purpose language which provides memory safety out of the box. It's similar to C++.
+
+It's a statically and strongly typed language and it's a compiled language.
+
+It's a low level language and was created to have similar performance as C and C++ with added benefits like code safety and memory safety.
+
+## Installation
+
+*   Windows
+    
+    1.  Refer to [Rust Official Installation Page](https://www.rust-lang.org/tools/install) and download 64bit or 32bit version for your system.
+        
+    2.  After downloading the installer, double click and follow the instructions on screen.
+        
+    3.  Download [Microsoft C++ Build Tools Installer](https://visualstudio.microsoft.com/visual-cpp-build-tools/) and install the tools.
+        
+    4.  Finally, open your command prompt and run
+        
+        ```console
+        $ rustc
+        ```
+        
+        If you get an ouput from this command, congrats, rustc is installed.
+        
+*   Mac/Linux
+    
+    1.  Run the following command in your terminal
+        
+        ```console
+        $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        ```
+        
+    2.  Follow the instructions on screen after running the command.
+        
+    3.  Once the installation is finished, restart your terminal
+        
+    4.  Finally, run
+        
+        ```console
+        $ rustc
+        ```
+        
+        If you get an ouput from this command, congrats, rustc is installed.
+        
+    
+    Alternatively, you can use your package manager to install rust.
+    
+
+## Text editors
+
+I personally use [neovim](https://neovim.io/) and [VSCode](https://code.visualstudio.com/) but you're free to use whichever text editor you want. Some notable ones are
+
+*   [Notepad++ (Windows Only)](https://notepad-plus-plus.org/)
+    
+*   [Micro (Terminal based)](https://micro-editor.github.io/)
+    
+*   [Brackets](https://brackets.io/)
+    
+*   [Sublime Text](https://www.sublimetext.com/)
+    
+*   [Atom](https://atom.io/)
+    
+*   Your native notepad application
+    
+
+## Directory structure
+
+I have created a folder named `rust` and two more folders inside that are named `src` and a `build`
+
+```console
+rust
+├── build
+└── src
+```
+
+## Hello World
+
+Rust files end with `.rs` extension. So let's create a file named `main.rs` inside `src` folder
+
+The main file should have only one main function (Just like C/C++)
+
+1.  Let's create our main function
+    
+    ```rs
+    // main.rs
+    fn main() {
+    
+    }
+    ```
+    
+    `fn` is the keyword to declare our functions, it is followed by our function name `main` with parentheses and finally braces which are our function's body.
+    
+    We'll get into functions later on, for now all you need to know is that a `main` function is required for us to compile the program; it's our entry point.
+    
+2.  Now let's print *hello world*
+    
+    ```rs
+    // main.rs
+    fn main() {
+      println!("Hello World");
+    }
+    ```
+    
+    `println` is a macro hence why it's followed by an exclamation mark `!`.
+    
+    Also, notice the semicolon at the end of the statement; every statement in rust needs to have a semicolon ending it.
+    
+3.  To compile this, open your terminal in your main `rust` folder which contains `src` and `build` folders.
+    
+    ```console
+    $ rustc src/main.rs -o build/main
+    ```
+    
+    This command should compile your `main.rs` file into a `main` executable in build folder.
+    
+    `rustc` is our compiler, followed by path of our `main.rs` file followed by `-o` flag which requires a path of our output file.
+    
+    After running this command, my direcory now looks like
+    
+    ```console
+    rust
+    ├── build
+    │   └── main
+    └── src
+        └── main.rs
+    ```
+    
+4.  Finally to run the compiled file
+    
+    ```console
+    $ ./build/main
+    ```
+    
+    Our Output
+    
+    ```console
+    $ rustc src/main.rs -o build/main
+    $ ./build/main
+    Hello World
+    ```
+    
+
+Congrats! You just created your first rust program
+
+## Variables and their types
+
+Think of variables like a pocket, they store something for you. Variables have different types, for example there can be a variable for storing integers, there can be one for storing characters, etc.
+
+### Primitive variable types
+
+```md
+# Integers: numbers
+
+Signed
+
+- u8: [0 - 255]
+- u16: [0 - 65535]
+- u32: [0 - 4294967295]
+- u64: [0 - 18446744073709551615]
+- u128: [0 - 340282366920938463463374607431768211455]
+
+Unsigned
+
+- i8: [-128 - 127]
+- i16: [-32768 - 32767]
+- i32: [-2147483648 - 2147483647]
+- i64: [-9223372036854775808 - 9223372036854775807]
+- i128: [-170141183460469231731687303715884105728 - 170141183460469231731687303715884105727]
+
+# Floats: decimal numbers
+
+- f32: single precision
+- f64: double precision
+
+# Boolean: true or false
+
+- bool
+
+# Character: single digit, alphabet, unicode
+
+- char
+
+# Tuples
+
+# Arrays
+
+# Strings: a group of unicode characters
+
+- str
+```
+
+Default integer type is `i32` and default float type is `f64`.
+
+Now back to our `main.rs` file. Let's create a few variables inside our `main` function.
+
+To declare a variable, we use `let` keyword followed by the variable name.
+
+```rs
+let age = 20;
+let name = "Raahim";
+let programmer = true;
+let is_true = 150 == 100;
+let face = '\u{1F600}';
+println!("{} {} {} {} {}", name, age, programmer, is_true, face);
+```
+
+Our Output
+
+```console
+$ rustc src/main.rs -o build/main
+$ ./build/main
+Hello World
+Raahim 20 true false 😀
+```
+
+`{}` is a placeholder and gets replaced by the variables we provide `println`
+
+Let's try to change our variables
+
+```rs
+let age = 20;
+let name = "Raahim";
+let programmer = true;
+let is_true = 150 == 100;
+let face = '\u{1F600}';
+
+println!("{} {} {} {} {}", name, age, programmer, is_true, face);
+
+age = 21;
+```
+
+Compiling this gives us an error
+
+```console
+$ rustc src/main.rs -o build/main
+$ ./build/main
+error[E0384]: cannot assign twice to immutable variable `age`
+  --> src/main.rs:11:3
+   |
+3  |   let age = 20;
+   |       ---
+   |       |
+   |       first assignment to `age`
+   |       help: consider making this binding mutable: `mut age`
+...
+11 |   age = 21;
+   |   ^^^^^^^^ cannot assign twice to immutable variable
+
+error: aborting due to previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0384`.
+```
+
+That leads us to our next topic
+
+### Mutable Variables
+
+By default, all variables declared are immutable, meaning they can't be reassigned.
+
+In order to make our variables mutable, we need to use the keyword `mut`
+
+Let's change our `age` variable to mutable
+
+```rs
+let mut age = 20;
+age = 21;
+```
+
+This won't give us an error now.
+
+What if we wanted to change these types? So far rust has automatically detected our variable types but sometimes we may require a different type to work with
+
+### Explicit Type Annotation
+
+To explicitly tell rust the type of our variable, we have to follow our variable name with colon and then provide the type of our variable
+
+For example
+
+```rs
+// main.rs
+let age: u8 = 20;
+let pi: f32 = 3.14;
+```
+
+*You should only use f32 when you absolutely need it, like when you need to save extra memory or such*
+
+### Declare multiple variables at the same time
+
+Sometimes you want to declare variables in the same line, similar to `python`, like my name and age, I can do the following
+
+```rs
+let (name, age) = ("Raahim", 20);
+```
+
+### Constants
+
+Constants are variables that cannot be changed.
+
+To declare constants, we use `const` instead of `let` and the name of the constants should be all UPPERCASE
+
+Like following
+
+```rs
+const ID: i32 = 1;
+```
+
+So what's the difference between a normal variable that's immutable by default, and a constant?
+
+There are two differences
+
+*   Constants need to have a datatype explicitly
+    
+*   Constants need to be intialized during declaration. This means that they need to have a value where they are getting declared. In comparison to normal variables, you can declare them without any value and initialize them later on.
+    
+
+## `println`, `print` and text formatting
+
+We've already used `println`, it's used to print a line to the terminal. We've also used it to print variables. Now let's look into print and various ways of formatting our texts
+
+### println
+
+```rs
+println!("Hello Hashnode");
+```
+
+### print
+
+```rs
+print!("Hello Hashnode\n");
+```
+
+The difference between `println` and `print` is that, `println` automatically adds the line terminator (`\n`) whereas `print` does not add it at the end.
+
+I'll be using `println` throughout this guide
+
+### Arguments
+
+To print our variables, we can use `{}` as placeholder and pass the variables to `println` or `print`
+
+```rs
+let name = "Raahim";
+let age = 20;
+const PI: f64 = 3.14;
+println!("Hey, my name is {}, I am {} and Pi is {}",  name, age, pi);
+```
+
+This gives us
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Hey, my name is Raahim, I am 20 and Pi is 3.14
+```
+
+### Positional Arguments
+
+To print our variables on specific positions in our statement we do
+
+```rs
+let name = "Raahim";
+let age = 20;
+const PI: f64 = 3.14;
+println!("Hey, Pi is {2}, I am {1} and my name is {0}",  name, age, pi);
+```
+
+That will print
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Hey, Pi is 3.14, I am 20 and my name is Raahim
+```
+
+Now let's go over what we actually did here
+
+*   `name` is our first argument in `println` so it's at 0 index.
+    
+*   `age` is our second argument in `println` so it's at 1 index.
+    
+*   `PI` is our third argument in `println` so it's at 2 index.
+    
+
+Notice how each argument's index is one number behind their position? That's because indices in Rust begin at 0 instead of 1
+
+So in order to change the way our variables are formatted, we just write the index of our variable in between braces `{}`
+
+```rs
+println!("Hey, Pi is {2}, I am {1} and my name is {0}",  name, age, pi);
+```
+
+### Named Arguments
+
+Instead of using indices, we can use names for our arguments
+
+```rs
+let name = "Raahim";
+let age = 20;
+const PI: f64 = 3.14;
+println!("Hey, Pi is {pi}, I am {myName} and my name is {myAge}",  myName=name, myAge=age, pi=PI);
+```
+
+We can also use the variable names as is for positions
+
+```rs
+let name = "Raahim";
+let age = 20;
+const PI: f64 = 3.14;
+println!("Hey, Pi is {PI}, I am {name} and my name is {age}");
+```
+
+### Placeholder traits
+
+`println` and `print` can convert numbers from decimal to binary, octal or hex on it's own using placeholder traits
+
+```rs
+println!("Binary: {:b} Hex: {:x} Octal: {:o}", 5, 10, 10);
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Binary: 101 Hex: a Octal: 12
+```
+
+### Debug trait
+
+Some variables/data can't be formatted, so to print them to the terminal for debugging, we use `{:?}`
+
+```rs
+println!("{:?}", (5, "hello", true));
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+(5, "hello", true)
+```
+
+## Operators
+
+### Arithmetic
+
+These operators are used for mathematical operations
+
+#### Addition +
+
+`+` adds two operands together.
+
+```rs
+let a = 10 + 15;
+// 25
+```
+
+#### Subtraction -
+
+`-` subtracts second operand from first operand.
+
+```rs
+let a = 10 - 15;
+// -5
+```
+
+#### Multiplication \*
+
+`*` multiplies two operands together.
+
+```rs
+let a = 2 * 3;
+// 6
+```
+
+#### Division /
+
+`/` divides two operands together.
+
+```rs
+let a = 15 / 3;
+// 5
+```
+
+#### Modulo %
+
+`%` returns remainder of division between two operands.
+
+```rs
+let mut a = 15 % 2;
+// 1
+a = 33 % 5;
+// 5
+a = 10 % 2;
+// 0
+```
+
+### Comparison Operators
+
+These operators are used to compare values, they always return a boolean, either `true` or `false`.
+
+#### Equal to ==
+
+`==` is used to compare whether both operands are equal
+
+```rs
+let a = 10;
+let b = 11;
+let c = a == b;
+// false
+```
+
+```rs
+let a = 10;
+let b = 10;
+let c = a == b;
+// true
+```
+
+#### Greater than >
+
+`>` used to compare whether first operand is greater than second operator
+
+```rs
+let age = 15;
+let is_eligible = age > 17;
+// false
+```
+
+```rs
+let age = 26;
+let is_eligible = age > 17;
+// true
+```
+
+#### Less than &lt;
+
+`<` used to compare whether first operand is smaller than second operator
+
+```rs
+let age = 15;
+let is_minor = age < 18;
+// true
+```
+
+```rs
+let age = 26;
+let is_minor = age < 18;
+// false
+```
+
+#### Greater than or equal to >=
+
+`>=` used to compare whether first operand is greater than second operator, it's a mixture of `>` and `==`
+
+```rs
+let age = 18;
+let is_eligible = age >= 18;
+// true
+```
+
+#### Lesser than or equal to &lt;=
+
+`<=` used to compare whether first operand is greater than second operator, it's a mixture of `<` and `==`
+
+```rs
+let age = 17;
+let is_minor = age <= 17;
+// true
+```
+
+#### Not equal to !=
+
+`!=` checks if first operand is not equal to second operator
+
+```rs
+let name = "Raahim";
+let is_blocked = name != "Raahim";
+// false
+```
+
+### Logical Operators
+
+These operators also return either `true` or `false`. These operators combine two or more conditions together.
+
+#### AND &&
+
+`&&` returns `true` if both operands are `true`
+
+```rs
+let a = true;
+let b = false;
+let c = a && b;
+// false
+```
+
+```rs
+let a = true;
+let b = true;
+let c = a && b;
+// true
+```
+
+#### OR ||
+
+`||` returns `true` if either of the operands are `true`. It returns `false` only if both operands are `false`
+
+```rs
+let a = true;
+let b = false;
+let c = a || b;
+// true
+```
+
+```rs
+let a = false;
+let b = false;
+let c = a || b;
+// false
+```
+
+#### NOT !
+
+`!` returns inverse of the operand. `true` is converted to `false` and vice versa
+
+```rs
+let a = false;
+let b = !a;
+// true
+```
+
+### Compound Assignment Operators
+
+These operators manipulate the value and then assign the value in the same statement.
+
+#### Add and Assign +=
+
+`+=` adds the number with the variable and assigns the variable with the new value
+
+```rs
+let mut a = 1;
+a += 1;
+// 2
+```
+
+The above code basically is the same as
+
+```rs
+let mut a = 1;
+a = a + 1;
+// 2
+```
+
+#### Subtract and Assign -=
+
+`-=` subtracts the number with the variable and assigns the variable with the new value
+
+```rs
+let mut a = 1;
+a -= 1;
+// 0
+```
+
+#### Multiply and Assign -=
+
+`*=` multiplies the number with the variable and assigns the variable with the new value
+
+```rs
+let mut a = 3;
+a *= 2;
+// 6
+```
+
+#### Divide and Assign /=
+
+`/=` divides the number with the variable and assigns the variable with the new value
+
+```rs
+let mut a = 4;
+a /= 2;
+// 2
+```
+
+I've not included bitwise operators here as they may get too confusing for newcomers.
+
+## Flow Control
+
+Flow control means, controlling the order in which our code executes.
+
+### If
+
+`if` runs the code only if the condition provided to it is true
+
+```rs
+let is_admin = true;
+
+println!("User logged in");
+if is_admin == true {
+   println!("User is admin");
+}
+```
+
+Output
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+User logged in
+User is admin
+```
+
+What if, we change our variable from true to false
+
+```rs
+let is_admin = false;
+```
+
+We get
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+User logged in
+```
+
+The `println` statement inside our if block didn't get printed, that's because our if statement got false.
+
+### Else
+
+`else` runs when our `if` statement is not true.
+
+```rs
+let is_admin = false;
+
+if is_admin == true {
+   println!("User is admin");
+} else {
+   println!("User is not admin");
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+User is not admin
+```
+
+### Else If
+
+We can have multiple if conditions chained together
+
+```rs
+let is_admin = false;
+let is_mod = true;
+
+if is_admin == true {
+   println!("User is admin");
+} else if is_mod == true {
+   println!("User is mod");
+} else {
+   println!("User is neither admin nor mod");
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+User is mod
+```
+
+### Shorthand If
+
+We can use this to assign a variable some value depending on the if condition
+
+```rs
+let age = 18;
+let is_eligible: bool = if age >= 21 { true } else { false };
+// false
+```
+
+### Match
+
+`match` statement is similar to having multiple else if statements
+
+If you're coming from languages like C, C++, Java. You might be familiar with `switch` statement, this is essentially a `switch` statement.
+
+It uses the keyword `match` followed by variable name and then braces `{}` which encapsulate the conditions and actions.
+
+```rs
+let role = "admin";
+
+match role {
+   "admin" => println!("The user is admin!"),
+   "mod" => println!("The user is mod!"),
+   "guest" => println!("The user needs to login"),
+   _ => println!("Unknown user"),
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+The user is admin!
+```
+
+If we were to change `role` variable, it would change the output of `match`.
+
+Underscore `_` is used for fallback conditions. (Similar to `else`)
+
+Another neat feature rust has over other languages is that it can combine cases together
+
+for example
+
+```rs
+match role {
+   "owner" | "admin" => println!("The user is admin!"),
+   "mod" => println!("The user is mod!"),
+   "guest" => println!("The user needs to login"),
+   _ => println!("Unknown user"),
+}
+```
+
+We can also provide a range to our `match`
+
+```rs
+let age = 17;
+match age {
+   13..=19 => println!("Teenagers"),
+   _ => println!("Other age")
+}
+```
+
+## Loops
+
+Loops are code blocks that keep on repeating
+
+In rust, we have 3 types of loops
+
+*   loop
+    
+*   for
+    
+*   while
+    
+
+### Loop
+
+`loop` is an infinite loop. It runs forever until we explicitly tell it to stop.
+
+```rs
+let mut count = 0;
+
+loop {
+   count += 1;
+   println!("{count}");
+
+   if count >= 5 {
+      break;
+   }
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+1
+2
+3
+4
+5
+```
+
+Let's talk about what we did here,
+
+1.  We first declared a mutable `count` variable and initialized it to 0.
+    
+    ```rs
+    let mut count = 0;
+    ```
+    
+2.  We started our loop
+    
+    ```rs
+    loop {
+    ```
+    
+3.  On the start of our loop we added 1 to our variable
+    
+    ```rs
+    count += 1;
+    ```
+    
+4.  We printed our `count`
+    
+    ```rs
+    println!("{count}");
+    ```
+    
+5.  We checked if our count is greater than or equal to 5, if it is, we `break` out of the loop, otherwise our loop goes back to the start and repeats from step 3.
+    
+    ```rs
+    if count >= 5 {
+       break;
+    }
+    ```
+    
+
+### For
+
+For loops have a range, they start at a specific number we provide them and end before a specific number we provide them.
+
+```rs
+for x in 0..5 {
+   println!("{x}");
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+0
+1
+2
+3
+4
+```
+
+Let's go through our code,
+
+1.  We started our loop with range 0 to 5, which will get stored in `x` variable
+    
+    ```rs
+    for x in 0..5 {
+    ```
+    
+2.  We print our `x` variable
+    
+    ```rs
+    println!("{x}");
+    ```
+    
+3.  and after that the loop goes back to the start, now what comes after 0? 1. So `x` turns into 1, and then it prints out to screen. This happens until we reach 4. The loop breaks 1 number before our final number 5.
+    
+
+### While
+
+While loops run until a condition is true
+
+Let's do something exciting for this loop
+
+```rs
+let mut count = 0;
+while count <= 100 {
+   if count % 15 == 0 {
+      println!("fizzbuzz");
+   }
+   else if count % 3 == 0{
+      println!("fizz");
+   }
+   else if count % 5 == 0 {
+      println!("buzz");
+   }
+   else {
+      println!("{count}");
+   }
+
+   count += 1;
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+fizzbuzz
+1
+2
+fizz
+4
+...
+...
+...
+97
+98
+fizz
+buzz
+```
+
+This is `fizzbuzz`, a simple programming task. In this task, we run a loop from 1 to 100, we print `fizz` if the number is divisible by 3, `buzz` if the number is divisible by 5, `fizzbuzz` if the number is divisible by both 3 and 5 and if neither of the above conditions are satisfied, it should just print the loop number.
+
+That's exactly what's happening in our `while` loop.
+
+1.  First we declared `count` variable to keep track of our loop iteration; we made it mutable as well.
+    
+    ```rs
+    let mut count = 0;
+    ```
+    
+2.  Then we started our while loop with the condition that it will keep running as long as our count is less than or equal to 100
+    
+    ```rs
+    while count <= 100 {
+    ```
+    
+3.  Then comes our if statements
+    
+    ```rs
+    if count % 15 == 0 {
+       println!("fizzbuzz");
+    }
+    else if count % 3 == 0{
+       println!("fizz");
+    }
+    else if count % 5 == 0 {
+       println!("buzz");
+    }
+    else {
+       println!("{count}");
+    }
+    ```
+    
+4.  Finally we add 1 to our count variable
+    
+    ```rs
+    count += 1;
+    ```
+    
+5.  After this, it goes back to start of the loop, if count is less than or equal to 100, the loop will run again, otherwise it will exit out of the loop.
+    
+
+## Strings
+
+Let's talk about strings, we have 2 types of strings in Rust.
+
+`str` and `String`
+
+`str` is a primitive datatype, it has fixed length and is immutable.
+
+`String` is a heap allocated data structure which is growable, meaning it's length can increase unlike `str`
+
+### Str
+
+We can make string variables like this
+
+```rs
+let name = "Hello There";
+```
+
+```rs
+let name: &str = "Hello There";
+```
+
+Both of the above are valid, they both make `str` type variable.
+
+### String
+
+To make `String`
+
+```rs
+let hello = String::from("Hello");
+```
+
+```rs
+let hello: String = String::from("Hello");
+```
+
+Both are correct but usually the first way is used as it already has `String` in the value.
+
+`String` also have a lot of built in functions.
+
+#### push
+
+Let's say you want to append to the end of the string
+
+```rs
+let mut hello = String::from("Hello");
+hello.push(" world");
+println!("{hello}");
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Hello world
+```
+
+#### len
+
+`len` is used to get the length of the string. Length of the string is the number of characters it has
+
+```rs
+let hello = String::from("Hello");
+println!("{}", hello.len());
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+5
+```
+
+Why did we get 5? We got 5 because "Hello" has 5 characters.
+
+*Note: Characters can be alphabets, numbers, spaces, symbols, etc*
+
+#### capacity
+
+`capacity` gives us the size of the string in bytes
+
+```rs
+let hello = String::from("Hello");
+println!("{}", hello.capacity());
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+5
+```
+
+#### is\_empty
+
+`is_empty`, sounds straight forward, it returns a boolean, it tells us if our string variable is empty or not
+
+```rs
+let var = String::new();
+println!("{}", var.is_empty());
+
+let another_var = String::from("Hello my friend");
+println!("{}", another_var.is_empty());
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+true
+false
+```
+
+#### contains
+
+This returns a boolean. It tells us if a word or a piece of string exists in our variable or not.
+
+```rs
+let hello = String::from("Hello my friend");
+println!("{}", hello.contains("my"));
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+true
+```
+
+#### replace
+
+We can also replace a specific piece of our string with a different string.
+
+```rs
+let hello = String::from("Hello my friend");
+println!("{}", hello.replace("my", "your"));
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Hello your friend
+```
+
+#### split\_whitespace
+
+It splits the string by whitespace. A whitespace can be defined as a space, a tab, etc.
+
+It returns in iterator, which can't be formatted by our default formatting trait `{}`, so instead we'll be using the debug trait `{:?}`
+
+```rs
+let hello = String::from("Hello my friend");
+println!("{:?}", hello.split_whitespace());
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+SplitWhitespace { inner: Filter { iter: Split(SplitInternal { start: 0, end: 15, matcher: CharPredicateSearcher { haystack: "Hello my friend", char_indices: CharIndices { front_offset: 0, iter: Chars(['H', 'e', 'l', 'l', 'o', ' ', 'm', 'y', ' ', 'f', 'r', 'i', 'e', 'n', 'd']) } }, allow_trailing_empty: true, finished: false }) } }
+```
+
+What's all this? This is a bit messy. It's all the information that variable contains right now.
+
+Since it's an iterator, we can use it in a for loop.
+
+If you remember, we gave a range to our for loop last time.
+
+This time, let's give it our iterator
+
+```rs
+let hello = String::from("Hello my friend");
+for word in hello.split_whitespace() {
+   println!("{word}");
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Hello
+my
+friend
+```
+
+Basically, our string gets split into an iterator which contains a list of our words that were separated by a space.
+
+We printed it word by word using the for loop.
+
+#### with\_capacity
+
+We can also make a new string with our own capacity
+
+```rs
+let mut s = String::with_capacity(10);
+println!("Capacity: {}", s.capacity());
+
+s.push('a');
+s.push('b');
+
+println!("{s}");
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Capacity: 10
+ab
+```
+
+## Tuples
+
+A tuple is a grouped value. It can have different types of data in it. A tuple can contain at max 12 elements.
+
+Tuples can be created using parenthesis `()`.
+
+To access the data in a tuple, we use indices. Like we learnt earlier about indices, they start at 0.
+
+Let's look at an example
+
+```rs
+let person: (&str, &str, u8) = ("Raahim", "Pakistan", 20);
+
+println!("{} is from {} and is {}", person.0, person.1, person.2);
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Raahim is from Pakistan and is 20
+```
+
+## Arrays
+
+Arrays can store multiple data of same data types. Their length are fixed. They are stack allocated data structures.
+
+Let's create an array of single digit positive even numbers.
+
+```rs
+let mut numbers: [i32; 4] = [2, 4, 6, 8];
+```
+
+The datatype of our array is `i32` and it contains `4` elements. Our elements are `2, 4, 6, 8`
+
+Since our array is mutable using `mut` keyword, we can change it's data.
+
+To access an array, we use indices. First element is stored at 0 index, second at 1 index and last index is stored at n - 1 index, n being the length of the array.
+
+```rs
+numbers[1] = -4;
+```
+
+We can use loops to iterate over our arrays.
+
+```rs
+for number in numbers {
+   println!("{}", number);
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+2
+-4
+6
+8
+```
+
+### len
+
+We can get the length of an array using `len`
+
+```rs
+println!("{}", numbers.len());
+```
+
+### Slicing array
+
+We can slice an array as following
+
+```rs
+println!("{:?}", &numbers[2..4]);
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+[6, 8]
+```
+
+`2..4` means, our sliced array will start at index 2, and end before index 4.
+
+Basically, 2 is included, 4 is not included, the one previous to 4 is included, which is 3.
+
+## Vectors
+
+Vectors are resizable arrays. Meaning, their length can be increased or decreased.
+
+We can create vectors using `vec!` macro or using `Vec` as datatype.
+
+For example
+
+```rs
+let even_numbers: Vec<&str>;
+let people = vec!["John", "Jane", "Doe"];
+```
+
+Accessing elements in a vector is the same as in an array.
+
+```rs
+println!("{}", people[1]);
+// Jane
+```
+
+### Push - Insert into vector
+
+Push is a function in vector, we can use it to insert data into our vector.
+
+```rs
+let mut people = vec!["John", "Jane", "Doe"];
+
+people.push("Person");
+println!("{:?}", people);
+println!("{}", people[2]);
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+["John", "Jane", "Doe", "Person"]
+Doe
+```
+
+### remove
+
+`remove` deletes a value at the given index.
+
+```rs
+let mut people = vec!["John", "Jane", "Doe"];
+
+people.remove(1);
+println!("{:?}", people);
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+["John", "Doe"]
+```
+
+### len
+
+Similar to array, returns the length of the vector
+
+```rs
+vector.len()
+```
+
+### pop
+
+Pop removes the last element in the vector and returns it as well
+
+```rs
+let mut people = vec!["John", "Jane", "Doe"];
+
+println!("{:?}", people.pop());
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Some("Doe")
+```
+
+### loops with vectors
+
+Unlike arrays, with vectors we need to use methods in order for loops to work.
+
+Let's take a look at a simple example
+
+```rs
+let people = vec!["John", "Jane", "Doe"];
+
+for person in people.iter() {
+  println!("{}", person);
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+John
+Jane
+Doe
+```
+
+Notice how we're using `iter` method. Similarly, if you have a mutable vector and you want to change the values in the for loop as well, we can use `iter_mut`
+
+## Functions
+
+Functions are reusable code blocks. We can declare a function and then recall it as many times we want without rewriting all the code.
+
+They're used to make our code more reusable.
+
+You're already introduced to `main` function. Just to recap, every rust program needs an entry point function named `main`.
+
+It's usually in our `main.rs` file.
+
+```rs
+fn main() {
+   ...
+}
+```
+
+So far we've worked inside our `main` function but we'll make our own functions outside `main` function.
+
+Now let's create our own function.
+
+```rs
+fn main() {
+   ...
+}
+
+fn hello() {
+   println!("Hello World!");
+}
+```
+
+In the above example, I created a `hello` function outside `main` function.
+
+But how do we use it now?
+
+To call a function, we simple use it with parenthesis. For our `hello` function, we'd call it like `hello()`
+
+Let's try it
+
+```rs
+fn main() {
+  hello();
+}
+
+fn hello() {
+  println!("Hello World!");
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Hello World!
+```
+
+Notice how I called my `hello` function inside `main` function? Our function was declared outside `main` but we need to call it inside `main` or some other function.
+
+The benefit of this function is that I can call it as many times as I want.
+
+```rs
+hello();
+hello();
+hello();
+hello();
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+```
+
+We can also pass arguments to our functions. Arguments are our variables or values that we want to use inside our functions.
+
+Let's create an add function and let's pass 2 numbers to it.
+
+```rs
+fn main() {
+  add(1, 3);
+  add(15, 87);
+}
+
+fn add(x: i32, y: i32) {
+   println!("{x} + {y} = {}", x + y);
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+1 + 3 = 4
+15 + 87 = 102
+```
+
+In this function we printed our values.
+
+Alternatively, we can return our values from our functions to reuse later; we can store them in variables;
+
+In order to do that, we have to define our return type of our function after our paraments and we have to use `return` statement.
+
+```rs
+fn main() {
+  let result = add(1, 3);
+}
+
+fn add(x: i32, y: i32) -> i32 {
+   return x + y;
+}
+```
+
+Now we learnt in the start that every statement in Rust needs to end with a semicplon `;`, but when we want to return a value in a function, we can exclude the semi colon and `return` keyword
+
+Let me show you how, let's change our add function
+
+```rs
+fn add(x: i32, y: i32) -> i32 {
+   x + y
+}
+```
+
+This add function is the same as the previous one. The only difference is now we're not using `return` and `;`.
+
+### Closures | Anonymous Functions |
+
+Closures in rust are anonymous functions that we can save in variables or pass to other functions
+
+Let's convert our add function into a closer
+
+```rs
+let add = |n1: i32, n2: i32| n1 + n2;
+println!("{}", add(5, 3));
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+8
+```
+
+## Structs
+
+Earlier, we talked about `tuples`; `tuples` are a type of Struct.
+
+If you're coming from object-oriented languages, you may be familiar with classes. Structs are somewhat similar to classes.
+
+If you're coming from C, you may be familiar with `struct` in C. Rust Struct is C styled.
+
+### Structs with named fields
+
+To create a struct, we use the `struct` keyword, followed by a name, and then braces which encapsulate named fields and their datatypes.
+
+```rs
+struct Person {
+   first_name: String,
+   last_name: String
+}
+```
+
+How do we use this though? Let's create a variable with this struct.
+
+```rs
+let john = Person {
+   first_name: "John".to_string(),
+   last_name: "Doe".to_string()
+};
+```
+
+Our fields are of `String` type, but we're assigning them `str`, that's why we called `to_string` methods, these are already created for us by the wonderful people working at rust.
+
+Unlike `tuples` where we needed to use indices, here we can just access our struct values by their field name
+
+```rs
+println!("Full name: {} {}", john.first_name, john.last_name);
+```
+
+### Implementation
+
+Implentation is basically adding functions to our structures. Just before last example, I mentioned that structures are somewhat similar to classes, what do classes have?
+
+They have properties (variable) and methods (functions). What do our structures have? Named fields which we can consider as properties and through implementation, we can also add methods to our structures.
+
+`impl` keyword is used to make an implementation. It needs to have the same name as the struct you're implementing.
+
+Let's take a look at how,
+
+in our main function
+
+```rs
+struct Color {
+   r: u8,
+   g: u8,
+   b: u8
+}
+
+impl Color {
+   fn new(r: u8, g: u8, b: u8) -> Color {
+      Color {
+         r,
+         g,
+         b
+      }
+   }
+
+   fn to_tuple(&self) -> (u8, u8, u8) {
+      (self.r, self.g, self.b)
+   }
+}
+
+let cyan = Color::new(0, 255, 255);
+println!("R: {}, G: {}, B: {}", cyan.r, cyan.g, cyan.b);
+println!("{:?}", cyan.to_tuple());
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+R: 0, G: 255, B: 255
+(0, 255, 255)
+```
+
+So what happened here?
+
+1.  First we created our `Color` structure
+    
+    ```rs
+    struct Color {
+       r: u8,
+       g: u8,
+       b: u8
+    }
+    ```
+    
+2.  Then we created our implementation using `impl`
+    
+    ```rs
+    impl Color {
+       ...
+    }
+    ```
+    
+3.  In our implementation, we created `new` function. That's used to create a new instance of our structure.
+    
+    ```rs
+    fn new(r: u8, g: u8, b: u8) -> Color {
+       Color {
+          r,
+          g,
+          b
+       }
+    }
+    ```
+    
+    It returns `Color`
+    
+4.  Then we created a `to_tuples`, which just returns our structure as a tuple
+    
+    ```rs
+    fn to_tuple(&self) -> (u8, u8, u8) {
+       (self.r, self.g, self.b)
+    }
+    ```
+    
+5.  Finally, we create our variable and print out the values
+    
+    ```rs
+    let cyan = Color::new(0, 255, 255);
+    println!("R: {}, G: {}, B: {}", cyan.r, cyan.g, cyan.b);
+    println!("{:?}", cyan.to_tuple());
+    ```
+    
+
+## Enums
+
+Enums can be considered as custom data types.
+
+Let's look at a few situations where enums may be used.
+
+In games for instance, a player may be dead or alive. We can create an enum for that.
+
+```rs
+enum PlayerState {
+   Dead,
+   Alive
+}
+```
+
+Or for player movement, a player can move in 4 directions, forward, backward, right and left.
+
+```rs
+enum PlayerMovement {
+   Right,
+   Left,
+   Up,
+   Down
+}
+```
+
+Or the team of our player, is it in Red team, or Blue team, or is it a spectator?
+
+```rs
+enum PlayerTeam {
+   Red,
+   Blue,
+   Spectator
+}
+```
+
+We can use it for days as well
+
+```rs
+enum Days {
+   Monday,
+   Tuesday,
+   Wednesday,
+   Thursday,
+   Friday,
+   Saturday,
+   Sunday
+}
+```
+
+Now that we know how to define an enum, let's create some variables.
+
+```rs
+let today = Days::Tuesday;
+```
+
+Our `Days` enum has seven possible values. If we create a variable with `Days` datatype, it can be assigned one of those seven values.
+
+Similarly for `PlayerState` we can do
+
+```rs
+let alive = PlayerState::Alive;
+let dead = PlayerState::Dead;
+```
+
+## Comments
+
+Comments are a piece of code that get ignored by our compiler. We can use comments to leave messages in between our code for our future self or even other developers, explaining our code, so that it's easier to read our code when we pick it up after a few weeks or when we give it to someone else.
+
+Comments can also be used to temporarily disabled a piece of code.
+
+### Single line comments
+
+Single line comments can be made using double slash `//`
+
+```rs
+// This is a single lined comment
+
+// Name variable
+let my_name: &str = "Raahim";
+
+// Don't need admin variable for now
+// let admin: &str = "John Doe";
+
+// If it's Raahim, do something
+if my_name == "Raahim" {
+   ...
+}
+// If it's not Raahim, do something else
+else {
+   ...
+}
+```
+
+### Double line comments
+
+If we have multiple lines that we need to comment, it can be cumbersome to put '//' behind every line.
+
+To overcome this, we use `/**/`
+
+```rs
+/*
+This is a
+multi line
+comment,
+
+It can span many lines
+*/
+```
+
+```rs
+let mut count = 0;
+while count <= 100 {
+   /*
+   if count % 15 == 0 {
+      println!("fizzbuzz");
+   }
+   else if count % 3 == 0{
+      println!("fizz");
+   }
+   else if count % 5 == 0 {
+      println!("buzz");
+   }
+   else {
+      println!("{count}");
+   }
+   */
+   println!("{count}");
+   count += 1;
+}
+```
+
+In the above code, we commented out our if statements.
+
+## Generics
+
+Generics are used when we want to create the same function for different data types.
+
+For example, an `add` function which adds two numbers together, you may want to create it for all types of numbers, `u8`, `i8`, `u16` ... `i128`, `f32`, `f64`. That's gonna be a lot of functions.
+
+For functions like these, we use generics.
+
+Let's create a generic function
+
+```rs
+fn main() {
+  println!("{}", function("Hello there"));
+  println!("{}", function(1));
+  println!("{}", function(3.14));
+  println!("{}", function(-100));
+  println!("{}", function('f'));
+  println!("{}", function(true));
+  println!("{:?}", function([1, 2, 3]));
+  println!("{:?}", function((4, 5, 6)));
+  println!("{:?}", function(vec![0, 2, 4, 6, 8]));
+}
+
+fn function<T>(var: T) -> T {
+  var
+}
+```
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+Hello there
+1
+3.14
+-100
+f
+true
+[1, 2, 3]
+(4, 5, 6)
+[0, 2, 4, 6, 8]
+```
+
+Let's see what we did here
+
+1.  We created a function named `function` and besides the name, we added `<T>`
+    
+    Basically `<T>` is a placeholder for datatypes. It can be an integer, a float, boolean, any datatype, even custom datatypes such as structures and enums.
+    
+    We also have an argument of the function with datatype `T` and our function also returns a value with datatype `T`
+    
+    ```rs
+    fn function<T>(var: T) -> T {
+       ...
+    }
+    ```
+    
+2.  In the function we simply returned our argument
+    
+    ```rs
+    fn function<T>(var: T) -> T {
+       var
+    }
+    ```
+    
+3.  In our main functions, we had our print statements, we used many different data types for arguments in our function.
+    
+    ```rs
+    println!("{}", function("Hello there"));
+    println!("{}", function(1));
+    println!("{}", function(3.14));
+    println!("{}", function(-100));
+    println!("{}", function('f'));
+    println!("{}", function(true));
+    println!("{:?}", function([1, 2, 3]));
+    println!("{:?}", function((4, 5, 6)));
+    println!("{:?}", function(vec![0, 2, 4, 6, 8]));
+    ```
+    
+
+Now let's create an add function
+
+```rs
+fn add<T>(one: T, two: T) -> T {
+  one + two
+}
+```
+
+If we compile this, we get an error
+
+```console
+$ rustc src/main.rs -o build/main && ./build/main
+error[E0369]: cannot add `T` to `T`
+  --> src/main.rs:18:7
+   |
+18 |   one + two
+   |   --- ^ --- T
+   |   |
+   |   T
+   |
+help: consider restricting type parameter `T`
+   |
+17 | fn add<T: std::ops::Add<Output = T>>(one: T, two: T) -> T {
+   |         +++++++++++++++++++++++++++
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0369`.
+```
+
+What's going on here?
+
+The thing is, our datatype `T` can be a number, string, even custom datatypes like structures as we've established before but this comes with it's own problems. We can't add our custom datatypes together, in that case `+` will not work. So to avoid that later on, it gives us an error right now.
+
+To fix that, we need to give a trait to our parameter type `T`.
+
+If we read our error message, it also gives us a hint of what to do
+
+```console
+help: consider restricting type parameter `T`
+   |
+17 | fn add<T: std::ops::Add<Output = T>>(one: T, two: T) -> T {
+   |         +++++++++++++++++++++++++++
+```
+
+It even tells us the line number at which the error occurred, in my case it's line 17.
+
+So let's add the trait `std::ops::Add<Output = T>` to our `T` parameter datatype.
+
+```rs
+fn add<T: std::ops::Add<Output = T>>(one: T, two: T) -> T {
+  one + two
+}
+```
+
+If we compile this now, it won't give us an error.
+
+Let's use it
+
+```rs
+println!("{}", add(1, 2));
+println!("{}", add(5, 10));
+println!("{}", add(3.12, 0.02));
+```
+
+It should just give us
+
+```plaintext
+3
+15
+3.14
+```
+
+Similarly for subtraction we would use `std::ops::Sub<Output = T>`,
+
+for multiplication `std::ops::Mul<Output = T>`,
+
+for division `std::ops::Div<Output = T>`
+
+You can find more information at [Rust official website](https://doc.rust-lang.org/std/ops/index.html)
+
+## Cargo
+
+Cargo is a rust's build system and package manager. It's used to install libraries, handle your project and compile your code.
+
+It should be automatically installed in your system if have `rustc` installed.
+
+Let's check
+
+```console
+$ cargo --version
+cargo 1.58.0 (f01b232bc 2022-01-19)
+```
+
+Your cargo version may be a bit different but that's okay
+
+### Creating a project with cargo
+
+To create a project we can simply run the command
+
+```console
+$ cargo new <project_name>
+```
+
+You need to replace `<project_name>` with the name of your project.
+
+```console
+$ cargo new hello_universe
+Created binary (application) `hello_universe` package
+```
+
+Let's `cd` into our new project
+
+```console
+$ cd hello_universe
+```
+
+Your directory should look like
+
+```console
+.
+├── Cargo.toml
+└── src
+    └── main.rs
+
+1 directory, 2 files
+```
+
+Cargo made a project folder for us, added `Cargo.toml` to it, created a `src` folder inside it and added `main.rs` to our `src` folder.
+
+### Cargo.toml
+
+This is the config file for our project.
+
+For me it looks like
+
+```toml
+[package]
+name = "hello_universe"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+```
+
+The first section is `[package]`. It contains information about our project.
+
+The second section is `[dependencies]`. It contains the information of other libraries that our project requires.
+
+### `main.rs` file
+
+Opening our `main.rs` file, we see that cargo has already created a main function for us
+
+```rs
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+### Compiling our project and running it
+
+So far we've used the command `rustc` to compile our program, but now we'll use `cargo` to handle it fo us.
+
+```console
+$ cargo build
+```
+
+If we run that, we get an output
+
+```console
+$ cargo build
+   Compiling hello_universe v0.1.0 (/home/user/rust/hello_universe)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.28s
+```
+
+This command creates an executable file in *target/debug/hello\_universe*
+
+We can run that file by either calling it in terminal
+
+```console
+$ ./target/debug/hello_universe
+Hello, world!
+```
+
+Or we can use `cargo` to run it for us
+
+```console
+$ cargo run
+```
+
+Running that command gives us
+
+```console
+$ cargo run
+    Finished dev [unoptimized + debuginfo] target(s) in 0.00s
+     Running `target/debug/hello_universe`
+Hello, world!
+```
+
+We can also only use `cargo run` to compile and run our file instead of first running `build` and then `run`
+
+Let's change our print statement in `main.rs` to
+
+```rs
+println!("Hello, Universe!");
+```
+
+If we now run `cargo run` we get
+
+```console
+$ cargo run
+   Compiling hello_universe v0.1.0 (/home/user/rust/hello_universe)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
+     Running `target/debug/hello_universe`
+Hello, Universe!
+```
+
+Notice how it compiled our file and then ran it in the same command.
+
+### Cargo check
+
+If you're like me, you often save and compile your program to check for errors. The thing with `cargo build` is that even though it compiles our file, it creates an executable, which makes it a bit slower, at small projects it's not noticeable, but it becomes noticeable as our project goes.
+
+In that case we use `cargo check`, this command compiles our project and tells us of errors, but it doesn't create an executable so it's faster than `cargo build`
+
+```console
+$ cargo check
+    Checking hello_universe v0.1.0 (/home/user/rust/hello_universe)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.14s
+```
+
+### Building for release
+
+Once you're ready to release your project, there's `--release` flag that optimizes the code and removes debugging flags.
+
+```console
+$ cargo build --release
+```
+
+### Installing dependencies
+
+Later on, you may need to install libraries and dependencies in order to help with you projects
+
+For this, we'll need to list our dependencies in our `Cargo.toml` file.
+
+When you open `Cargo.toml`
+
+It should have `[dependencies]`. You have to list your dependencies under this heading.
+
+If you don't have this heading, just add it at the bottom of `Cargo.toml`
+
+Let's add `time` in our dependencies
+
+```toml
+[package]
+name = "hello_universe"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+time = "*"
+```
+
+Asterisk \* means, cargo will install the latest possible version for us.
+
+Let's now run `cargo build` and it'll automatically install the dependencies and build or program.
+
+```console
+$ cargo build
+    Updating crates.io index
+  Downloaded num_threads v0.1.6
+  Downloaded time v0.3.9
+  Downloaded libc v0.2.126
+  Downloaded 3 crates (679.2 KB) in 3.39s
+    Finished dev [unoptimized + debuginfo] target(s) in 5m 05s
+```
+
+Reading the output, we can see it installed `time` dependency. It's version is `v0.3.9`
+
+Now that we've installed it, how do we use it in our program?
+
+That leads us to our next topic
+
+### `use` crate
+
+Our dependencies and packages are called crates. To use them in our project, we use the `use` keyword.
+
+Let's take a look at an example
+
+```rs
+use time;
+
+fn main() {
+    let date = time::Date::from_calendar_date(2022, time::Month::May, 26);
+    println!("{:?}", date.unwrap());
+}
+```
+
+```console
+$ cargo run
+Date { year: 2022, ordinal: 146 }
+```
+
+1.  We added `time` create using `use` keyword.
+    
+    ```rs
+    use time;
+    ```
+    
+2.  In our `time` crate, we have `Date` struct, and inside our `Date` struct we have a function named `from_calendar_date`, we're calling that function and creating a variable
+    
+    ```rs
+    let date = time::Date::from_calendar_date(2022, time::Month::May, 26);
+    ```
+    
+3.  Finally, we're printing our result after unwrapping it.
+    
+    ```rs
+    println!("{:?}", date.unwrap());
+    ```
+    
+
+## `pub` and `mod`
+
+`pub` is used when we want to make our enums, structs and functions be externally available.
+
+By externally available, it means that other files will be able to access these.
+
+To use these in other files, we use `mod` in those external files.
+
+Let's take a look at an example
+
+```rs
+// functions.rs
+pub fn hello_world() {
+   println!("Hello, World!");
+}
+```
+
+```rs
+// main.rs
+mod functions; // name of the file without .rs
+
+fn main() {
+   functions::hello_world();
+}
+```
+
+```console
+$ cargo run
+Hello, World!
+```
+
+Both files `main.rs` and `functions.rs` are in the same directory.
+
+## Final Steps
+
+Now that you're familiar with the language, here are some resources to help you further
+
+*   [Official Rust Website](https://www.rust-lang.org/)
+    
+    *   [Online Rust Compiler](https://play.rust-lang.org/)
+        
+*   [The Rust Programming Language](https://doc.rust-lang.org/book/), book for reference and syntax
+    
+*   [crates.io](https://crates.io/), rust community crate registry
+    
+
+### Some things you can try in Rust
+
+*   Make a website using Rust and WebAssembly
+    
+*   Try out [Piston](https://www.piston.rs/), a game engine
+    
+*   Make a SPA in Rust
+    
+*   [Some more project ideas](https://github.com/practical-tutorials/project-based-learning#rust)
