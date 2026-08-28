@@ -78,7 +78,7 @@ I personally use [neovim](https://neovim.io/) and [VSCode](https://code.visualst
 
 I have created a folder named `rust` and two more folders inside that are named `src` and a `build`
 
-```console title="Terminal"
+```console title="Directory structure"
 rust
 ├── build
 └── src
@@ -128,7 +128,7 @@ The main file should have only one main function (Just like C/C++)
     
     After running this command, my direcory now looks like
     
-    ```console title="Terminal"
+    ```console title="Directory structure"
     rust
     ├── build
     │   └── main
@@ -1917,7 +1917,7 @@ To fix that, we need to give a trait to our parameter type `T`.
 
 If we read our error message, it also gives us a hint of what to do
 
-```console title="Terminal"
+```console title="Compiler output"
 help: consider restricting type parameter `T`
    |
 17 | fn add<T: std::ops::Add<Output = T>>(one: T, two: T) -> T {
@@ -1998,7 +1998,7 @@ $ cd hello_universe
 
 Your directory should look like
 
-```console title="Terminal"
+```console title="Directory structure"
 .
 ├── Cargo.toml
 └── src
