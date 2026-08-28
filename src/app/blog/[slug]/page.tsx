@@ -1,6 +1,6 @@
 import MainLayout from "@/layouts/MainLayout";
 import { PostRail } from "@/components/blog/PostRail";
-import { getHeadings, getPostMeta, getPublishedSlugs, getReadingTime } from "@/lib/posts";
+import { getHeadings, getPostMeta, getPublishedSlugs, getReadingTime, importPost } from "@/lib/posts";
 import { absoluteUrl, site } from "@/lib/site";
 import { formatDate } from "@/utils";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
@@ -17,6 +17,8 @@ export const generateMetadata = async ({ params }: { params: Promise<{ slug: str
   if (!(await getPublishedSlugs()).includes(slug)) return {};
 
   const meta = await getPostMeta(slug);
+  if (!meta) return {};
+
   const url = absoluteUrl(`/blog/${slug}`);
   const images = meta.cover ? [{ url: absoluteUrl(meta.cover), alt: meta.coverAlt ?? meta.title }] : undefined;
 
@@ -26,6 +28,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ slug: str
     keywords: meta.tags,
     authors: [{ name: site.author.name, url: site.author.url }],
     alternates: { canonical: `/blog/${slug}` },
+    robots: meta.draft ? { index: false, follow: false } : undefined,
     openGraph: {
       type: "article",
       url,
@@ -53,7 +56,11 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   if (!(await getPublishedSlugs()).includes(slug)) notFound();
 
-  const { default: Content, metadata } = await import(`@/content/${slug}.mdx`);
+  const mod = await importPost(slug);
+  if (!mod) notFound();
+
+  const { default: Content } = mod;
+  const metadata = (await getPostMeta(slug))!;
   const readingTime = getReadingTime(slug);
   const headings = getHeadings(slug);
   const dateLabel = formatDate(metadata.date);
@@ -92,6 +99,11 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
                 <ArrowLeftIcon aria-hidden />
                 Back to blog
               </Link>
+              {!!metadata.draft && (
+                <p className="w-fit rounded border border-destructive bg-destructive/10 px-2 py-0.5 text-xs uppercase tracking-wide">
+                  Draft
+                </p>
+              )}
               <h1 className="text-4xl font-bold">{metadata.title}</h1>
               {!!metadata.description && (
                 <p className="text-xl opacity-70">{metadata.description}</p>
@@ -101,7 +113,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
               </p>
               {!!metadata.tags?.length && (
                 <ul className="flex flex-row flex-wrap gap-2">
-                  {metadata.tags.map((tag: string) => (
+                  {metadata.tags.map(tag => (
                     <li key={tag} className="rounded bg-secondary text-secondary-foreground shadow px-2 py-0.5 text-xs">
                       {tag}
                     </li>

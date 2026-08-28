@@ -73,7 +73,14 @@ export default async function Blog() {
                         <Link
                           href={`/blog/${post.slug}`}
                           className="group flex flex-row items-baseline gap-4 py-2.5 transition hover:bg-secondary/40 -mx-2 px-2 rounded">
-                          <span className="min-w-0 flex-1 truncate group-hover:underline">{post.title}</span>
+                          <span className="min-w-0 flex-1 truncate group-hover:underline">
+                            {post.title}
+                            {!!post.draft && (
+                              <span className="ml-2 rounded border border-destructive px-1.5 py-0.5 align-middle text-[0.65rem] uppercase tracking-wide">
+                                Draft
+                              </span>
+                            )}
+                          </span>
                           <time
                             dateTime={post.date}
                             className="shrink-0 text-sm tabular-nums opacity-60">

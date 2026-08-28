@@ -4,28 +4,57 @@ import { slugify } from "@/utils";
 import { Heading, PostMeta, PostSummary } from "@/types";
 
 const contentDir = path.join(process.cwd(), "src/content");
+const draftsDir = path.join(contentDir, "drafts");
 
-const readSource = (slug: string) => {
-  return fs.readFileSync(path.join(contentDir, `${slug}.mdx`), "utf8");
+interface SourceRef {
+  slug: string;
+  file: string;
+  inDraftsDir: boolean;
 }
+
+// A post is a draft either by living in content/drafts or by carrying
+// draft: true in its metadata. Either one keeps it off the site in production.
+const listSources = (): SourceRef[] => {
+  const mdx = (dir: string, inDraftsDir: boolean) => {
+    if (!fs.existsSync(dir)) return [];
+
+    return fs
+      .readdirSync(dir, { withFileTypes: true })
+      .filter(entry => entry.isFile() && entry.name.endsWith(".mdx"))
+      .map(entry => ({
+        slug: entry.name.replace(/\.mdx$/, ""),
+        file: path.join(dir, entry.name),
+        inDraftsDir,
+      }));
+  }
+
+  return [...mdx(contentDir, false), ...mdx(draftsDir, true)];
+}
+
+const findSource = (slug: string) => listSources().find(source => source.slug === slug);
 
 const withoutCode = (source: string) => {
   return source.replace(/```[\s\S]*?```/g, "");
 }
 
-const isPublished = (post: PostMeta) => {
-  return !post.draft || process.env.NODE_ENV !== "production";
-}
+const showDrafts = () => process.env.NODE_ENV !== "production";
 
-export const getSlugs = () => {
-  return fs
-    .readdirSync(contentDir)
-    .filter(file => file.endsWith(".mdx"))
-    .map(file => file.replace(/\.mdx$/, ""));
+export const getSlugs = () => listSources().map(source => source.slug);
+
+export const importPost = async (slug: string) => {
+  const source = findSource(slug);
+  if (!source) return null;
+
+  return source.inDraftsDir
+    ? await import(`@/content/drafts/${slug}.mdx`)
+    : await import(`@/content/${slug}.mdx`);
 }
 
 export const getReadingTime = (slug: string) => {
-  const words = withoutCode(readSource(slug))
+  const source = findSource(slug);
+  if (!source) return 1;
+
+  const words = withoutCode(fs.readFileSync(source.file, "utf8"))
     .replace(/<[^>]+>/g, " ")
     .split(/\s+/)
     .filter(Boolean).length;
@@ -34,35 +63,48 @@ export const getReadingTime = (slug: string) => {
 }
 
 export const getHeadings = (slug: string): Heading[] => {
+  const source = findSource(slug);
+  if (!source) return [];
+
   const headings: Heading[] = [];
 
-  for (const line of withoutCode(readSource(slug)).split("\n")) {
+  for (const line of withoutCode(fs.readFileSync(source.file, "utf8")).split("\n")) {
     const match = /^(#{2,3})\s+(.+)$/.exec(line);
     if (!match) continue;
 
-    const text = match[2].replace(/[*_`]/g, "").trim();
+    const text = match[2].replace(/[*_`]/g, "").replace(/&lt;/g, "<").trim();
     headings.push({ id: slugify(text), text, level: match[1].length as 2 | 3 });
   }
 
   return headings;
 }
 
-export const getPostMeta = async (slug: string): Promise<PostMeta> => {
-  const { metadata } = await import(`@/content/${slug}.mdx`);
-  return metadata;
+export const getPostMeta = async (slug: string): Promise<PostMeta | null> => {
+  const source = findSource(slug);
+  if (!source) return null;
+
+  const mod = await importPost(slug);
+  const meta: PostMeta = mod.metadata;
+
+  return { ...meta, draft: source.inDraftsDir || !!meta.draft };
+}
+
+export const isDraft = async (slug: string) => {
+  const meta = await getPostMeta(slug);
+  return !!meta?.draft;
 }
 
 export const getAllPosts = async (): Promise<PostSummary[]> => {
   const posts = await Promise.all(
-    getSlugs().map(async slug => ({
-      slug,
-      readingTime: getReadingTime(slug),
-      ...(await getPostMeta(slug)),
-    }))
+    getSlugs().map(async slug => {
+      const meta = await getPostMeta(slug);
+      return meta && { slug, readingTime: getReadingTime(slug), ...meta };
+    })
   );
 
   return posts
-    .filter(isPublished)
+    .filter((post): post is PostSummary => post !== null)
+    .filter(post => !post.draft || showDrafts())
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
@@ -71,7 +113,7 @@ export const getPublishedSlugs = async () => {
 }
 
 export const getFeaturedPosts = async (limit = 3): Promise<PostSummary[]> => {
-  const posts = await getAllPosts();
+  const posts = (await getAllPosts()).filter(post => !post.draft);
   const featured = posts.filter(post => post.featured);
 
   return (featured.length > 0 ? featured : posts).slice(0, limit);
