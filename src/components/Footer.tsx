@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="p-8 lg:p-32 bg-secondary text-secondary-foreground flex justify-center flex-col lg:flex-row gap-3">
             <div className="w-full">
-                <h1 className="text-2xl font-bold">Raahim Fareed</h1>
+                <p className="text-2xl font-bold">Raahim Fareed</p>
                 <p>Breathing life into tech</p>
                 <small>&copy; {moment().year().toString()}</small>
             </div>

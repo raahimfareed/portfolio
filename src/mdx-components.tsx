@@ -14,7 +14,7 @@ const toText = (node: React.ReactNode): string => {
   return ''
 }
 
-const heading = (Tag: 'h2' | 'h3') => {
+const heading = (Tag: 'h2' | 'h3' | 'h4') => {
   const Heading = ({ children, ...props }: React.ComponentProps<'h2'>) => (
     <Tag id={slugify(toText(children))} {...props}>{children}</Tag>
   )
@@ -42,6 +42,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     img: MdxImage,
     h2: heading('h2'),
     h3: heading('h3'),
+    h4: heading('h4'),
     pre: CodeBlock, // intercept every code fence
     ...components,
   }
