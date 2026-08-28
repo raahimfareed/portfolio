@@ -54,7 +54,7 @@ export const PostRail = ({ title, dateLabel, readingTime, headings }: iPostRailP
       <div
         aria-hidden={!pinned}
         className={clsx(
-          "sticky top-32 rounded border border-accent bg-secondary/40 shadow p-4 flex flex-col gap-3 motion-safe:transition motion-safe:duration-300",
+          "sticky top-32 max-h-[calc(100vh-10rem)] rounded border border-accent bg-secondary/40 shadow p-4 flex flex-col gap-3 motion-safe:transition motion-safe:duration-300",
           pinned ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
         )}>
         <div className="flex flex-col gap-1">
@@ -65,21 +65,23 @@ export const PostRail = ({ title, dateLabel, readingTime, headings }: iPostRailP
         </div>
 
         {headings.length > 0 && (
-          <nav className="flex flex-col gap-1 border-t border-accent pt-3">
+          <nav className="flex flex-col border-t border-accent pt-3 min-h-0">
             <p className="text-xs uppercase tracking-wide opacity-60 mb-1">On this page</p>
-            {headings.map(heading => (
-              <a
-                key={heading.id}
-                href={`#${heading.id}`}
-                tabIndex={pinned ? undefined : -1}
-                className={clsx(
-                  "text-sm leading-snug transition hover:opacity-100",
-                  heading.level === 3 && "pl-3",
-                  activeId === heading.id ? "opacity-100 font-bold" : "opacity-60"
-                )}>
-                {heading.text}
-              </a>
-            ))}
+            <div className="flex flex-col gap-1 overflow-y-auto overscroll-contain pr-1">
+              {headings.map(heading => (
+                <a
+                  key={heading.id}
+                  href={`#${heading.id}`}
+                  tabIndex={pinned ? undefined : -1}
+                  className={clsx(
+                    "text-sm leading-snug transition hover:opacity-100",
+                    heading.level === 3 && "pl-3",
+                    activeId === heading.id ? "opacity-100 font-bold" : "opacity-60"
+                  )}>
+                  {heading.text}
+                </a>
+              ))}
+            </div>
           </nav>
         )}
       </div>
