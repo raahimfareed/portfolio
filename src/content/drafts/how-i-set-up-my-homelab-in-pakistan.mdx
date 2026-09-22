@@ -171,7 +171,7 @@ I got this from somewhere on 6th road in Rawalpindi without the SSD. Got the SSD
 | NIC | Some Intel Gigabit Network Adapter |
 | Graphics | Integrated Graphics, IO has 2x DP Ports |
 | Storage | 250GB WD Blue SATA SSD |
-| PSU | 240 Watts |
+| PSU | 65 Watts |
 
 
 ## Difficulties I Faced Finding Hardware
@@ -188,6 +188,7 @@ With that out of the way,
 - Surprisingly, I just could not find a damn server rack for a reasonable price. Wdym a 42U rack costs Rs.300,000? (Used one of the higher end listings to make an example, found some for Rs.150,000 range as well)
   
   In the used market, it was pretty hard to find reasonable prices as well. Partly because in consumer market, not enough demand, and inflation ofc.
+- While we have solar PV installed and working, sometimes at night when a power outage happens and something heavy is running (like the microwave, or an iron), the breaker trips, causing a power shutdown for a few mins, which causes my server to abruptly lose power. That's not good. I'll buy a UPS in future for my homelab to avoid this, and in turn avoid data corruption or data loss.
 - Finally, not that I'm being ungrateful, it's just a limitation of my current position. I have to save money 1-3 months to get new hardware. Everyone will have some kind of monetary limitation, can't spend too much on what is more of a hobby lol
 
 That being said, even with difficulties, the setup is more capable now, than I ever expected it to be when I started.
@@ -197,7 +198,7 @@ That being said, even with difficulties, the setup is more capable now, than I e
 I'm by profession a Software Engineer, and by hobby a gamer. I had 0 interest in computer networks until I actually setup my own server. Now, you don't have to know everything, I certainly don't, but it helps knowing some basics (which I won't teach because.).
 
 ### Operating System
-To actually start working, I first installed Ubuntu 24 LTS. It's a distribution of linux. This is preferred over windows for servers because it has high security, it's very stable, had good docker support (we use this a lot in self hosting) and it's free (open source baby!).
+To actually start working, I first installed Ubuntu 24 LTS. It's a distribution of linux. This is preferred over windows for servers because it has high security, it's very stable, has good docker support (we use this a lot in self hosting) and it's free (open source baby!).
 
 ### Unmanaged Switch
 
@@ -211,10 +212,160 @@ That's about it.
 
 ### Cloudflare Tunnel
 
-A cloudflare account is free
+If we want to access our services from outside our own network, we need either of the two things
+- A static IP (and optionally a domain)
+- A tunnel (and definitely a domain)
+
+If you have a static IP, great, use that. Don't know if you have a static IP? Call your ISP (PTCL, Nayatel, etc) and ask them whether you have one or not. If not, ask them if they provide one and for how much. This is something that you'll need to assess on your own based on your internet provider, your internet plan, and if the static IP is an add on, whether it is in your budget or not.
+
+If you don't have a static IP (like me), you can opt for the tunnel path. It MAY be possible to use tunnels without domains, but I'm not sure about it. Personally, I use my domain raahimfareed.com for the tunnels. So for my git instance, I just have my own subdomain, [git.raahimfareed.com](https://git.raahimfareed.com/).
+
+If you want a cheap domain, you can get a numeric xyz domain from [PorkBun](https://porkbun.com) or [Spaceship](https://spaceship.com). In order to qualify for the cheap/discounted rate, your domain needs to
+- Have ONLY numbers
+- Length should be 6 to 9 numbers
+- Should be a .xyz domain
+
+This costs roughly Rs.200 per year which is very cheap if you just want to test homelab without commiting to a domain.
+
+Okay, now we have a domain, and a cloudflare account AND we've transfered DNS Nameservers to Cloudflare for our domain, what's next?
+
+We need to install `cloudflared` on our homelab. There are many ways to do this, I personally installed it as a `systemd` service, but you can use docker if you like. I recommend just using ChatGPT or Claude to guide you through this if you're non-technical.
+
+Once cloudflared is setup and active, new sub domains can be registered in the cloudflare zero trust dashboard.
+
+
+Next few sections weren't part of the original homelab and were added on gradually, you can [skip to the summary of how everything is connected](#how-does-everything-communicate-with-each-other) if you want.
 
 ### Camera
 
-For Tapo series, you need to use TP-Link Tapo app to setup the camera (which kinda sucks). Once that is done, there's an option in the settings to setup camera account, that's the important one. Once you have a camera account, you can safely disable/delete the app. I personally archived my app because I didn't need it anymore after setting up a camera account.
+For Tapo series, you need to use TP-Link Tapo app to setup the camera (which kinda sucks). Once that is done, there's an option in the settings to setup camera account, that's the important one. Once you have a camera account (RTSP credentials) and you've set the gateway of the camera as your homelab IP, you can safely disable/delete the app. I personally archived my app because I didn't need it anymore after setting up a camera account. Note, that the RTSP credentials are important, that's what allow you (or other applications like frigate) to access the camera outside of the Tapo application.
 
-I also blocked all outbound requests from my camera
+With the homelab IP set as the gateway IP in Tapo app, all of the camera traffic will go through the homelab itself. This gives us the power of blocking cloud access of the camera. Some people like cloud access, more power to them, I don't. It's kind of eerie to have a camera sending the feed somewhere on the internet. Due to that, I personally blocked ALL outbound requests from the camera in my homelab.
+
+The camera itself connects to a software called Frigate (will get to it in a later section), which handles all cameras' live feeds and recordings as well as object detection and camera movement if your camera supports it.
+
+### OPNSense: Custom Router
+
+If you remember, I bought a digital signage PC, Shuttle DS-81, to use as a custom router. To make it actually work, we have to install an operating system on it. I chose OPNsense, it's based on `OpenBSD` which is another type of operating system like Linux and Windows (and macOS).
+
+This was added after 5 months of constant use of my homelab just to amp it up. While the OPNSense router itself is working fine, I just don't have the managed switches and access points to make it achieve its full power yet.
+
+It has two ethernet ports, in settings I've designated one port as WAN (connection to the internet/ISP), and one port as LAN (connection to the devices in the house).
+
+WAN port is connected directly to my Nayatel/Huawei router, and the LAN port is connected to my unmanaged switch, which in turn is connected to my PC, Main server, Thinkcentre CICD box and TP Link WR740N access point.
+
+
+### ThinkCentre M910q Tiny
+
+This is just being used as a server which handles my CI/CD pipelines (for those who are non technical, think of it like converting a word document into a PDF document automatically, I make the word files, it converts them into PDFs for me)
+
+I also have immich on my homelab (coming to it in a later section), which handles all my pictures. It identifies faces in pictures, which is AI. So to distribute load, the thinkcentre handles the AI part.
+
+Also, my main homelab CPU is quite old, so for all video related things (like watching videos), thinkcentre handles the streaming.
+
+### TP-Link WR740N: The Dumb Router
+
+This one gave me a bit of a headache and I did use some AI specifically while working with this router. So, the TP link software itself is very bad especically for old routers. It wasn't going to cut it for the things I needed (VLANs, multiple SSIDs, etc).
+
+I flashed a custom firmware on my TP Link router (It's like jailbreaking an iPhone, PS4 etc, or rooting an android phone).
+
+That simple huh, NO.
+
+In short: I chose OpenWRT as the OS of my router > tried its official image > router rejected > found out image needs to be tinkered with > found the correct header details to put in the image > gave it to claude code > let claude code compile the image for me
+
+Again, 0/10 setup experience. Not Recommended.
+
+If you also have this router and are interested, [you can visit OpenWRTs official page](https://openwrt.org/toh/tp-link/tl-wr740n).
+
+
+### How Does Everything Communicate with Each Other
+
+Now that we've everything connected, the router has assigned local IP addresses to each device.
+
+So the router itself has an IP address which is called the gateway IP: `192.168.1.1`
+
+Whatever connects to the router, gets an IP address in this format `192.168.1.x`, so for example  
+My PC got: `192.168.1.49`  
+My homelab got: `192.168.1.101`  
+My thinkcentre got: `192.168.1.77`  
+
+These IP addresses are like house addresses. To send a parcel, you need their house address, to access the computer, you need its IP.  
+Let's continue this analogy, each house has multiple people, same way, each computer has multiple ports. A port is just a number where some kind of application runs
+
+For example, your own notes app is running on port 3000, your google photos replacement is running on port 5000 and your password manager is running on port 9000, how will we access the google photos replacement? We'll type `192.168.1.101:5000` in our browser (like chrome or opera gx).
+
+This is all well and good, you can access your apps that you hosted on your homelab, perfect, but we've run into a problem, as soon as you disconnect from the WiFi (Or leave your computer), the IP and port stops working. That's because, the IPs assigned by your router are internal/private IPs. They're only accessible as long as you're connected to the router either by WiFi or through ethernet.
+
+This is why we use cloudflare tunnels, to connected a website URL or a subdomain to an IP and Port. This way any internal app can be accessed from the outside.
+
+One thing to keep in mind is that, some things should NOT be public, like your databases, NVR, anything that unauthenticated. If you're assigning a tunnel to an app, use your judgement on whether it should be public or not.
+
+
+## What I Run
+
+We've a general idea of what my hardware is and how everything is connected. With the main stuff out of the way, let me talk about the actual applications and software I run.
+
+### Immich / Google Photos
+
+Monthly recurring costs of 850 racks up to a lot of money after a few months and only gives me 200GB  
+Immich stores all my images, and uses the drive I have put in the server, which is 1TB, so essentially I have 1TB of picture storage, and if need be in future, I can easily extend it by attaching more/bigger drives to the server.
+
+The 1TB drive costs Rs.7,500 which is equivalent to roughly 9 months of 200GB google storage. After 9 months, it's basically free storage.
+
+I also like a few things in immich that G Photoes doesn't provide
+
+- No compression, original image is stored
+- Face detection is run locally, so face data isn't being used by giant corpos for ads and what not
+- Picture map - Shows your pictures on the map where you've taken them
+
+### Forgejo / GitHub
+
+Forgejo is a git host, like GitHub and GitLab. It's used to store projects. 
+
+GitHub is really cool AND free, don't get me wrong. I just wanted to own my own code. No fear of repo getting deleted and the repo itself has no size limit on forgejo.
+
+### Navidrome / Spotify
+
+Biggest issues I had with spotify were, they gradually increased their price and often times while listening to songs, I stumbled upon disabled/locked songs which were region locked. I pay Rs.500, let me listen to the damn music. 
+
+Navidrom is free, no ads, has subsonic API so you can use any kind of client you like (I use Feishan on desktop and Symfonium on android).
+
+I sail the seas for my music.
+
+### JellyFin / Netflix
+
+Exact same issues as spotify.
+
+### Home Assistant / Smart Home
+
+Home assistant is used to connect all IoT devices and managed them. 
+
+I've connected my Solar PV and had previously connected around 40-50 Tuya devices but Tuya is not that good. Have plans in future to make my own IoT devices using ESP32.
+
+Also have Google Home and Amazon Alexa but haven't tried linking them to Home Assistant yet, though I'm aware that they can be linked.
+
+### Trilium / Notes / Mindmap
+
+Self hosted, end to end encrypted notes. I love this, it's a mindmap, you can have relational note linking, nested notes. It has several types of notes like graphs, Excalidraw built in and supports markdown. The only problem is, there is no realistic way to share notes from inside the app unless I copy paste. No way to generate and share note link yet.
+
+### Frigate / Security Cams
+
+Fully local and keeps me at ease that my video feed isn't going to a cloud. The complete suit, from object detection, converting to clips and storing history is free.  
+Also works with ANY RTSP camera which is cool. I don't get locked into vendor.
+
+### Wireguard / VPN
+
+Wireguard is used to connect to my server 
+
+### Uptime Kuma / Server Monitoring
+
+### Notable Mentions
+
+#### Dawarich / Google Timeline
+
+#### Penpot / Figma
+
+#### RomM / Game Emulation
+
+#### Ntfy / Notification System
+
