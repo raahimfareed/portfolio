@@ -1,8 +1,220 @@
 export const metadata = {
   title: "How I Set Up My Homelab in Pakistan",
   description: "My experience of self-hosting in Pakistan with the limited options and budget we have.",
-  date: "2026-09-22",
-  tags: ["homelab", "self-hosting", "networking", "hardware", "linux", "docker"],
+  date: "2026-09-23",
+  tags: ["homelab", "self-hosting", "networking", "hardware", "linux", "docker", "pakistan"],
   featured: true,
 };
 
+I've been running a homelab for roughly 6 months. This is my first experience and quite honestly I'm pretty satisfied with what I've got going on so far. I'm at the point where if I leave it alone, it'll keep running on its own without any problems (hopefully) for a long time. During the 6 months I've been using this, I've managed to replace my Google Photos, Spotify, Google Timeline, GitHub, Smart home, streaming services to some extent, note taking apps, NVR (security cams) and paper filing. Naturally, I use some services more than others, like Google Photos alternative, Note taking app and my own Git instance.
+
+## Why?
+
+If you're interested in just the setup and not my story, you can [skip to that section](#my-setup).
+
+That being said, why did I go through the hassle of setting up a server at my home when I could just pay Rs.850/month for 200GB of storage space. I had homelabbing on my mind for a long time and then some things happened back to back. 
+
+At first, google increased the price of their 100GB plan. I was already subscribed to it. It's okay, no big deal, it's just 100-200 rupees more, I thought. Then I ran out of storage :). 100GB used up. I upgraded to 200GB, which cost me Rs.850. Spotify also increased its prices. I pay roughly Rs.500/month. For movies and streaming, I just [sail the high seas](https://fmhy.net/), I tried Netflix but half the shows are either pulled out from Netflix or are region locked, it's a steaming pile of hot shit if I say so myself.
+
+During this time, YouTube was also suggesting me some good videos, namely [Google Tried to Charge Me $3,600/yr... I Built My Own Server Instead](https://youtu.be/8_1OBOeuBsA) by *Switch and Click*, and [I Spent a Year Replacing My Subscriptions. Here’s How.](https://youtu.be/AtgCcMjtqF0) by *Dammit Jeff*. Idk what this did, but it got me hooked. I spent a few days watching similar videos, found an old workstation (my old gaming PC, but it wasn't functional, I took out its PSU to make a bench power supply for embedded electronics, yk, Arduinos and ESPs and the likes, different story), but it was kinda useless without the PSU. No go.
+
+## My Setup
+
+So... my old gaming PC had no PSU, which means I had to look elsewhere. A few years back, my father got a PC for personal/home usage. It had low specs. Bare minimum. It was one of two pieces I needed to get my homelab up and running.
+
+### An Old Dell PC: Office E-Waste
+
+**Price:** Rs.12,500  
+**Model:** Dell Optiplex 9010 SFF  
+**From:** Dubai Plaza, 6th Road, Rawalpindi
+
+I don't remember the exact shop but we got it in 2018. A decade ago. Lately, the PC had been catching dust so I took it. It wasn't turned on for a few years.
+
+#### Specs
+
+| Component | Spec  |
+| --- | --- |
+| CPU | Intel(R) Core(TM) i5-3470 |
+| Memory | 12GB DDR3 @ 1600MT/s |
+| NIC | Some Intel Gigabit Network Adapter |
+| Graphics | Integrated Graphics, IO has DP Port |
+| Storage | 500GB WD Blue HDD |
+| PSU | 240 Watts |
+
+### Gigabit Unmanaged Switch
+
+**Price:** Rs.3,500  
+**Model:** TP-Link LS1005G  
+**From:** [WiFiLink Online](https://wifilink.com.pk/products/ls1005g-5-port-10-100-1000mbps-desktop-network-switch-price-in-pakistan)
+
+Optional, but I bought it anyways because our router (We use Nayatel) isn't near my room, so I have to route a long ass ethernet cable from the router to my room. One was bad enough (for my PC), imagine having 2 permanent ugly cables (one for my PC, one for my homelab server). To avoid having 2 (Or more than 2 cables running through my door), I got a TP-Link LS1005G, which is a gigabit switch (this is very important, anything less than a gigabit is a no go in today's day and age).
+
+#### Specs
+
+| Component | Spec  |
+| --- | --- |
+| Bandwidth | 1 Gigabit (10/100/1000Mbps) |
+| Ports | 5 |
+
+That's about all the specs it has lol, it's unmanaged, which is fine for starting out.
+
+### Cabling
+
+I needed the following cables to get it all connected and working.
+- **1x DP Cable**: so that I can easily install the operating system (Optiplex 9010 only has VGA and DP, I chose to work with DP)
+
+  This is only needed until the OS is installed, after that it's kinda useless, unless you run into any problems and have to connect the server to a monitor again :). Prices vary from place to place, just get the cheapest one to get the job done, unless you already have one.
+
+- **1x Cat 6a 10M Ethernet Cable**: To connect my router to my switch. Get at least a cat 6 cable, don't go below that. I chose this size so that it can comfortably reach my room. Again, prices vary from place to place, measure the amount you need and get a good quality one because your whole setup will be running on this cable.
+
+- **4x Cat 6a 1-2M Ethernet Cables**: Originally I needed only 2, from switch to PC and Homelab, later on I expanded my setup so I needed some extra cables to connect everything.
+
+- **1x Extension Lead with a lot of sockets**: So that I could plugin my PC, homelab and monitor among other things.
+
+<Callout type="info">
+**IMPORTANT** - All other setup items under this are optional, and I added them later on in the setup. Originally, my homelab only consisted of the Optiplex PC and an unmanaged switch.
+</Callout>
+
+### A WiFi camera
+
+**Price:** Rs.5,600  
+**Model:** Tapo C200  
+**From:** [WiFiLink Online](https://wifilink.com.pk/products/tp-link-wi-fi-camera-tapo-c200-pan-tilt-home-security-wi-fi-camera-price-in-pakistan)
+
+I got this sometime later, after a month or so, just to test the waters with my homelab. (I think delivery was free, I don't remember, but it shouldn't have been more than a hundred rupees).
+
+#### Specs
+
+| Component | Spec  |
+| --- | --- |
+| Resolution | 1080p |
+| Pan and Tilt movement | 360 Deg and 114 Deg respectively |
+| Night Vision    | Yes, has IR Light |
+| Mic and Speaker | Yes |
+| Micro SD Card Slot    | Yes |
+
+### 1TB Extra HDD
+
+**Price:** Rs.7,500  
+**Model:** WD Blue  
+**From:** Horizon Tech, Saddar, Rawalpindi
+
+I wanted to expand my storage from 500GB. I didn't replace this with 500GB, I just added it on top of it. I recommend getting a Red or Purple (or equivalent of NAS or Surveillance grade) if you can find one in your budget.
+
+### Digital Signage PC: Custom Router
+
+**Price:** Rs.20,000  
+**Model:** Shuttle DS-81  
+**From:** Soan Gardens, Islamabad
+
+This one is a bit interesting. I've had a lot of hardware components in my wishlist. *A custom router* was one of them. So, generally, we're given a router by our ISP (In my case, Nayatel gave us a Huawei ONT/Router). For majority of people, that's enough. My father never changed the router in the past. Sure he got WiFi extenders, but the actual router given to us by the ISP was still there. To have more fine grained control and power though, a custom solution is required.
+
+To cut it short, a custom router is a router you make from your own hardware (could be a smol computer, or a big computer, I'm not judging). The basic job is still to communicate with the ISP and ultimately the internet, but it comes with its own perks, like your own firewall, ad blocker, plugins like VPN (Not the kinds that we use to escape regional blocks, but the kind that allows you to connect to your server remotely while you're away from home).
+
+With that being said, Shuttle DS81 is originally made for digital signage I think. I found it off of Facebook Marketplace near Soan Garden, Islamabad. I got really lucky because I couldn't find any mini PC with two Ethernet ports in market, and facebook marketplace had only 3 ads with these requirements in twin cities.
+
+- Shuttle DS-81: Rs.25,000 (I negotiated it down to Rs.20,000)
+- Advantech Ark 1550: Rs.50,000
+- Some Intel NUC with a GPU: Rs.90,000
+
+<Callout type="warning">
+**VERY IMPORTANT** - If you're looking to make a custom router, either get a mini PC that has **TWO** gigabit ethernet ports, or get any normal sized PC (You can easily add PCIe NICs to add additional ethernet ports to your PC).
+</Callout>
+
+#### Specs
+
+| Component | Spec  |
+| --- | --- |
+| CPU | Intel(R) Core(TM) i5-4570S |
+| Memory | 12GB DDR3 @ 1600MT/s |
+| NIC | 2x Realtek 8111G (Which just means 2 ethernet ports) |
+| Graphics | Integrated Graphics, IO has 1x DP Port and 1x HDMI |
+| Storage | 180GB Intel SATA SSD |
+| Power Adapter | 90 Watts |
+
+As of writing this (23/09/2026), [this ad](https://www.facebook.com/share/18wS5jrMzH/) is up. I don't know the actual price of this but putting it out there in case someone wants to take a look at it.
+
+### Old TP Link Router from 2010
+
+**Price:** Rs.2,000?  
+**Model:** TP-Link WR740N  
+**From:** I don't remember, Gujranwala maybe lol
+
+I didn't buy this, it was in the old stash. Basically E-Waste. Like I mentioned that I have had a lot of components in my wishlist that I want to buy; An access point is also one of them. Access point = allows a router to have WiFi. The routers we're given by our ISPs are like combo boxes all in one. They're the ONT, the modem, the router and the access point. It's cheap, and less of a hassle while setting up. The only problem is, it's cheap, which means either locked down software or just not good specs. 
+
+Similarly, this TP Link router is an all in one hunk of e-waste but I repurposed it to act as a dumbed down access point, so I can get WiFi signals. I don't recommend getting this, I just used it because I found it for free. My family still uses the Huawei router setup by Nayatel because I currently don't have a proper access point, will get it in future and switch whole house on it. Until then it's all for testing and learning, while making sure no one at home is bothered.
+
+#### Specs
+
+| Component | Spec  |
+| --- | --- |
+| Signal Rate | 150Mbps |
+| Ethernet Ports | 5x 100Mbps |
+| Wireless Standard | WiFi 4 (which means only 2.4Ghz WiFi) |
+
+Please don't get this or use anything like this unless it's for free and you're doing it for learning, not worth it. 0/10 setup experience. After setup, for what it's worth, it's working pretty fine.
+
+### A Mini PC
+
+**Price:** Rs.22,000  
+**Model:** Lenovo ThinkCentre M910q Tiny  
+**From:** 6th Road, Rawalpindi
+
+I got this from somewhere on 6th road in Rawalpindi without the SSD. Got the SSD from Horizon Technology in Saddar Rawalpindi. Originally got this to make a Kodi client (PC connected to TV for watching YouTube, Movies and Shows), but repurposed it as a CI/CD runner + media encoding + to offload some services from the main homelab server to this. Like some minor AI services (face detection stuff), and some OCR (words detection in docs).
+
+#### Specs
+
+| Component | Spec  |
+| --- | --- |
+| CPU | Intel(R) Core(TM) i5-7500T |
+| Memory | 12GB DDR4 @ 2400MT/s |
+| NIC | Some Intel Gigabit Network Adapter |
+| Graphics | Integrated Graphics, IO has 2x DP Ports |
+| Storage | 250GB WD Blue SATA SSD |
+| PSU | 240 Watts |
+
+
+## Difficulties I Faced Finding Hardware
+
+I'm going to be honest, while everything I have is running good, I got everything I wanted. The wishlist parts are kind of in a bit of a pickle. Prices are so high in this country, what costs 60USD overseas, costs Rs.40000 or more here. Not to mention, since most of us don't even have the privilege to spend extra money on stuff like this, there's less overall awareness.
+
+Another gripe I have is, people cling on to their e-waste (me included in some cases), they let it rot at their home instead of just giving it out, and then they sell that piece of equipment for the SAME or sometimes INFLATED price, like brother, stop being delulu. The TP-Link WR740N Router used to cost around Rs.2000 back in 2010. It still costs the same. Yeah sure, people's salaries have increased, inflation has happened, yada yada, but for a router from 2010, this should cost next to nothing.
+
+And, don't get me started on frauds and scams, it's so hard to trust someone, each of us are focused on making a quick buck, while completely ignoring the fact that the other person may be in a hard spot already. Why push someone to the edge, why exploit them for something they're doing out helplessness. Due to this, it's super hard for both parties to properly maintain a trust level.
+
+With that out of the way,
+- I've had a lot of trouble finding reliable vendors for buying reasonably priced HDDs (especially for NAS and Surveillance)
+- Due to inflation, a lot of hardware is out of reach for the common man(Managed switches, Access points, etc)
+- Surprisingly, I just could not find a damn server rack for a reasonable price. Wdym a 42U rack costs Rs.300,000? (Used one of the higher end listings to make an example, found some for Rs.150,000 range as well)
+  
+  In the used market, it was pretty hard to find reasonable prices as well. Partly because in consumer market, not enough demand, and inflation ofc.
+- Finally, not that I'm being ungrateful, it's just a limitation of my current position. I have to save money 1-3 months to get new hardware. Everyone will have some kind of monetary limitation, can't spend too much on what is more of a hobby lol
+
+That being said, even with difficulties, the setup is more capable now, than I ever expected it to be when I started.
+
+## Getting Everything Connected: The Actual Network
+
+I'm by profession a Software Engineer, and by hobby a gamer. I had 0 interest in computer networks until I actually setup my own server. Now, you don't have to know everything, I certainly don't, but it helps knowing some basics (which I won't teach because.).
+
+### Operating System
+To actually start working, I first installed Ubuntu 24 LTS. It's a distribution of linux. This is preferred over windows for servers because it has high security, it's very stable, had good docker support (we use this a lot in self hosting) and it's free (open source baby!).
+
+### Unmanaged Switch
+
+In a previous section, I mentioned how I bought a TP-Link unmanaged switch. Think of it as an ethernet port extender. It's just that in simple words. Have less ports? Just add an unmanaged switch. There's more to it of course, but for our use case, this is exactly what it is.
+
+How does it work though? Simple, It has n amount of eth ports, in our case 5. Plug one end of the eth cable into your main router, and the other end in ANY eth port of the unmanaged switch, it doesn't matter. For cleanliness and order I plugged mine into the left most port.
+
+Once that is done, I connected both my PC and my homelab server into free ports in the switch and finally connected the switch adapter into my extension board.
+
+That's about it.
+
+### Cloudflare Tunnel
+
+A cloudflare account is free
+
+### Camera
+
+For Tapo series, you need to use TP-Link Tapo app to setup the camera (which kinda sucks). Once that is done, there's an option in the settings to setup camera account, that's the important one. Once you have a camera account, you can safely disable/delete the app. I personally archived my app because I didn't need it anymore after setting up a camera account.
+
+I also blocked all outbound requests from my camera
