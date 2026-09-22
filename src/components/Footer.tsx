@@ -11,7 +11,7 @@ const Footer = () => {
             </div>
             <div className="w-full flex gap-2 flex-col">
                 <h2 className="text-lg">Socials</h2>
-                <a href="https://github.com/raahimfareed" target="_blank" className="transition-opacity hover:opacity-70">Github</a>
+                <a href="https://git.raahimfareed.com/raahim" target="_blank" className="transition-opacity hover:opacity-70">Github</a>
                 <a href="https://linkedin.com/in/raahimfareed" target="_blank" className="transition-opacity hover:opacity-70">LinkedIn</a>
                 <a href="https://instagram.com/raahimfareed" target="_blank" className="transition-opacity hover:opacity-70">Instagram</a>
                 <a href="mailto:raahim@neoflux.pk" className="transition-opacity hover:opacity-70">Email</a>
@@ -28,7 +28,7 @@ const Footer = () => {
                 <h2 className="text-lg">Other</h2>
                 <a href="https://pine.raahimfareed.com/" target="_blank" className="transition-opacity hover:opacity-70">Pine</a>
                 <a href="https://neoflux.pk/" target="_blank" className="transition-opacity hover:opacity-70">NeoFlux (Pvt.) Ltd.</a>
-                <a href="https://github.com/raahimfareed/portfolio" target="_blank" className="transition-opacity hover:opacity-70">Source Code</a>
+                <a href="https://git.raahimfareed.com/raahim/portfolio" target="_blank" className="transition-opacity hover:opacity-70">Source Code</a>
             </div>
         </footer>
     )

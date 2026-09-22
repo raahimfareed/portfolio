@@ -9,7 +9,7 @@ export const site = {
     url: "https://www.raahimfareed.com",
     twitter: "@raahimfareed",
     sameAs: [
-      "https://github.com/raahimfareed",
+      "https://git.raahimfareed.com/raahim",
       "https://linkedin.com/in/raahimfareed",
     ],
   },

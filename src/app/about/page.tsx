@@ -4,14 +4,14 @@ import { LinkPreview } from "@/components/ui/link-preview"
 import MainLayout from "@/layouts/MainLayout"
 import { EnvelopeIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
-import { FaGithub } from "react-icons/fa"
 import myPicture from "@/images/me.webp";
-import linkedin from "@/images/icons/linkedin.svg"
 import Image from "next/image"
 import type { Metadata } from "next"
 import { Uiiai } from "@/components/Uiiai"
 import projects from "@/data/projects";
 import { Project } from "@/types"
+import { SiGit } from "react-icons/si"
+import { FaLinkedin } from "react-icons/fa"
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -39,11 +39,11 @@ const About = () => {
           </div>
           <div className="flex flex-row lg:flex-col flex-wrap gap-3">
             <ContactSidebarLink href="https://linkedin.com/in/raahimfareed">
-              <Image src={linkedin} alt="Linkedin" className="w-4 h-4" />
+              <FaLinkedin className="w-4 text-blue-600" />
               @raahimfareed
             </ContactSidebarLink>
-            <ContactSidebarLink href="https://github.com/raahimfareed">
-              <FaGithub className="w-4" />
+            <ContactSidebarLink href="https://git.raahimfareed.com/raahim">
+              <SiGit className="w-4 text-orange-600" />
               @raahimfareed
             </ContactSidebarLink>
             <ContactSidebarLink href="mailto:raahim@neoflux.pk">
@@ -58,7 +58,7 @@ const About = () => {
           <div>
             My name is <LinkPreview url="https://www.raahimfareed.com" className="font-bold text-foreground">Raahim Fareed</LinkPreview> - I&apos;m a software engineer who likes to work behind the scenes. Most of my work and interests involve backends and APIs, you know, the boring stuff. Along my journey, I&apos;ve had a diverse experience across different industries, including but not limited to telecom, education, ecommerce, health and oil, where I&apos;ve been able to design, implement and scale systems that drive better user experiences. I&apos;m leading at <LinkPreview url="https://nayatel.com/" className="font-bold text-foreground">Nayatel</LinkPreview> as a Principal Software Engineer.
           </div>
-          <p>Oh, did I mention? I&apos;m the founder of <LinkPreview url="https://www.linkedin.com/company/neo-flux/" className="font-bold text-foreground">NeoFlux</LinkPreview>.</p>
+          <p>Oh, did I mention? I&apos;m the founder of <LinkPreview url="https://neoflux.pk" className="font-bold text-foreground">NeoFlux</LinkPreview>.</p>
           <h2 className="text-2xl">Hobbies And Interests</h2>
           <div>These days, I&apos;m a massive geek for homelabbing and selfhosting. I host my own immich for images, Navidrome for music, Jellyfin for movies and shows, Trilium for notes, home assistant for smart home automation. I try to host everything that I can host (and my OptiPlex 9010 SFF can handle)</div>
           <div>In the past, I&apos;ve had the chance to lead teams like the <LinkPreview className="font-bold text-foreground" url="https://developers.google.com/community/gdsc">Google Developer Student Club</LinkPreview>, organize workshops and help others navigate the ever evolving tech landscape. I used to also be into competitive programming, where I honed critical thinking and problem solving skills. From competitions like <LinkPreview url="https://icpc.global" className="font-bold text-foreground">ICPC</LinkPreview> to websites like <LinkPreview url="https://leetcode.com" className="font-bold text-foreground">Leetcode</LinkPreview> and <LinkPreview url="https://codeforces.com" className="font-bold text-foreground">Codeforces</LinkPreview> helped me grow exponentially.</div>

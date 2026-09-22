@@ -1,9 +1,8 @@
 import ContactSidebarLink from "@/components/ContactSidebarLink"
-import { FaGithub } from "react-icons/fa";
+import { SiGit } from "react-icons/si";
 import MainLayout from "@/layouts/MainLayout"
 import { EnvelopeIcon } from "@heroicons/react/24/solid"
-import linkedin from "@/images/icons/linkedin.svg"
-import Image from "next/image";
+import { FaLinkedin } from "react-icons/fa";
 
 const Contact = () => {
   return (
@@ -12,11 +11,12 @@ const Contact = () => {
         <div className="flex flex-col gap-4 lg:py-48 overflow-y-auto pr-2 w-full lg:w-[64ch]">
           <h1 className="text-4xl font-bold">Get In Contact</h1>
           <ContactSidebarLink href="https://linkedin.com/in/raahimfareed">
-            <Image src={linkedin} alt="Linkedin" className="w-4 h-4" />
+            <FaLinkedin className="w-4 text-blue-600" />
+            {/* <Image src={linkedin} alt="Linkedin" className="w-4 h-4" /> */}
             @raahimfareed
           </ContactSidebarLink>
-          <ContactSidebarLink href="https://github.com/raahimfareed">
-            <FaGithub className="w-4" />
+          <ContactSidebarLink href="https://git.raahimfareed.com/raahim">
+            <SiGit className="w-4 text-orange-600" />
             @raahimfareed
           </ContactSidebarLink>
           <ContactSidebarLink href="mailto:raahim@neoflux.pk">

@@ -66,7 +66,7 @@ const projects = {
     shortDescription: "Pine is a minimalist PHP micro-framework designed for developers who value simplicity and full control.",
     description: "Pine is a minimalist PHP micro-framework designed for developers who value simplicity and full control. With an intuitive syntax and a flexible architecture, Pine empowers you to build applications effortlessly—customizing everything down to the grain.",
     url: "https://pine.raahimfareed.com",
-    gitUrl: "https://github.com/raahimfareed/pine",
+    gitUrl: "https://git.raahimfareed.com/raahim/pine",
     techStack: ["php", "html", "css", "javascript", "tailwindcss", "docker", "pine"]
   },
   PineDocs: {
