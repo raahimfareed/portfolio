@@ -1,3 +1,21 @@
+import optiplex9010Image from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/optiplex-9010.webp";
+import ethCableImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/eth-cable.webp";
+import hddsImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/hdds.webp";
+import shuttleFrontImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/shuttle-ds81-front.webp";
+import shuttleBackImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/shuttle-ds81-back.webp";
+import tapoC200Image from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/tapo-c200.webp";
+import thinkcentreImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/thinkcentre.webp";
+import tplinkLs1005gImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/tp-link-ls1005g.webp";
+import tplinkWr740nImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/tp-link-wr740n.webp";
+
+import immichImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/immich.webp";
+import immichMapImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/immich-map.webp";
+import triliumImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/trilium.webp";
+import frigateImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/frigate.webp";
+import forgejoImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/forgejo.webp";
+import symfoniumImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/symfonium.webp";
+import homeAssistantImage from "@/images/blog/how-i-set-up-my-homelab-in-pakistan/home-assistant.webp";
+
 export const metadata = {
   title: "How I Set Up My Homelab in Pakistan",
   description: "My experience of self-hosting in Pakistan with the limited options and budget we have.",
@@ -12,9 +30,9 @@ I've been running a homelab for roughly 6 months. This is my first experience an
 
 If you're interested in just the setup and not my story, you can [skip to that section](#my-setup).
 
-That being said, why did I go through the hassle of setting up a server at my home when I could just pay Rs.850/month for 200GB of storage space. I had homelabbing on my mind for a long time and then some things happened back to back. 
+That being said, why did I go through the hassle of setting up a server at my home when I could just pay Rs. 850/month for 200GB of storage space. I had homelabbing on my mind for a long time and then some things happened back to back. 
 
-At first, google increased the price of their 100GB plan. I was already subscribed to it. It's okay, no big deal, it's just 100-200 rupees more, I thought. Then I ran out of storage :). 100GB used up. I upgraded to 200GB, which cost me Rs.850. Spotify also increased its prices. I pay roughly Rs.500/month. For movies and streaming, I just [sail the high seas](https://fmhy.net/), I tried Netflix but half the shows are either pulled out from Netflix or are region locked, it's a steaming pile of hot shit if I say so myself.
+At first, google increased the price of their 100GB plan. I was already subscribed to it. It's okay, no big deal, it's just 100-200 rupees more, I thought. Then I ran out of storage :). 100GB used up. I upgraded to 200GB, which cost me Rs. 850. Spotify also increased its prices. I pay roughly Rs. 500/month. For movies and streaming, I just [sail the high seas](https://fmhy.net/), I tried Netflix but half the shows are either pulled out from Netflix or are region locked, it's a steaming pile of hot shit if I say so myself.
 
 During this time, YouTube was also suggesting me some good videos, namely [Google Tried to Charge Me $3,600/yr... I Built My Own Server Instead](https://youtu.be/8_1OBOeuBsA) by *Switch and Click*, and [I Spent a Year Replacing My Subscriptions. Here’s How.](https://youtu.be/AtgCcMjtqF0) by *Dammit Jeff*. Idk what this did, but it got me hooked. I spent a few days watching similar videos, found an old workstation (my old gaming PC, but it wasn't functional, I took out its PSU to make a bench power supply for embedded electronics, yk, Arduinos and ESPs and the likes, different story), but it was kinda useless without the PSU. No go.
 
@@ -24,11 +42,15 @@ So... my old gaming PC had no PSU, which means I had to look elsewhere. A few ye
 
 ### An Old Dell PC: Office E-Waste
 
-**Price:** Rs.12,500  
+<PostImage src={optiplex9010Image} alt="OptiPlex 9010 SFF" caption="Picture isn't mine, my server is in a tight space, hard to take its picture" />
+
+**Price:** Rs. 12,500  
 **Model:** Dell Optiplex 9010 SFF  
 **From:** Dubai Plaza, 6th Road, Rawalpindi
 
 I don't remember the exact shop but we got it in 2018. A decade ago. Lately, the PC had been catching dust so I took it. It wasn't turned on for a few years.
+
+To get started, any old PC should work, even a laptop or something as small as Raspberry Pi works as well.
 
 #### Specs
 
@@ -43,7 +65,9 @@ I don't remember the exact shop but we got it in 2018. A decade ago. Lately, the
 
 ### Gigabit Unmanaged Switch
 
-**Price:** Rs.3,500  
+<PostImage src={tplinkLs1005gImage} alt="TP-Link LS1005G" caption="TP-Link LS1005G Unmanaged Switch" />
+
+**Price:** Rs. 3,500  
 **Model:** TP-Link LS1005G  
 **From:** [WiFiLink Online](https://wifilink.com.pk/products/ls1005g-5-port-10-100-1000mbps-desktop-network-switch-price-in-pakistan)
 
@@ -59,6 +83,8 @@ Optional, but I bought it anyways because our router (We use Nayatel) isn't near
 That's about all the specs it has lol, it's unmanaged, which is fine for starting out.
 
 ### Cabling
+
+<PostImage src={ethCableImage} alt="Ethernet Cable" caption="Cat 6a Ethernet Cable" />
 
 I needed the following cables to get it all connected and working.
 - **1x DP Cable**: so that I can easily install the operating system (Optiplex 9010 only has VGA and DP, I chose to work with DP)
@@ -77,7 +103,9 @@ I needed the following cables to get it all connected and working.
 
 ### A WiFi camera
 
-**Price:** Rs.5,600  
+<PostImage src={tapoC200Image} alt="TP-Link Tapo C200 Camera" caption="TP-Link Tapo C200 Camera" />
+
+**Price:** Rs. 5,600  
 **Model:** Tapo C200  
 **From:** [WiFiLink Online](https://wifilink.com.pk/products/tp-link-wi-fi-camera-tapo-c200-pan-tilt-home-security-wi-fi-camera-price-in-pakistan)
 
@@ -95,7 +123,9 @@ I got this sometime later, after a month or so, just to test the waters with my 
 
 ### 1TB Extra HDD
 
-**Price:** Rs.7,500  
+<PostImage src={hddsImage} alt="WD Blue Hard drives" caption="WD Blue Hard drives" />
+
+**Price:** Rs. 7,500  
 **Model:** WD Blue  
 **From:** Horizon Tech, Saddar, Rawalpindi
 
@@ -103,9 +133,12 @@ I wanted to expand my storage from 500GB. I didn't replace this with 500GB, I ju
 
 ### Digital Signage PC: Custom Router
 
-**Price:** Rs.20,000  
+<PostImage src={shuttleFrontImage} alt="Shuttle DS-81 Front" caption="Shuttle DS-81 Front" />
+<PostImage src={shuttleBackImage} alt="Shuttle DS-81 Back" caption="Shuttle DS-81 Back" />
+
+**Price:** Rs. 20,000  
 **Model:** Shuttle DS-81  
-**From:** Soan Gardens, Islamabad
+**From:** Facebook Marketplace, Soan Gardens, Islamabad
 
 This one is a bit interesting. I've had a lot of hardware components in my wishlist. *A custom router* was one of them. So, generally, we're given a router by our ISP (In my case, Nayatel gave us a Huawei ONT/Router). For majority of people, that's enough. My father never changed the router in the past. Sure he got WiFi extenders, but the actual router given to us by the ISP was still there. To have more fine grained control and power though, a custom solution is required.
 
@@ -113,9 +146,9 @@ To cut it short, a custom router is a router you make from your own hardware (co
 
 With that being said, Shuttle DS81 is originally made for digital signage I think. I found it off of Facebook Marketplace near Soan Garden, Islamabad. I got really lucky because I couldn't find any mini PC with two Ethernet ports in market, and facebook marketplace had only 3 ads with these requirements in twin cities.
 
-- Shuttle DS-81: Rs.25,000 (I negotiated it down to Rs.20,000)
-- Advantech Ark 1550: Rs.50,000
-- Some Intel NUC with a GPU: Rs.90,000
+- Shuttle DS-81: Rs. 25,000 (I negotiated it down to Rs. 20,000)
+- Advantech Ark 1550: Rs. 50,000
+- Some Intel NUC with a GPU: Rs. 90,000
 
 <Callout type="warning">
 **VERY IMPORTANT** - If you're looking to make a custom router, either get a mini PC that has **TWO** gigabit ethernet ports, or get any normal sized PC (You can easily add PCIe NICs to add additional ethernet ports to your PC).
@@ -136,7 +169,9 @@ As of writing this (23/09/2026), [this ad](https://www.facebook.com/share/18wS5j
 
 ### Old TP Link Router from 2010
 
-**Price:** Rs.2,000?  
+<PostImage src={tplinkWr740nImage} alt="TP-Link WR740N Router" caption="TP-Link WR740N Router" />
+
+**Price:** Rs. 2,000?  
 **Model:** TP-Link WR740N  
 **From:** I don't remember, Gujranwala maybe lol
 
@@ -156,7 +191,9 @@ Please don't get this or use anything like this unless it's for free and you're 
 
 ### A Mini PC
 
-**Price:** Rs.22,000  
+<PostImage src={thinkcentreImage} alt="Thinkcentre M910q Tiny" caption="Thinkcentre M910q Tiny" />
+
+**Price:** Rs. 22,000  
 **Model:** Lenovo ThinkCentre M910q Tiny  
 **From:** 6th Road, Rawalpindi
 
@@ -176,16 +213,16 @@ I got this from somewhere on 6th road in Rawalpindi without the SSD. Got the SSD
 
 ## Difficulties I Faced Finding Hardware
 
-I'm going to be honest, while everything I have is running good, I got everything I wanted. The wishlist parts are kind of in a bit of a pickle. Prices are so high in this country, what costs 60USD overseas, costs Rs.40000 or more here. Not to mention, since most of us don't even have the privilege to spend extra money on stuff like this, there's less overall awareness.
+I'm going to be honest, while everything I have is running good, I got everything I wanted. The wishlist parts are kind of in a bit of a pickle. Prices are so high in this country, what costs 60USD overseas, costs Rs. 40,000 or more here. Not to mention, since most of us don't even have the privilege to spend extra money on stuff like this, there's less overall awareness.
 
-Another gripe I have is, people cling on to their e-waste (me included in some cases), they let it rot at their home instead of just giving it out, and then they sell that piece of equipment for the SAME or sometimes INFLATED price, like brother, stop being delulu. The TP-Link WR740N Router used to cost around Rs.2000 back in 2010. It still costs the same. Yeah sure, people's salaries have increased, inflation has happened, yada yada, but for a router from 2010, this should cost next to nothing.
+Another gripe I have is, people cling on to their e-waste (me included in some cases), they let it rot at their home instead of just giving it out, and then they sell that piece of equipment for the SAME or sometimes INFLATED price, like brother, stop being delulu. The TP-Link WR740N Router used to cost around Rs. 2000 back in 2010. It still costs the same. Yeah sure, people's salaries have increased, inflation has happened, yada yada, but for a router from 2010, this should cost next to nothing.
 
-And, don't get me started on frauds and scams, it's so hard to trust someone, each of us are focused on making a quick buck, while completely ignoring the fact that the other person may be in a hard spot already. Why push someone to the edge, why exploit them for something they're doing out helplessness. Due to this, it's super hard for both parties to properly maintain a trust level.
+And, don't get me started on frauds and scams, it's so hard to trust someone, each of us are focused on making a quick buck, while completely ignoring the fact that the other person may be in a hard spot already. Why push someone to the edge, why exploit them for something they're doing out of helplessness. Due to this, it's super hard for both parties to properly maintain a trust level.
 
 With that out of the way,
 - I've had a lot of trouble finding reliable vendors for buying reasonably priced HDDs (especially for NAS and Surveillance)
-- Due to inflation, a lot of hardware is out of reach for the common man(Managed switches, Access points, etc)
-- Surprisingly, I just could not find a damn server rack for a reasonable price. Wdym a 42U rack costs Rs.300,000? (Used one of the higher end listings to make an example, found some for Rs.150,000 range as well)
+- Due to inflation, a lot of hardware is out of reach for the common man (Managed switches, Access points, etc)
+- Surprisingly, I just could not find a damn server rack for a reasonable price. Wdym a 42U rack costs Rs. 300,000? (Used one of the higher end listings to make an example, found some for Rs. 150,000 range as well)
   
   In the used market, it was pretty hard to find reasonable prices as well. Partly because in consumer market, not enough demand, and inflation ofc.
 - While we have solar PV installed and working, sometimes at night when a power outage happens and something heavy is running (like the microwave, or an iron), the breaker trips, causing a power shutdown for a few mins, which causes my server to abruptly lose power. That's not good. I'll buy a UPS in future for my homelab to avoid this, and in turn avoid data corruption or data loss.
@@ -204,7 +241,7 @@ To actually start working, I first installed Ubuntu 24 LTS. It's a distribution 
 
 In a previous section, I mentioned how I bought a TP-Link unmanaged switch. Think of it as an ethernet port extender. It's just that in simple words. Have less ports? Just add an unmanaged switch. There's more to it of course, but for our use case, this is exactly what it is.
 
-How does it work though? Simple, It has n amount of eth ports, in our case 5. Plug one end of the eth cable into your main router, and the other end in ANY eth port of the unmanaged switch, it doesn't matter. For cleanliness and order I plugged mine into the left most port.
+How does it work though? Simple, It has N amount of eth ports, in our case 5. Plug one end of the eth cable into your main router, and the other end in ANY eth port of the unmanaged switch, it doesn't matter which one. For cleanliness and order I plugged mine into the left most port.
 
 Once that is done, I connected both my PC and my homelab server into free ports in the switch and finally connected the switch adapter into my extension board.
 
@@ -220,12 +257,12 @@ If you have a static IP, great, use that. Don't know if you have a static IP? Ca
 
 If you don't have a static IP (like me), you can opt for the tunnel path. It MAY be possible to use tunnels without domains, but I'm not sure about it. Personally, I use my domain raahimfareed.com for the tunnels. So for my git instance, I just have my own subdomain, [git.raahimfareed.com](https://git.raahimfareed.com/).
 
-If you want a cheap domain, you can get a numeric xyz domain from [PorkBun](https://porkbun.com) or [Spaceship](https://spaceship.com). In order to qualify for the cheap/discounted rate, your domain needs to
+If you want a cheap domain, you can get a numeric xyz domain from [PorkBun](https://porkbun.com) or [Spaceship](https://spaceship.com). Since it's an international transaction, only Visa/Mastercard cards will work. In my experience Nayapay works just fine if you don't have a proper bank card. In order to qualify for the cheap/discounted rate, your domain needs to
 - Have ONLY numbers
 - Length should be 6 to 9 numbers
 - Should be a .xyz domain
 
-This costs roughly Rs.200 per year which is very cheap if you just want to test homelab without commiting to a domain.
+This costs roughly Rs. 200 per year which is very cheap if you just want to test homelab without commiting to a domain.
 
 Okay, now we have a domain, and a cloudflare account AND we've transfered DNS Nameservers to Cloudflare for our domain, what's next?
 
@@ -307,12 +344,15 @@ We've a general idea of what my hardware is and how everything is connected. Wit
 
 ### Immich / Google Photos
 
+<PostImage src={immichImage} alt="Immich Gallery" caption="My Immich Gallery" />
+<PostImage src={immichMapImage} alt="Immich Map" caption="My Immich Map" />
+
 Monthly recurring costs of 850 racks up to a lot of money after a few months and only gives me 200GB  
 Immich stores all my images, and uses the drive I have put in the server, which is 1TB, so essentially I have 1TB of picture storage, and if need be in future, I can easily extend it by attaching more/bigger drives to the server.
 
-The 1TB drive costs Rs.7,500 which is equivalent to roughly 9 months of 200GB google storage. After 9 months, it's basically free storage.
+The 1TB drive costs Rs. 7,500 which is equivalent to roughly 9 months of 200GB google storage. After 9 months, it's basically free storage.
 
-I also like a few things in immich that G Photoes doesn't provide
+I also like a few things in immich that G Photos doesn't provide
 
 - No compression, original image is stored
 - Face detection is run locally, so face data isn't being used by giant corpos for ads and what not
@@ -320,52 +360,245 @@ I also like a few things in immich that G Photoes doesn't provide
 
 ### Forgejo / GitHub
 
+<PostImage src={forgejoImage} alt="ForgeJo" caption="ForgeJo git.raahimfareed.com" />
+
 Forgejo is a git host, like GitHub and GitLab. It's used to store projects. 
 
 GitHub is really cool AND free, don't get me wrong. I just wanted to own my own code. No fear of repo getting deleted and the repo itself has no size limit on forgejo.
 
 ### Navidrome / Spotify
 
-Biggest issues I had with spotify were, they gradually increased their price and often times while listening to songs, I stumbled upon disabled/locked songs which were region locked. I pay Rs.500, let me listen to the damn music. 
+<PostImage src={symfoniumImage} alt="Symfonium Screenshot" caption="Symfonium, connected to my navidrome server" />
 
-Navidrom is free, no ads, has subsonic API so you can use any kind of client you like (I use Feishan on desktop and Symfonium on android).
+Biggest issues I had with spotify were, they gradually increased their price and often times while listening to songs, I stumbled upon disabled/locked songs which were region locked. I pay Rs. 500, let me listen to the damn music. 
+
+Navidrome is free, no ads, has subsonic API so you can use any kind of client you like (I use Feishin on desktop and Symfonium on android).
 
 I sail the seas for my music.
 
 ### JellyFin / Netflix
 
-Exact same issues as spotify.
+Exact same issues as spotify. Region locked shows and movies. Missing shows and movies. Ever so increasing prices.
+
+Plus, with jellyfin running on my network, I can stream whatever from any device on max quality as long as that device supports a browser or has JellyFin app.
+
+Don't use this over cloudflare though. It's against CF TOS to stream anything through the proxy and/or tunnels IIRC.
 
 ### Home Assistant / Smart Home
 
-Home assistant is used to connect all IoT devices and managed them. 
+<PostImage src={homeAssistantImage} alt="Home Assistant Energy Dashboard" caption="Home Assistant Energy Dashboard" />
+
+Home assistant is used to connect all IoT devices and manage them. 
 
 I've connected my Solar PV and had previously connected around 40-50 Tuya devices but Tuya is not that good. Have plans in future to make my own IoT devices using ESP32.
 
 Also have Google Home and Amazon Alexa but haven't tried linking them to Home Assistant yet, though I'm aware that they can be linked.
 
+Just as a side note, I didn't buy Tuya devices just for the homelab, they've been part of the house for a couple of years way before I even knew that homelabs were a thing. If I had known, I would've asked my family to get something more homelab friendly.
+
 ### Trilium / Notes / Mindmap
+
+<PostImage src={triliumImage} alt="Trilium" caption="Trilium, Homelab Note" />
 
 Self hosted, end to end encrypted notes. I love this, it's a mindmap, you can have relational note linking, nested notes. It has several types of notes like graphs, Excalidraw built in and supports markdown. The only problem is, there is no realistic way to share notes from inside the app unless I copy paste. No way to generate and share note link yet.
 
 ### Frigate / Security Cams
 
-Fully local and keeps me at ease that my video feed isn't going to a cloud. The complete suit, from object detection, converting to clips and storing history is free.  
+<PostImage src={frigateImage} alt="Frigate NVR" caption="Frigate, picture is not mine for obvious reasons" />
+
+Fully local and keeps me at ease that my video feed isn't going to a cloud. The complete suite, from object detection, converting to clips and storing history is free.  
 Also works with ANY RTSP camera which is cool. I don't get locked into vendor.
 
 ### Wireguard / VPN
 
-Wireguard is used to connect to my server 
+Wireguard is used to connect to my server. It's not really replacing any VPN. It's sole purpose is to securely allow me to connect to my homelab from outside my home without exposing the access to public.
+
+It's pretty cool but I've found it to be unreliable or straight up non functional on Jazz sim data. It works fine on regular ISPs like PTCL and Nayatel though. Can't say much for other telcos.
 
 ### Uptime Kuma / Server Monitoring
 
+This also doesn't replace any service, I use it to monitor my servers health and uptime. It shows me which important service may have gone down or is unreachable.
+
 ### Notable Mentions
+
+These are a few things which I either tried and stopped using, or have recently setup.
 
 #### Dawarich / Google Timeline
 
+It's a Google Timeline alternative. Sometime in the last 2 years, google [killed the timeline](https://killedbygoogle.com/). It is basically a tracker of your movements. It tracks your exact GPS coordinates and in turn maps your journey. I haven't used this a lot but I found it fascinating. It is setup on my machine.
+
 #### Penpot / Figma
+
+It's kind of like a figma open source replacement. I gave it a try, I don't use much figma anymore so I didn't use it either and it was hogging resources on my machine, so I put it down. It might be more useful to other people.
 
 #### RomM / Game Emulation
 
+I have a PS Vita and a Nintendo 3DS. I gave RomM a try but I can do everything I want on my actual console rather than emulating them. Gave it a try, not using it and it was using unnecessary resources on my machine so I put it down as well.
+
 #### Ntfy / Notification System
 
+I've not heavily used this but it is being used nonetheless. It's a notification system, I've connected it to Home assistant to send me a notification based on certain actions or if certain devices turn on.
+
+To get this working on your phone, you'll need to download the Ntfy app from FDroid and not Play Store. Idk if this works on iPhone or not.
+
+## Backup Strategy
+
+In the start, when this was just a means of testing a new hobby out, I didn't care much about the data on it. Which is fine, nothing important on it, it can easily be re-set-up if need be.
+
+That was the past, I now use it for all my photos, and my git repositories. Data safety is critical now. This is where data backup comes in.
+
+The gold standard for keeping data safe is the 3-2-1 framework.
+
+- 3 copies of data
+- 2 different types of media
+- 1 copy offsite
+
+In these backups/copies I usually do the following
+
+- Small files backup: Config files, .env files (these have all the secret passwords), database dumps
+- Large files backup: Actual photos library
+- Git backup: Git repositories, I back these up, just not in the same backup media as other things
+- Don't back up: media and song library. These can be redownloaded from the internet again, don't need them taking up extra space in a backup
+- Everything else, don't backup
+
+I've done just the 3 (some of it) and the 1.
+
+I have setup `restic` which is a backup tool. I've setup 2 [Backblaze B2 Buckets](https://secure.backblaze.com/b2_buckets.htm). For technical folks, this is an S3 compatible storage. AWS has S3, Cloudflare has R2, Backblaze has B2. S3 is the most expensive, R2 is reasonable and B2 is the cheapest, which is why I went with B2. 1TB/month is around 6.95USD which is like Rs. 2000 but the good thing is, it only charges for storage that is being used, and first 10GB is free.
+
+So for example, I have 100GB of backup, first 10GB is free, and the remaining 90GB costs me around 200 rupees.
+
+For starting out, since you'll only have config files, they'll be well under 10GB so backups would be completely free.
+
+Back to the actual backup,  
+This becomes my off site and 2nd copy. I have setup RAID 1 on my server but at the moment only have 500GB and 1TB of drives. It'll start working once I attach another 1TB drive. The server will use one of the drives as a redundancy drive, it'll just have a duplicate of all the data. This is done so, incase one of the drive fails, the other keeps working. The only con is, even though I have 2x 1TB drives, I can only use 1TB storage instead of combined 2TB storage (basically half the storage). Once RAID 1 is in action, that'll be the 3rd copy, fulfilling the 3-2-1 rule.
+
+For my git repos, set up mirrors on forgejo to automatically push to github. GitHub acts as a backup for my repos. I push all my changes to my own git instance, which syncs to GitHub on its own.
+
+With all that being said, backups are an additional *necessary* cost if you have critical data on the server.
+
+## Operating Costs
+
+Power numbers in this are approximates, I haven't had the chance to calculate each component separately so I'll use averages for some things.
+
+To calculate monthly kWh, I will use the formula
+
+$$
+kWh = \frac{W \times 24 \times 30}{1000}
+$$
+
+As a summary, I've spent a total of Rs. 72,600 (not including my Optiplex since I technically got it for free, it was my fathers and was not being used at home) on my homelab so far. It might not match the total costs if you add everything up in this post, because I factored in cabling costs and zipties, etc as well in this total cost :)
+
+I started with Rs. 5000, these total costs are an accumulation of me adding more things into the homelab every month.
+
+### Subscription Costs
+
+These are the ones that I'm cutting down
+
+| Product | Cost |
+| --- | --- |
+| Google One 200GB | Rs. 850 |
+| Spotify | Rs. 500 |
+| Netflix | Rs. 800 (Used to pay for it some time before I started a homelab) |
+| Total | Rs. 2,150 |
+
+
+### Dell Optiplex 9010 SFF
+
+This machine has a TDP of 240W but considering the specs, on average this should sit around 60W of power draw.
+
+$$
+kWh = \frac{45 \times 24 \times 30}{1000} = 32.4 \text{ kWh}
+$$
+
+### Thinkcentre M910q Tiny
+
+This one has a TDP of 65W. Most tiny PCs sit around 15-20W, let's assume 18W for this.
+
+$$
+kWh = \frac{18 \times 24 \times 30}{1000} = 12.96 \text{ kWh}
+$$
+
+### Shuttle DS-81: Custom Router
+
+90W of TDP but sits around 20W
+
+$$
+kWh = \frac{20 \times 24 \times 30}{1000} = 14.4 \text{ kWh}
+$$
+
+### TP-Link LS1005G Switch
+
+This switch draws roughly 3W constant.
+
+$$
+kWh = \frac{3 \times 24 \times 30}{1000} = 2.16 \text{ kWh}
+$$
+
+### TP-Link Tapo C200 Camera
+
+This camera draws roughly 4.5W on average.
+
+$$
+kWh = \frac{4.5 \times 24 \times 30}{1000} = 3.24 \text{ kWh}
+$$
+
+### TP-Link WR740N Access Point
+
+This router draws roughly 4W on average.
+
+$$
+kWh = \frac{4 \times 24 \times 30}{1000} = 2.88 \text{ kWh}
+$$
+
+### Total Monthly Costs
+
+In total, for 68 kWh, the cost comes around Rs. 1,527 BUT this is just for the 1-100 unit slab of electricity (IESCO).  
+Realistically, these kWh get added into already running kWh of the house, for example, if the house is currently in 301-400 unit slab, the server costs around ~Rs. 2500.
+
+
+On top of that, I also have my B2 backup running
+
+$$
+100 \text{ GB} \times 0.00695 = \$0.695 \approx \text{Rs. }195/\text{month}
+$$
+
+These are just monthly costs, actual acquisition costs are another thing, which segues cleanly into my wishlist
+
+## The Wishlist
+
+These are the things I will buy in future to add into my homelab setup.
+
+### Managed Switch (for VLANs)
+
+I want one to be able to have VLANs. This will help me isolate networks for each type of service/electronic.
+
+I've the following plan in mind
+
+- VLAN10: Infra (Dell Optiplex, Thinkcentre M910q, Access points)
+- VLAN20: Network Cameras (Tapo C200, etc)
+- VLAN30: Home Devices (Phones, Laptops)
+- VLAN40: Guests Devices (Phones)
+- VLAN50: IoT devices (Tuya, ESP32, Smart TVs, Google Home, Amazon Alexa, etc)
+
+It's good for security and keeps low security things like IoT devices away from stuff like surveillance cameras (we don't want our cameras getting hacked).
+
+I've chosen [TP-Link TL-SG3428X JetStream 24-Port Gigabit L2+ Managed Switch](https://wifilink.com.pk/products/tp-link-tl-sg3428x-jetstream-24-port-gigabit-l2-managed-switch-price-in-pakistan) which costs a whopping **Rs. 72,999**.
+
+### Access Point
+
+Access points connect with routers and give us WiFi signals. For most people, their router is fine. This is more of a niche thing. I chose [TP-Link Pakistan EAP772 BE9300 Ceiling Mount Tri-Band Wi-Fi 7 Access Point](https://wifilink.com.pk/products/eap772-be9300-ceiling-mount-tri-band-wi-fi-7-access-point-price-in-pakistan) which is a WiFi 7 compatible AP so that we can get the highest possible speeds. It costs **Rs. 52,499**.
+
+### Network/Server Rack
+
+Looking for a 42U server rack. This is to actually organize my homelab, and it just looks cool to me. I have asked around the neighborhood. Got quotes of around **Rs. 50,000** but haven't yet acquired one, so can't list one here until I know for sure that it is a trusted source.
+
+## Closure
+
+With everything out of the way now,  
+I want to raise awareness to the technical side in Pakistan, and help in shaping a better future. This homelab setup is not that impressive, in fact I'm sure many people have done more with less, and some who have the dough may have setups that I dream of but it's still such a closed space, not a lot of people know about this stuff. I didn't know about this few years back.
+
+I urge everyone to deviate a bit from their usual schedules or routines, dabble into different hobbies, doesn't have to be tech related but something other than what our mundane routine suggests. That's what life is about, trying new things out. What's the worst that can happen, failure? Failure isn't that bad once we learn to use it to achieve better results.
+
+<Callout type="info">
+**No AI Generated Content** - None of the material in this specific post is AI generated.
+</Callout>
