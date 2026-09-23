@@ -8,6 +8,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+import 'katex/dist/katex.min.css'
+
 export const generateStaticParams = async () => {
   return (await getPublishedSlugs()).map(slug => ({ slug }));
 }

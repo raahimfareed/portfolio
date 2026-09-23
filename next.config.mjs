@@ -4,9 +4,10 @@ import nextMdx from "@next/mdx";
 const withMdx = nextMdx({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: ["remark-gfm"],
+    remarkPlugins: ["remark-gfm", "remark-math"],
     rehypePlugins: [
       ["rehype-pretty-code", { theme: "github-dark", keepBackground: false }],
+      ["rehype-katex"]
     ]
   }
 })
