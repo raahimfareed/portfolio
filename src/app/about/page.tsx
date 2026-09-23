@@ -44,7 +44,7 @@ const About = () => {
             </ContactSidebarLink>
             <ContactSidebarLink href="https://git.raahimfareed.com/raahim">
               <SiGit className="w-4 text-orange-600" />
-              @raahimfareed
+              @raahim
             </ContactSidebarLink>
             <ContactSidebarLink href="mailto:raahim@neoflux.pk">
               <EnvelopeIcon className="w-4" />
