@@ -71,6 +71,7 @@ export interface PostMeta {
     coverAlt?: string;
     featured?: boolean;
     draft?: boolean;
+    tocDepth?: 1 | 2;
 }
 
 export interface PostSummary extends PostMeta {

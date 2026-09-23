@@ -62,15 +62,17 @@ export const getReadingTime = (slug: string) => {
   return Math.max(1, Math.round(words / 200));
 }
 
-export const getHeadings = (slug: string): Heading[] => {
+export const getHeadings = (slug: string, maxDepth: 1 | 2 = 2): Heading[] => {
   const source = findSource(slug);
   if (!source) return [];
 
+  const maxLevel = maxDepth + 1;
   const headings: Heading[] = [];
 
   for (const line of withoutCode(fs.readFileSync(source.file, "utf8")).split("\n")) {
     const match = /^(#{2,3})\s+(.+)$/.exec(line);
     if (!match) continue;
+    if (match[1].length > maxLevel) continue;
 
     const text = match[2].replace(/[*_`]/g, "").replace(/&lt;/g, "<").trim();
     headings.push({ id: slugify(text), text, level: match[1].length as 2 | 3 });

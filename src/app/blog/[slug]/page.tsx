@@ -64,7 +64,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   const { default: Content } = mod;
   const metadata = (await getPostMeta(slug))!;
   const readingTime = getReadingTime(slug);
-  const headings = getHeadings(slug);
+  const headings = getHeadings(slug, metadata.tocDepth);
   const dateLabel = formatDate(metadata.date);
   const url = absoluteUrl(`/blog/${slug}`);
 
