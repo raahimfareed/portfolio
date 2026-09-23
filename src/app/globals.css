@@ -162,6 +162,7 @@ body {
 @layer components {
   .prose {
     @apply text-foreground leading-relaxed;
+    font-size: clamp(1.063rem, 0.5vw + 1rem, 1.188rem);
   }
 
   .prose > * + * {
