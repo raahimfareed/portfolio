@@ -336,7 +336,7 @@ For example, your own notes app is running on port 3000, your google photos repl
 
 This is all well and good, you can access your apps that you hosted on your homelab, perfect, but we've run into a problem, as soon as you disconnect from the WiFi (Or leave your computer), the IP and port stops working. That's because, the IPs assigned by your router are internal/private IPs. They're only accessible as long as you're connected to the router either by WiFi or through ethernet.
 
-This is why we use cloudflare tunnels, to connected a website URL or a subdomain to an IP and Port. This way any internal app can be accessed from the outside.
+This is why we use cloudflare tunnels, to connect a website URL or a subdomain to an IP and Port. This way any internal app can be accessed from the outside.
 
 One thing to keep in mind is that, some things should NOT be public, like your databases, NVR, anything that unauthenticated. If you're assigning a tunnel to an app, use your judgement on whether it should be public or not.
 
