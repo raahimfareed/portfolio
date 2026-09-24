@@ -11,7 +11,8 @@ import { Uiiai } from "@/components/Uiiai"
 import projects from "@/data/projects";
 import { Project } from "@/types"
 import { SiGit } from "react-icons/si"
-import { FaLinkedin } from "react-icons/fa"
+import { FaLinkedin, FaInstagram, FaReddit } from "react-icons/fa"
+import { FaXTwitter } from "react-icons/fa6"
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -45,6 +46,18 @@ const About = () => {
             <ContactSidebarLink href="https://git.raahimfareed.com/raahim">
               <SiGit className="w-4 text-orange-600" />
               @raahim
+            </ContactSidebarLink>
+            <ContactSidebarLink href="https://x.com/@raahimfareed">
+              <FaXTwitter className="w-4" />
+              @raahimfareed
+            </ContactSidebarLink>
+            <ContactSidebarLink href="https://www.instagram.com/raahimfareed">
+              <FaInstagram className="w-4 text-pink-600" />
+              @raahimfareed
+            </ContactSidebarLink>
+            <ContactSidebarLink href="https://www.reddit.com/user/SirOonga/">
+              <FaReddit className="w-4 text-orange-500" />
+              u/SirOonga
             </ContactSidebarLink>
             <ContactSidebarLink href="mailto:raahim@neoflux.pk">
               <EnvelopeIcon className="w-4" />
