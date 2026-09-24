@@ -69,6 +69,8 @@ export interface PostMeta {
     tags?: string[];
     cover?: string;
     coverAlt?: string;
+    banner?: string;
+    bannerAlt?: string;
     featured?: boolean;
     draft?: boolean;
     tocDepth?: 1 | 2;

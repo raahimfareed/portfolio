@@ -6,6 +6,7 @@ import { formatDate } from "@/utils";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 
 import 'katex/dist/katex.min.css'
@@ -22,7 +23,12 @@ export const generateMetadata = async ({ params }: { params: Promise<{ slug: str
   if (!meta) return {};
 
   const url = absoluteUrl(`/blog/${slug}`);
-  const images = meta.cover ? [{ url: absoluteUrl(meta.cover), alt: meta.coverAlt ?? meta.title }] : undefined;
+  const ogSrc = meta.banner ?? meta.cover;
+  const ogAlt = meta.banner ? (meta.bannerAlt ?? meta.title) : (meta.coverAlt ?? meta.title);
+  const images = ogSrc
+    ? [{ url: absoluteUrl(ogSrc), alt: ogAlt }]
+    : [{ url: absoluteUrl("/favicon.ico"), alt: site.name }];
+  const twitterCard = ogSrc ? "summary_large_image" : "summary";
 
   return {
     title: meta.title,
@@ -45,7 +51,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ slug: str
       images,
     },
     twitter: {
-      card: images ? "summary_large_image" : "summary",
+      card: twitterCard,
       title: meta.title,
       description: meta.description,
       creator: site.author.twitter,
@@ -78,7 +84,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
     dateModified: metadata.updated ?? metadata.date,
     keywords: metadata.tags,
     wordCount: readingTime * 200,
-    image: metadata.cover ? absoluteUrl(metadata.cover) : undefined,
+    image: (metadata.banner ?? metadata.cover) ? absoluteUrl((metadata.banner ?? metadata.cover)!) : undefined,
     inLanguage: "en",
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     author: {
@@ -121,6 +127,16 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
                     </li>
                   ))}
                 </ul>
+              )}
+              {!!metadata.banner && (
+                <Image
+                  src={metadata.banner}
+                  alt={metadata.bannerAlt ?? metadata.title}
+                  width={1200}
+                  height={630}
+                  priority
+                  className="w-full h-auto rounded border border-accent shadow mt-4"
+                />
               )}
             </header>
 
