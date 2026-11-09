@@ -1,4 +1,5 @@
 import { Alata } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { cookies } from "next/headers";
 import type { Metadata } from "next";
@@ -69,6 +70,9 @@ export default function RootLayout({
   const style = cookies().get('style');
   return (
     <html lang="en" data-theme={!!theme ? theme.value : "Mono"} data-style={!!style ? style.value : "Minimal"}>
+      <head>
+        <Script defer src="https://analytics.raahimfareed.com/script.js" data-website-id="5ac25440-2e53-48bb-9d4b-b870367f55c4" />
+      </head>
       <body
         className={`${alata.className} antialiased bg-background text-foreground overflow-x-hidden`}
       >
